@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/BlogPost.astro
+layout: ../../../layouts/BlogPost.astro
 title:  "MongoDB Tuning: disable transparent huge pages"
 subTitle: a fix for Debian/Ubuntu
 date: 2015-12-22

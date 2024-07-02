@@ -12,6 +12,8 @@ const posts = [...data].sort(
 	// @ts-ignore
 	(a, b) => b.data?.date - a.data?.date
 );
+
+
 ---
 
 <!doctype html>
@@ -104,11 +106,11 @@ const posts = [...data].sort(
                     alt=""
                   />
                   <h4 class="title">{post.data.title}</h4>
-                  <p class="date">
+                  {/* <p class="date">
                     {post.data?.date ?? (
                       <FormattedDate date={new Date(post.data?.date)} />
                     )}
-                  </p>
+                  </p> */}
                 </a>
               </li>
             ))
