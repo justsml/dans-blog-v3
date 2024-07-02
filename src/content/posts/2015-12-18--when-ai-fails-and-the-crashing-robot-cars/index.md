@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: ../../layouts/BlogPost.astro
 title:  "When AI Fails & the Crashing Robotic Cars"
 date: 2015-12-18
 modified: 2018-07-24

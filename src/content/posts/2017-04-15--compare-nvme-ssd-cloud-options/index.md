@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: ../../layouts/BlogPost.astro
 title:  "Compare NVMe SSD Cloud Options"
 subTitle: "NVMe SSD Head-to-Head: AWS, DigitalOcean, Packet.net"
 date: 2017-04-15

@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: ../../layouts/BlogPost.astro
 title:  "Visualizing Promises"
 subTitle: Break on through...
 date: 2018-09-30

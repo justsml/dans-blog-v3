@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: ../../layouts/BlogPost.astro
 title:  "Intro to Promises"
 subTitle: JavaScript Promises Are Fun!
 date: 2018-08-01

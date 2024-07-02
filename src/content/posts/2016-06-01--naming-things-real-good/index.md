@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: ../../layouts/BlogPost.astro
 title:  "Naming things real good"
 subTitle: "Naming stuff: Object Oriented Basics"
 date: 2016-06-01

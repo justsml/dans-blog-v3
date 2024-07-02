@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: ../../layouts/BlogPost.astro
 title:  "AngularJS Tricks"
 subTitle: AngularJS CAN BE Fun!
 date: 2015-02-26

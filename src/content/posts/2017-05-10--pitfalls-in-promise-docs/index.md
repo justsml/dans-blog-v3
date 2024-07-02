@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: ../../layouts/BlogPost.astro
 title:  "Pitfalls in Promise Docs"
 subTitle: Avoiding issues from popular docs
 date: 2017-05-10

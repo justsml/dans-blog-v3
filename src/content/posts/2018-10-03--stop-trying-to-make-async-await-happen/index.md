@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: ../../layouts/BlogPost.astro
 title: "Stop trying to make async/await happen"
 subTitle: Promises are so fetch right now
 date: 2018-10-03

@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: ../../layouts/BlogPost.astro
 title:  "Docker rocks & now works on OSX"
 date: 2015-06-11 05:00:12
 modified: 2015-06-15 10:00:01

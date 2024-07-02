@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: ../../layouts/BlogPost.astro
 title:  "Docker Server Setup"
 date: 2015-04-06
 modified: 2019-12-01

@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: ../../layouts/BlogPost.astro
 title:  "JavaScript Magic"
 date: 2015-06-06
 modified: 2015-09-24

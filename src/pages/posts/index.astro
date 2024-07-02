@@ -9,7 +9,8 @@ import FormattedDate from "../../components/FormattedDate.astro";
 const data = await getCollection("posts");
 // const posts = data;
 const posts = [...data].sort(
-	(a, b) => a.data?.date - b.data?.date
+	// @ts-ignore
+	(a, b) => b.data?.date - a.data?.date
 );
 ---
 

@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: ../../layouts/BlogPost.astro
 title:  "Higher Order Programming"
 date: 2015-09-22
 modified: 2017-05-13

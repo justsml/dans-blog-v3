@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: ../../layouts/BlogPost.astro
 title:  "Love (Computer) Languages"
 date: 2015-06-12
 modified: 2018-09-24

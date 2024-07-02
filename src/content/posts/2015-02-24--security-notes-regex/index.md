@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: ../../layouts/BlogPost.astro
 title:  "Security Notes: RegEx"
 subTitle: Even RegEx can be vulnerable
 date: 2015-02-24
