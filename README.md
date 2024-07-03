@@ -4,6 +4,10 @@
 
 ### Features
 
+- [ ] Add new nav
+  - [ ] Add tags
+  - [ ] Add categories
+  - [ ] Add Popular/Related posts
 - [ ] Convert Quiz UI to MDX/Astro
 - [ ] Add favicon
 - [ ] Add social media meta tags
@@ -14,9 +18,6 @@
 - [ ] Add OSS info page
 - [ ] Add contact page
 - [ ] Add Video page
-- [ ] Add categories
-- [ ] Add tags
-- [ ] Add Popular/Related posts
 - [ ] Add comments
 - [ ] Add search
 - [ ] Add newsletter

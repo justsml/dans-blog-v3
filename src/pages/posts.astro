@@ -1,20 +1,14 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
+import BaseHead from "@/components/BaseHead.astro";
+import Header from "@/components/Header.astro";
+import Footer from "@/components/Footer.astro";
+import { fixSlugPrefix } from "@/shared/pathHelpers";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
-import { getCollection } from "astro:content";
-import { fixSlugPrefix } from "../shared/pathHelpers";
 import { Image } from "astro:assets";
-import { getImageProps } from "../shared/dataCache";
+import { PostCollections } from "../shared/dataCache";
 
-const data = await getCollection("posts");
-// const posts = data;
-const posts = [...data].sort(
-	// @ts-ignore
-	(a, b) => a.data?.date - b.data?.date
-).reverse();
+const posts = await PostCollections.getPosts();
 
 type Props = CollectionEntry<"posts">;
 

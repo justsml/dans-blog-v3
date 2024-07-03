@@ -2,15 +2,27 @@
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import { NavBar } from "../components/NavBar";
+
 
 type Props = {
-  title: string;
-  subTitle: string | undefined;
-};
+  children: any[];
+
+  frontmatter: {
+    title: string;
+    subTitle: string | undefined;
+    date?: string;
+    modified?: string;
+    tags?: string[];
+    cover?: string;
+    category?: string;
+  };
+}
+
 
 console.log("layout/Main.astro", Astro.props);
 
-const { title, subTitle } = Astro.props;
+const { title, subTitle } = Astro.props.frontmatter || Astro.props;
 // <Image 
 ---
 <html lang="en">
@@ -59,6 +71,7 @@ const { title, subTitle } = Astro.props;
 
   <body>
     <Header />
+    <NavBar />
     <main>
       <h1>{title}</h1>
       <slot />

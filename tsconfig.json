@@ -3,6 +3,15 @@
   "compilerOptions": {
     "strictNullChecks": true,
     "jsx": "react-jsx",
-    "jsxImportSource": "react"
-  }
+    "jsxImportSource": "react",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@/utils/*": ["./src/utils/*"],
+      "@/utils": ["./src/utils.ts", "./src/utils/*"],
+      "@/components/*": ["./src/components/*"],
+
+    },
+  },
+  "exclude": ["node_modules", "dist"]
 }
