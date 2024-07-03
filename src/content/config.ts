@@ -29,6 +29,11 @@ const posts = defineCollection({
       cover: image(), // z.string().optional(),
       category: z.string(),
       tags: z.array(z.string()),
+
+      popularity: z.number().min(0).max(1.0).optional(),
+      // `related` is a list of post slugs
+      related: z.array(z.string()).optional(),
+
     }),
 });
 

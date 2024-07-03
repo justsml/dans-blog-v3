@@ -11,10 +11,7 @@ export default defineConfig({
   build: {
     format: "directory",
   },
-  // build: {
-  // 	inlineStylesheets: 'always',
 
-  // },
   site: "https://danlevy.net",
   integrations: [
     react(),

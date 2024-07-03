@@ -54,8 +54,8 @@ const components: { title: string; href: string; description: string }[] = [
 
 export function NavBar() {
   return (
-    <NavigationMenu>
-      <NavigationMenuList>
+    <NavigationMenu className="relative z-[1] flex w-screen justify-center">
+      <NavigationMenuList className="center shadow-blackA4 m-0 flex list-none rounded-[6px] bg-white p-1 shadow-[0_2px_10px]">
         <NavigationMenuItem>
           <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
           <NavigationMenuContent>
