@@ -26,10 +26,10 @@ This article features 1-line commands to start some of the most popular database
 
 <section class="font-lg">
 
-- [<img src="./postgresql.svg" class="svg-icon"> Postgres](#postgres-server)
-- [<img src="./mongodb.svg" class="svg-icon"> MongoDB](#mongodb-server)
-- [<img src="./mysql.svg" class="svg-icon"> MySQL](#mysql-server)
-- [<img src="./elastic.svg" class="svg-icon"> ElasticSearch](#elasticsearch-server)
+<a href="#postgres-server"><img src="./postgresql.svg" class="svg-icon" /> Postgres</a>
+<a href="#mongodb-server"><img src="./mongodb.svg" class="svg-icon" /> MongoDB</a>
+<a href="#mysql-server"><img src="./mysql.svg" class="svg-icon" /> MySQL</a>
+<a href="#elasticsearch-server"><img src="./elastic.svg" class="svg-icon" /> ElasticSearch</a>
 
 </section>
 
@@ -184,14 +184,14 @@ In terminal, `cd` to your project folder and run the following `build` command _
 docker build -t app-name-here .
 ```
 
-<!--
+{/* <!--
 #### Docker Install
 
 If you don't have Docker installed, use the following command to install on Linux or macOS:
 
 ```sh
 curl -sSL https://get.docker.com/ | sh
-``` -->
+``` --> */}
 
 ### Key Docker Commands Reference
 
@@ -225,41 +225,3 @@ docker rm -f webapp01
 # So for example, let's kill your db instances above, run: ( start with something like `docker stop {mongo,elastic}` )
 docker rm -f mongo elastic
 ```
-
-<!--
-
-## Optional Config & Monitoring Tools
-
-```sh
-# Debian/BSD Requirements / Updates + monitoring tools: atop & htop
-apt-get update && apt-get install -y vim-nox git-core curl atop htop build-essential libssl-dev linux-image-amd64 linux-headers-amd64 sudo
-
-# OSX, Debian & RHEL: Host OS Tuning
-sysctl -w vm.max_map_count=262144
-
-# Updates Profile init scripts before appending new scripts below
-mkdir ~/backups
-cp ~/.bash* ~/backups/
-
-# Debian/BSD:  Append Shell Environment Shortcuts + XTERM Colors
-curl -o- https://raw.githubusercontent.com/justsml/system-setup-tools/master/modules/vim-update.sh | bash
-
-curl -sSL https://raw.githubusercontent.com/justsml/system-setup-tools/master/home-scripts/.bashrc >> ~/.bashrc
-curl -sSL https://raw.githubusercontent.com/justsml/system-setup-tools/master/home-scripts/.bash_aliases >> ~/.bash_aliases
-
-# Read into current shell (login steps already missed the aliases file)
-source ~/.bashrc
-
-# Docker pre reqs
-# sudo apt-get install -y linux-image-virtual linux-image-extra-virtual
-```
-
-> Only for SELinux Enabled Systems
-
-```sh
-# SELinux fixes (optional)
-# chcon -Rt svirt_sandbox_file_t /mongodb
-# chcon -Rt svirt_sandbox_file_t /elastic
-```
-
--->

@@ -1,4 +1,5 @@
 ---
+layout: ../../../layouts/BlogPost.astro
 title: "How to Contribute to OSS"
 subTitle: The Easy Way
 date: 2024-01-16
@@ -7,16 +8,19 @@ tags: [engineering,open source,oss]
 category: Open Source
 cover: open-source-high-life.jpg
 ---
+import {Image} from 'astro:assets';
+import {getImageProps} from '../../../shared/dataCache';
 
-<!-- # How To: Contribute to Open Source -->
+{console.log('frontmatter:', frontmatter.cover)}
+{/* {console.log('getImageProps:', )} */}
 
 ## That Open Source Dream Life?
 
-Drippin’ in donations? 💰
-Rollin’ in repos? 🏎️
+Drippin' in donations? 💰
+Rollin' in repos? 🏎️
 Rebasin' robb report! 🤯
 
-<img src="open-source-high-life-smaller.jpg" alt="OSS High Life" />
+<Image src={getImageProps(frontmatter.cover)} alt="OSS High Life" />
 
 <br />
 
@@ -40,17 +44,17 @@ It's all well-intentioned, however in practice `GFI` labels are highly subjectiv
 
 ## A Better Way
 
-<!-- ❌ Don't look outward, look inward. -->
+{/* <!-- ❌ Don't look outward, look inward. --> */}
 
-<!-- ❌ Searching GitHub Repo Issues pages for a `good first issue`. That's reasonable in scope. Also interesting. And hasn't been claimed by someone else. And isn't hiding impossible complexity.
+{/* <!-- ❌ Searching GitHub Repo Issues pages for a `good first issue`. That's reasonable in scope. Also interesting. And hasn't been claimed by someone else. And isn't hiding impossible complexity.
 
-👎 When Searching Repos, you may lack any context, and the issue may be too complex for you to easily solve. -->
+👎 When Searching Repos, you may lack any context, and the issue may be too complex for you to easily solve. --> */}
 
 ✅ Scan your project dependency file(s). Which libraries spark rage? What led to a missed deadline? How did you overcome it?
 
 💪 By starting with something you already solved, there's **no need to worry if you can.** You're already **fluent; and familiar** with the context!
 
-<!-- The Struggle is the Way: Every project or library you’ve ever struggled with could become an "easy" contribution! -->
+{/* <!-- The Struggle is the Way: Every project or library you’ve ever struggled with could become an "easy" contribution! --> */}
 
 By definition, **you already solved the thing, most of the work is done.**
 
@@ -58,7 +62,7 @@ Next, figure out how to **help others avoid your struggle altogether.**
 
 Maybe a Tweet or Stack Overflow answer will do, but if you want to make a **lasting impact, _`contribute`_ to the project itself.**
 
-<!-- However, if you want the glory that lives forever: help others avoid your struggle in the first place. -->
+{/* <!-- However, if you want the glory that lives forever: help others avoid your struggle in the first place. --> */}
 
 ## The Glory
 
@@ -78,16 +82,16 @@ What did you try **first?** And why? What did you assume? Or misunderstand?
 
 These types of issues are easy for maintainers to miss! And can have surprisingly big impact on the project & its users.
 
-Think about it this way: how would you feel if you knew that sharing your fix might save 100’s (or 100,000’s) of devs from countless lost hours?
+Think about it this way: how would you feel if you knew that sharing your fix might save 100's (or 100,000's) of devs from countless lost hours?
 
-Next time you conquer some challenge, _don’t rebase away evidence of your inadequacy!_
+Next time you conquer some challenge, _don't rebase away evidence of your inadequacy!_
 **Instead share your struggle & solution publicly!**
 
 ## Fine, Fine Print
 
 Always follow project guidelines, and never be an asshole. ✨
 
-It’s all public. So, be gracious, great, and grateful.
+It's all public. So, be gracious, great, and grateful.
 
 If you need any more convincing: `contribute` for the learning! New processes, languages, frameworks, automation!
 
@@ -97,9 +101,3 @@ If you need any more convincing: `contribute` for the learning! New processes, l
 
 If you found this helpful, please share your contributions in the comments or post them to [Twitter and tag me @justsml](https://twitter.com/justsml).
 
-<!--
-<img
-  style="border-radius: 100%;"
-  src="open-source-high-life.jpg"
-  width="300"
-  alt="OSS High Life" /> -->

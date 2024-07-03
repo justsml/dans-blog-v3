@@ -1,4 +1,5 @@
 ---
+layout: ../../../layouts/BlogPost.astro
 title: "You may not need Axios"
 subTitle: Fetch API to the rescue!
 date: 2018-11-14
@@ -24,19 +25,23 @@ This article is a collection of the "missing" `fetch` [code snippets and common 
 
 My top 10 list of `fetch` examples, plus a bonus or 2.
 
-- [Get JSON from a URL](#get-json-from-a-url)
-- [Custom headers](#custom-headers)
-- [HTTP Error Handling](#http-error-handling)
-- [CORS example](#cors-example)
-- [Posting JSON](#posting-json)
-- [Posting an HTML `<form>`](#posting-an-html-form)
-- [Form encoded data](#form-encoded-data)
-- [Uploading a file](#uploading-a-file)
-- [Uploading multiple files](#uploading-multiple-files)
-- [Timeouts](#timeouts)
-- [Download Progress Helper](#download-progress-helper)
-- [Recursive Retry Helper](#recursive-retry-helper)
-- [Handling HTTP Redirects](#handling-http-redirects)
+- [Overview](#overview)
+- [Fetch Snippets](#fetch-snippets)
+- [Feature Comparison](#feature-comparison)
+  - [Get JSON from a URL](#get-json-from-a-url)
+  - [Custom headers](#custom-headers)
+  - [HTTP Error Handling](#http-error-handling)
+  - [CORS example](#cors-example)
+  - [Posting JSON](#posting-json)
+  - [Posting an HTML `<form>`](#posting-an-html-form)
+  - [Form encoded data](#form-encoded-data)
+  - [Uploading a file](#uploading-a-file)
+  - [Uploading multiple files](#uploading-multiple-files)
+  - [Timeouts](#timeouts)
+  - [Download Progress Helper](#download-progress-helper)
+  - [Recursive Retry Helper](#recursive-retry-helper)
+  - [Handling HTTP Redirects](#handling-http-redirects)
+- [Compatibility](#compatibility)
 
 > Is your Use Case not listed? [Let me know ✉️](/contact/)
 

@@ -1,6 +1,6 @@
 ---
 layout: ../../../layouts/BlogPost.astro
-title:  "Docker === Love"
+title: "Docker === Love"
 subTitle: Docker can do :allthethings:!
 date: 2015-02-26
 modified: 2015-09-23
@@ -21,7 +21,7 @@ Improve your process for:
 
 There may seem like a huge volume of new stuff to learn, **don't let that stop you** from getting started.
 
-#### Notes
+## Notes
 
 - If you see a `docker run` command with either options `-d` or `-it`:
   _ `-it` or `-i -t` will run the configured command interactively
@@ -29,24 +29,24 @@ There may seem like a huge volume of new stuff to learn, **don't let that stop y
 
 ---
 
-# EXAMPLES
+## EXAMPLES
 
 ## nginx
 
 ```bash
-	# Note: using host-based, shared folders
-	#(shared folders are not possible with the VOLUME Dockerfile cmd)
-	sudo docker run --name web01 -d -p 8181:80 \
-		-v $(NGINX_DIR)/etc:/etc/nginx \
-		-v $(NGINX_DIR)/log:/var/log/nginx \
-		-v $(NGINX_DIR)/www:/var/www/html \
-		nginx:latest
+# Note: using host-based, shared folders
+#(shared folders are not possible with the VOLUME Dockerfile cmd)
+sudo docker run --name web01 -d -p 8181:80 \
+  -v $(NGINX_DIR)/etc:/etc/nginx \
+  -v $(NGINX_DIR)/log:/var/log/nginx \
+  -v $(NGINX_DIR)/www:/var/www/html \
+  nginx:latest
 
-	# Local data, isolated within instance
-	sudo docker run --name web01 -d -p 8181:80 nginx:latest
+# Local data, isolated within instance
+sudo docker run --name web01 -d -p 8181:80 nginx:latest
 
-	# nodejs
-	sudo docker run --name nodejs01 -d -p 3300:3300 -p 4433:4433 nodejs:latest
+# nodejs
+sudo docker run --name nodejs01 -d -p 3300:3300 -p 4433:4433 nodejs:latest
 ```
 
 > Credits: [https://dockerfile.github.io/#/nginx](https://dockerfile.github.io/#/nginx)

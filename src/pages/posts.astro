@@ -1,18 +1,22 @@
 ---
-import BaseHead from "../../components/BaseHead.astro";
-import Header from "../../components/Header.astro";
-import Footer from "../../components/Footer.astro";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
+import type { CollectionEntry } from "astro:content";
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import { getCollection } from "astro:content";
-import FormattedDate from "../../components/FormattedDate.astro";
+import { fixSlugPrefix } from "../shared/pathHelpers";
+import { Image } from "astro:assets";
+import { getImageProps } from "../shared/dataCache";
 
 const data = await getCollection("posts");
 // const posts = data;
 const posts = [...data].sort(
 	// @ts-ignore
-	(a, b) => b.data?.date - a.data?.date
-);
+	(a, b) => a.data?.date - b.data?.date
+).reverse();
 
+type Props = CollectionEntry<"posts">;
 
 ---
 
@@ -96,13 +100,13 @@ const posts = [...data].sort(
       <section>
         <ul>
           {
-            posts.map((post) => (
+            posts.map(async (post) => (
               <li>
-                <a href={`/posts/${post.slug}/`}>
-                  <img
-                    width={720}
-                    height={360}
+                <a href={`/${fixSlugPrefix(post.slug)}/`}>
+                  <Image
                     src={post.data?.cover}
+                    width={post.data?.cover.width}
+                    height={post.data?.cover.height}
                     alt=""
                   />
                   <h4 class="title">{post.data.title}</h4>

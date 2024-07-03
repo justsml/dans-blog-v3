@@ -1,20 +1,18 @@
 ---
-import type { CollectionEntry } from "astro:content";
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import FormattedDate from "../components/FormattedDate.astro";
 
-type Props = CollectionEntry<"posts">["data"];
+type Props = {
+  title: string;
+  subTitle: string | undefined;
+};
 
-console.log("BlogPost.astro", Astro.props);
+console.log("layout/Main.astro", Astro.props);
 
-const { title, subTitle, date, modified, cover, category, tags } = Astro.props;
-
-console.log("cover:", cover);
-
+const { title, subTitle } = Astro.props;
+// <Image 
 ---
-
 <html lang="en">
   <head>
     <BaseHead title={title} description={`${subTitle}`} />
@@ -62,28 +60,8 @@ console.log("cover:", cover);
   <body>
     <Header />
     <main>
-      <article>
-        {
-          cover && (
-            <div class="hero-image">
-              <img
-                {...cover}
-                alt={`Article banner for ${subTitle}`}
-              />
-            </div>
-          )
-        }
-        <div class="prose">
-          <div class="title">
-            <div class="date">
-              <FormattedDate date={date} updatedDate={modified} />
-            </div>
-            <h1>{title}</h1>
-            <hr />
-          </div>
-          <slot />
-        </div>
-      </article>
+      <h1>{title}</h1>
+      <slot />
     </main>
     <Footer />
   </body>
