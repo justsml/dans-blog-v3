@@ -13,23 +13,15 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
-import { PostCollections } from "../shared/dataCache";
-import { slugify } from "../shared/pathHelpers";
+import { PostCollections } from "@/shared/dataCache";
+import { slugify } from "@/shared/pathHelpers";
 
-const tagCounts = Object.entries(PostCollections._tags).sort(([, a], [, b]) =>
-  b.length === a.length ? 0 : b.length > a.length ? 1 : -1
-);
+const { getCategoryCounts, getPopularPosts, getTagCounts } = PostCollections;
 
-const categories = Object.entries(PostCollections._categories)
-  .sort((a, b) => (a[1] === b[1] ? 0 : a[1] > b[1] ? -1 : 1))
-  .filter(([tag, count]) => count > 1);
+const categories = getCategoryCounts();
+const popularPosts = getPopularPosts();
+const tagCounts = getTagCounts();
 
-const popularPosts = [
-  "naming-things-real-good",
-  "js-quiz-14-date-time-questions-test-your-knowledge",
-  "javascript-promises-quiz",
-  "you-may-not-need-axios",
-].map((slug) => PostCollections._postsBySlug[slug]);
 
 export function NavBar() {
   return (

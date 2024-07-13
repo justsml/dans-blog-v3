@@ -1,8 +1,102 @@
-@import '@radix-ui/colors/black-alpha.css';
-@import '@radix-ui/colors/indigo.css';
-@import '@radix-ui/colors/mauve.css';
-@import '@radix-ui/colors/purple.css';
-@import '@radix-ui/colors/violet.css';
+@import "@radix-ui/colors/black-alpha.css";
+@import "@radix-ui/colors/indigo.css";
+@import "@radix-ui/colors/mauve.css";
+@import "@radix-ui/colors/purple.css";
+@import "@radix-ui/colors/violet.css";
+
+:root {
+  --neon-cyan: #00ffff;
+  --neon-pink: #ff00cc;
+  --neon-green: #00ff00;
+  --neon-purple: #9900ff;
+  --neon-yellow: #ffff00;
+  --neon-orange: #ff9900;
+
+  --neon-cyan-gradient: linear-gradient(
+    to top left,
+    var(--neon-cyan),
+    hsl(210 5% 35%)
+  );
+  --neon-pink-gradient: linear-gradient(
+    to top left,
+    var(--neon-pink),
+    hsl(210 5% 35%)
+  );
+  --neon-green-gradient: linear-gradient(
+    to top left,
+    var(--neon-green),
+    hsl(210 5% 35%)
+  );
+  --neon-purple-gradient: linear-gradient(
+    to top left,
+    var(--neon-purple),
+    hsl(210 5% 35%)
+  );
+  --neon-yellow-gradient: linear-gradient(
+    to top left,
+    var(--neon-yellow),
+    hsl(210 5% 35%)
+  );
+  --neon-orange-gradient: linear-gradient(
+    to top left,
+    var(--neon-orange),
+    hsl(210 5% 35%)
+  );
+
+  --neon-bg-1: linear-gradient(
+    315deg,
+    hsl(156deg 21% 31%) 0%,
+    hsl(174deg 29% 33%) 11%,
+    hsl(191deg 38% 35%) 22%,
+    hsl(208deg 48% 37%) 33%,
+    hsl(225deg 56% 39%) 44%,
+    hsl(243deg 65% 42%) 56%,
+    hsl(260deg 74% 44%) 67%,
+    hsl(278deg 82% 46%) 78%,
+    hsl(295deg 91% 48%) 89%,
+    hsl(312deg 100% 50%) 100%
+  );
+
+  --neon-bg-2: linear-gradient(315deg, #00FFFF, #010101);
+
+  --neon-bg-3: linear-gradient(45deg, #ff00cc, #010101);
+
+  --neon-bg-4: linear-gradient(
+    45deg,
+    hsl(120deg 100% 50%) 0%,
+    hsl(101deg 100% 50%) 11%,
+    hsl(83deg 100% 50%) 22%,
+    hsl(64deg 100% 50%) 33%,
+    hsl(45deg 100% 50%) 44%,
+    hsl(27deg 100% 50%) 56%,
+    hsl(8deg 100% 50%) 67%,
+    hsl(349deg 100% 50%) 78%,
+    hsl(331deg 100% 50%) 89%,
+    hsl(312deg 100% 50%) 100%
+  );
+
+  --neon-bg-5: linear-gradient(
+    45deg,
+    hsl(0deg 100% 50%) 0%,
+    hsl(20deg 100% 50%) 11%,
+    hsl(40deg 100% 50%) 22%,
+    hsl(60deg 100% 50%) 33%,
+    hsl(80deg 100% 50%) 44%,
+    hsl(100deg 100% 50%) 56%,
+    hsl(120deg 100% 50%) 67%,
+    hsl(140deg 100% 50%) 78%,
+    hsl(160deg 100% 50%) 89%,
+    hsl(180deg 100% 50%) 100%
+  );
+
+
+}
+
+.neon-bg-1 { background: var(--neon-bg-1); }
+.neon-bg-2 { background: var(--neon-bg-2); }
+.neon-bg-3 { background: var(--neon-bg-3); }
+.neon-bg-4 { background: var(--neon-bg-4); }
+.neon-bg-5 { background: var(--neon-bg-5); }
 
 /* reset */
 button,
@@ -21,11 +115,11 @@ p {
 .NavigationMenuList {
   display: flex;
   justify-content: center;
-  background-color: white;
+  /* background-color: white; */
   padding: 4px;
   border-radius: 6px;
   list-style: none;
-  box-shadow: 0 2px 10px var(--black-a7);
+  box-shadow: 0 2px 10px var(--black-a8);
   margin: 0;
 }
 
@@ -71,16 +165,16 @@ p {
   animation-duration: 250ms;
   animation-timing-function: ease;
 }
-.NavigationMenuContent[data-motion='from-start'] {
+.NavigationMenuContent[data-motion="from-start"] {
   animation-name: enterFromLeft;
 }
-.NavigationMenuContent[data-motion='from-end'] {
+.NavigationMenuContent[data-motion="from-end"] {
   animation-name: enterFromRight;
 }
-.NavigationMenuContent[data-motion='to-start'] {
+.NavigationMenuContent[data-motion="to-start"] {
   animation-name: exitToLeft;
 }
-.NavigationMenuContent[data-motion='to-end'] {
+.NavigationMenuContent[data-motion="to-end"] {
   animation-name: exitToRight;
 }
 @media only screen and (min-width: 600px) {
@@ -99,10 +193,10 @@ p {
   z-index: 1;
   transition: width, transform 250ms ease;
 }
-.NavigationMenuIndicator[data-state='visible'] {
+.NavigationMenuIndicator[data-state="visible"] {
   animation: fadeIn 200ms ease;
 }
-.NavigationMenuIndicator[data-state='hidden'] {
+.NavigationMenuIndicator[data-state="hidden"] {
   animation: fadeOut 200ms ease;
 }
 
@@ -114,14 +208,15 @@ p {
   background-color: white;
   border-radius: 6px;
   overflow: hidden;
-  box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
+  box-shadow: hsl(206 22% 7% / 35%) 0px 10px 38px -10px,
+    hsl(206 22% 7% / 20%) 0px 10px 20px -15px;
   height: var(--radix-navigation-menu-viewport-height);
   transition: width, height, 300ms ease;
 }
-.NavigationMenuViewport[data-state='open'] {
+.NavigationMenuViewport[data-state="open"] {
   animation: scaleIn 200ms ease;
 }
-.NavigationMenuViewport[data-state='closed'] {
+.NavigationMenuViewport[data-state="closed"] {
   animation: scaleOut 200ms ease;
 }
 @media only screen and (min-width: 600px) {
@@ -181,11 +276,12 @@ p {
 
 .Callout {
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   flex-direction: column;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, var(--purple-9) 0%, var(--indigo-9) 100%);
+  /* background: linear-gradient(135deg, var(--purple-9) 0%, var(--indigo-9) 100%); */
+  background: var(--neon-bg-1);
   border-radius: 6px;
   padding: 25px;
   text-decoration: none;
@@ -227,7 +323,7 @@ p {
   top: 1px;
   transition: transform 250ms ease;
 }
-[data-state='open'] > .CaretDown {
+[data-state="open"] > .CaretDown {
   transform: rotate(-180deg);
 }
 

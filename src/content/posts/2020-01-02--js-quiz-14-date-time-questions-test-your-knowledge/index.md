@@ -1,6 +1,6 @@
 ---
-title: "JS Date Quiz: 14 Questions"
-subTitle: Gotchas every developer will encounter ✨
+title: "JS Quiz Dates: 14 Questions"
+subTitle: Learn to impress at parties with JS trivia! ✨
 date: 2020-01-02
 modified: 2020-01-03
 tags: [javascript,date,date class,gotchas,quiz,challenge]
@@ -16,9 +16,9 @@ cover: pocket-watch.jpg
 
 ## Outline
 
-The `Date` class in JavaScript has a notoriously difficult API. It was inherited from Java...
+The `Date` class in JavaScript has a notoriously difficult API. It was inherited from Java, and I can only assume was inspired ancient neolithic time keeping methods.
 
-This situation leads many developers to use 3rd party libraries without question. While often a safe and reliable choice, these libraries are rarely needed for formatting dates or localization!
+The struggle to get `Date`'s leads many developers to use 3rd party libraries without question. While often a safe and reliable choice, these libraries are rarely needed for formatting dates or localization!
 
 This quiz is designed to test (and deepen) your knowledge of the native `Date` API. Use the green buttons for hints & explanations! Hopefully by the end of the challenge you'll have solidified your understanding of `Date`'s in JavaScript.
 
