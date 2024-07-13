@@ -4,7 +4,17 @@ import { fixSlugPrefix } from "../shared/pathHelpers";
 
 const getBaseName = (path: string) => path.split("/").pop() || "";
 
-const _posts = await getCollection("posts");
+const _postsCollection = await getCollection("posts");
+let _posts = _postsCollection
+  .map((post) => ({
+    ...post,
+    slug: fixSlugPrefix(post.slug),
+  }))
+  .sort(
+    // @ts-ignore
+    (a, b) => a.data?.date - b.data?.date
+  )
+  .reverse();
 
 export const PostCollections = {
   _posts,
@@ -19,23 +29,22 @@ export const PostCollections = {
     return acc;
   }, {} as Record<string, number>),
 
+  _tags: _posts.reduce((acc, post) => {
+    // const { tags, } = post.data;
+    const {slug, data: { tags }} = post;
+
+    tags.forEach((tag) => {
+      acc[tag] = acc[tag] == null ? [slug] : [...acc[tag], slug];
+    });
+    return acc;
+  }, {} as Record<string, string[]>),
+
   async getPosts() {
     let posts = this._posts;
 
-    let fixedPosts = posts
-      .map((post) => ({
-        ...post,
-        slug: fixSlugPrefix(post.slug),
-      }))
-      .sort(
-        // @ts-ignore
-        (a, b) => a.data?.date - b.data?.date
-      )
-      .reverse();
+    console.log("dataCache.getPosts", posts.length);
 
-    console.log("dataCache.getPosts", fixedPosts.length);
-
-    return fixedPosts;
+    return posts;
   },
   getStaticPaths(): Array<{
     params: Record<string, unknown>;

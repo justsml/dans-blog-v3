@@ -1,5 +1,5 @@
 ---
-title: "JS Quiz: 14 Date Time Questions in JavaScript"
+title: "JS Date Quiz: 14 Questions"
 subTitle: Gotchas every developer will encounter ✨
 date: 2020-01-02
 modified: 2020-01-03
