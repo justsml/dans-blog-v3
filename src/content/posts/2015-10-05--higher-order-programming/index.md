@@ -2,7 +2,8 @@
 title:  "Higher Order Programming"
 date: 2015-09-22
 modified: 2017-05-13
-category: programming
+category: Code
+subCategory: programming
 tags: [programming, patterns, models, source code, organization]
 cover: susan-holt-simpson-799094-unsplash.jpg
 ---

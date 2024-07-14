@@ -4,7 +4,8 @@ subTitle: Public? Private? Wat?
 date: 2018-10-27
 modified: 2018-12-07
 tags: [tokens, api-keys, secrets, security, nodejs, json-web-tokens]
-category: security
+category: Guides
+subCategory: security
 cover: dayne-topkin-78982-unsplash.jpg
 ---
 

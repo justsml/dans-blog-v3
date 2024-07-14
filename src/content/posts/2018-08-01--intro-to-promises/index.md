@@ -3,7 +3,8 @@ title:  "Intro to Promises"
 subTitle: JavaScript Promises Are Fun!
 date: 2018-08-01
 modified: 2018-09-30
-category: promises
+category: Guides
+subCategory: promises
 tags: [promises, async, javascript, composition]
 cover: joe-yates-480485-unsplash.jpg
 ---

@@ -2,7 +2,8 @@
 title:  "JavaScript Magic"
 date: 2015-06-06
 modified: 2015-09-24
-category: javascript
+category: Code
+subCategory: javascript
 tags: [javascript, programming, performance, patterns]
 cover: markus-spiske-197281-unsplash.jpg
 ---

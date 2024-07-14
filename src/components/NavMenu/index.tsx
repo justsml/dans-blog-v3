@@ -3,11 +3,16 @@ import "./index.css";
 import React from "react";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import classNames from "classnames";
-import { CaretDownIcon, TwitterLogoIcon } from "@radix-ui/react-icons";
 import { PostCollections } from "@/shared/dataCache";
 import { slugify } from "@/shared/pathHelpers";
 import avatarImage from "@/assets/avatar.png";
-import { GitHubLogoIcon } from "@radix-ui/react-icons";
+import {
+  CaretDownIcon,
+  GitHubLogoIcon,
+  LinkedInLogoIcon,
+  RocketIcon,
+  TwitterLogoIcon,
+} from "@radix-ui/react-icons";
 
 const { getCategoryCounts, getPopularPosts, getTagCounts } = PostCollections;
 
@@ -25,26 +30,24 @@ const NavMenu = () => {
       <NavigationMenu.List className="NavigationMenuList">
         <NavigationMenu.Item>
           <NavigationMenu.Trigger className="NavigationMenuTrigger">
-            Articles
+            Articles <CaretDownIcon className="CaretDown" aria-hidden />
           </NavigationMenu.Trigger>
           <NavigationMenu.Content className="NavigationMenuContent">
             <ul className="List one">
-              <li className="row-span-3">
-                <NavigationMenu.Link asChild>
-                  <a className="Callout neon-bg-6" href="/about">
-                    <img
-                      src={avatarImage.src}
-                      width={avatarImage.width}
-                      height={avatarImage.height}
-                    />
-                    <div className="CalloutHeading">Dan Levy</div>
-                    <p className="CalloutText">Coder | Leader
-                      <br /> Tinker | Thinker</p>
-                  </a>
-                </NavigationMenu.Link>
-              </li>
+              <h4>Browse by Category</h4>
+              {categories.map(([tag, count]) => (
+                <ListItem
+                  key={tag}
+                  title={tag}
+                  href={`/category/${slugify(tag)}/`}
+                  className="CategoryItem"
+                >
+                  {tag} <sup>{count}</sup>
+                </ListItem>
+              ))}
 
-              {allPosts.map((post) => (
+              <h4>Popular Posts</h4>
+              {popularPosts.map((post) => (
                 <ListItem
                   key={post.slug}
                   title={post.data.title}
@@ -60,16 +63,6 @@ const NavMenu = () => {
                     />
                   )}
                   <small>{post.data.subTitle}</small>
-                </ListItem>
-              ))}
-
-              {categories.map(([tag, count]) => (
-                <ListItem
-                  key={tag}
-                  title={tag}
-                  href={`/category/${slugify(tag)}/`}
-                >
-                  {tag} <sup>{count}</sup>
                 </ListItem>
               ))}
             </ul>
@@ -182,60 +175,50 @@ const NavMenu = () => {
           </NavigationMenu.Trigger>
           <NavigationMenu.Content className="NavigationMenuContent">
             <ul className="List one">
+              <li className="row-span-2">
+                <NavigationMenu.Link asChild>
+                  <div className="Callout neon-bg-6">
+                    <a href="/about">
+                      <img
+                        src={avatarImage.src}
+                        width={avatarImage.width}
+                        height={avatarImage.height}
+                      />
+                    </a>
+                    <div className="CalloutHeading">Dan Levy</div>
+                    <p className="CalloutText">
+                      Coder | Leader
+                      <br /> Tinker | Thinker
+                    </p>
+
+                  </div>
+                </NavigationMenu.Link>
+              </li>
               <li style={{ gridRow: "span 2" }}>
                 <NavigationMenu.Link asChild>
-                  <div className="Callout neon-bg-4">
+                  <div className="Callout">
                     <div className="CalloutHeading">Contact Me</div>
-                    <p className="CalloutText">
-                      <TwitterLogoIcon className="Icon" />
+                    <p className="CalloutText"></p>
+                    <p className="SocialLinks">
+                      <a href="http://twitter.com/justsml" target="_blank">
+                        <TwitterLogoIcon className="Icon" /> Twitter
+                      </a>
+                      <a href="https://github.com/justsml" target="_blank">
+                        <GitHubLogoIcon className="Icon" /> GitHub
+                      </a>
+                      <a
+                        href="https://linkedin.com/in/realdaniellevy"
+                        target="_blank"
+                      >
+                        <LinkedInLogoIcon className="Icon" /> LinkedIn
+                      </a>
+                      <a href="/docs/resume.pdf" target="_blank">
+                        <RocketIcon className="Icon" /> Résumé (PDF)
+                      </a>
                     </p>
                   </div>
                 </NavigationMenu.Link>
               </li>
-            </ul>
-          </NavigationMenu.Content>
-        </NavigationMenu.Item>
-
-        <NavigationMenu.Item>
-          <NavigationMenu.Trigger className="NavigationMenuTrigger">
-            Overview <CaretDownIcon className="CaretDown" aria-hidden />
-          </NavigationMenu.Trigger>
-          <NavigationMenu.Content className="NavigationMenuContent">
-            <ul className="List two">
-              <ListItem
-                title="Introduction"
-                href="/primitives/docs/overview/introduction"
-              >
-                Build high-quality, accessible design systems and web apps.
-              </ListItem>
-              <ListItem
-                title="Getting started"
-                href="/primitives/docs/overview/getting-started"
-              >
-                A quick tutorial to get you up and running with Radix
-                Primitives.
-              </ListItem>
-              <ListItem title="Styling" href="/primitives/docs/guides/styling">
-                Unstyled and compatible with any styling solution.
-              </ListItem>
-              <ListItem
-                title="Animation"
-                href="/primitives/docs/guides/animation"
-              >
-                Use CSS keyframes or any animation library of your choice.
-              </ListItem>
-              <ListItem
-                title="Accessibility"
-                href="/primitives/docs/overview/accessibility"
-              >
-                Tested in a range of browsers and assistive technologies.
-              </ListItem>
-              <ListItem
-                title="Releases"
-                href="/primitives/docs/overview/releases"
-              >
-                Radix Primitives releases and their changelogs.
-              </ListItem>
             </ul>
           </NavigationMenu.Content>
         </NavigationMenu.Item>

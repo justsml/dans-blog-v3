@@ -3,7 +3,8 @@ title:  "Naming things real good"
 subTitle: "Naming stuff: Object Oriented Basics"
 date: 2016-06-01
 modified: 2023-08-31
-category: programming
+category: Guides
+subCategory: programming
 tags: [programming, patterns, naming, source code, organization]
 cover: rawpixel-652639-unsplash.jpg
 ---

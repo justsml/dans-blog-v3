@@ -4,7 +4,8 @@ subTitle: Unlock your Teams Creativity!
 date: 2021-01-01
 modified: 2021-03-04
 tags: [collaborative-culture,culture,teams,growth,personal-development]
-category: leadership
+category: Leadership
+subCategory: culture
 cover: pexels-photo-3184431--cropped.jpg
 ---
 

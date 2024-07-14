@@ -4,7 +4,8 @@ subTitle: Learn to impress at parties with JS trivia! ✨
 date: 2020-01-02
 modified: 2020-01-03
 tags: [javascript,date,date class,gotchas,quiz,challenge]
-category: Quiz
+category: Code
+subCategory: Quiz
 cover: pocket-watch.jpg
 ---
 

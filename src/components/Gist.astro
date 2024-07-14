@@ -120,30 +120,16 @@ function getQuery(value: string): Record<string, any> {
  * @returns {string} the gist url.
  */
 function buildUrl(value: string, options: PluginOptions, file: null) {
-  console.info("buildUrl", value, options, file);
+	let url = `${baseUrl}/`;
   const [gist] = value.split(/[?#]/);
-
   const [inlineUsername, id] =
     gist.indexOf("/") > 0 ? gist.split("/") : [null, gist];
-
-  // username can come from inline code or options
   const username = inlineUsername || options.username;
+  if (username == null || username.trim().length === 0) throw new Error("Missing username information");
+  if (id == null || id.trim().length === 0) throw new Error("Missing gist id information");
 
-  // checks for a valid username
-  if (username == null || username.trim().length === 0) {
-    throw new Error("Missing username information");
-  }
-
-  // checks for a valid id
-  if (id == null || id.trim().length === 0) {
-    throw new Error("Missing gist id information");
-  }
-
-  // builds the url and completes it with the file if any
-  let url = `${baseUrl}/${username}/${id}.json`;
-  if (file != null) {
-    url += `?file=${file}`;
-  }
+	url += `${username}/${id}.json`;
+  if (file != null) url += `?file=${file}`;
 
   return url;
 }
@@ -256,13 +242,11 @@ function truncateGist(html: string, testing = false) {
   html = replaceAll(html, /^\s+</gm, "<");
 
   html = replaceAll(html, /^\s+$\n/gim, "\n");
-  if (!testing)
-    html +=
-      "\n\n<!-- Gist HTML Mangled & Compressed by @justsml/gatsby-remark-embed-gist -->";
   return html;
 }
 
 const replaceAll = (str: string, pattern: RegExp, replace: string): string => {
+	if (!str) throw new Error("Missing Gist data for: " + props.path);
   const result = str.replace(pattern, replace);
   if (result === str) return result;
   return replaceAll(result, pattern, replace);
@@ -270,7 +254,9 @@ const replaceAll = (str: string, pattern: RegExp, replace: string): string => {
 
 let gist: any;
 gist = await diskCache.get(props.path);
+let loadedFromCache = true;
 if (!gist) {
+	loadedFromCache = false;
   gist = await loadGist(props.path, {
     username: "justsml",
     secretToken: GITHUB_TOKEN,
@@ -279,14 +265,6 @@ if (!gist) {
   });
   diskCache.set(props.path, gist);
 }
-
-console.log(
-  "gist",
-  props.path,
-  gist.div.length > 20 ? gist.div.substring(0, 20) : gist.div
-);
-
-// // TODO use stylesheet
 const stylesheetUrl = gist?.stylesheet;
 ---
 

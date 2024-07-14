@@ -28,6 +28,8 @@ const posts = defineCollection({
       modified: z.coerce.string().optional(),
       cover: image(), // z.string().optional(),
       category: z.string(),
+      subCategory: z.string().optional(),
+
       tags: z.array(z.string()),
 
       popularity: z.number().min(0).max(1.0).optional(),

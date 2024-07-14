@@ -2,7 +2,8 @@
 title:  "When AI Fails & the Crashing Robotic Cars"
 date: 2015-12-18
 modified: 2018-07-24
-category: machine-learning
+category: Leadership
+subCategory: machine-learning
 tags: [artificial intelligence, ai, self-driving cars, fails]
 cover: sandy-millar-749381-unsplash.jpg
 ---

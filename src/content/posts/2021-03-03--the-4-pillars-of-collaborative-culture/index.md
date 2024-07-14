@@ -4,7 +4,8 @@ subTitle: Safety, Speed, Clarity and Commitment.
 date: 2021-04-03
 modified: 2021-11-25
 tags: [collaborative-culture, culture, teams, growth, personal-development]
-category: leadering
+category: Leadership
+subCategory: culture
 cover: pexels-fauxels-3184430-cropped.jpg
 credit: Photo by fauxels from Pexels
 ---

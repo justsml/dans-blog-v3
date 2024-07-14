@@ -4,7 +4,8 @@ subTitle: To name, or not to name?
 date: 2023-08-10
 modified: 2023-08-18
 tags: [typescript,javascript,modules]
-category: JavaScript
+category: Guides
+subCategory: JavaScript
 cover: austin-kirk-cHX_Eih2hkY-unsplash-cropped.jpg
 ---
 

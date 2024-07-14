@@ -4,7 +4,8 @@ subTitle: Using `dotenv`
 date: 2018-11-13
 modified: 2018-11-15
 tags: [dotenv, api-keys, secrets, tokens, security, nodejs]
-category: security
+category: Code
+subCategory: howto
 cover: john-salvino-417565-unsplash.jpg
 ---
 

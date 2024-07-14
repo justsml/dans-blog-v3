@@ -4,7 +4,8 @@ subTitle: Renegade Type Design
 date: 2023-09-05
 modified: 2023-09-06
 tags: [engineering,typescript,composition,types]
-category: TypeScript
+category: Guides
+subCategory: TypeScript
 cover: DALL-E 2023-09-06 00.20.58 - A rebellious gorilla wearing camo and a red bandana typing on an Apple macbook oil painting-60q.jpg
 ---
 

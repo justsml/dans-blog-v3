@@ -18,7 +18,7 @@ export default defineConfig({
     mdx(),
     sitemap(),
     tailwind({
-      applyBaseStyles: false,
+      applyBaseStyles: true,
 			nesting: true,
 			
     }),

@@ -3,7 +3,8 @@ title:  "AngularJS Tricks"
 subTitle: AngularJS CAN BE Fun!
 date: 2015-02-26
 modified: 2015-02-26
-category: angularjs
+category: Code
+subCategory: angularjs
 tags: [angularjs, development, performance, programming]
 cover: sharon-mccutcheon-522851-unsplash.jpg
 

@@ -4,7 +4,8 @@ subTitle: Dropping errors, losing results...
 date: 2018-10-06
 modified: 2018-11-15
 tags: [promises, javascript, errors, programming]
-category: promises
+category: Code
+subCategory: promises
 cover: lennart-heim-766366-unsplash.jpg
 ---
 
