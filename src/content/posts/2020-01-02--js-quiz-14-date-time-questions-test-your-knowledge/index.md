@@ -1,5 +1,5 @@
 ---
-title: "JS Quiz Dates: 14 Questions"
+title: "JS Quiz: 14 Date Questions"
 subTitle: Learn to impress at parties with JS trivia! ✨
 date: 2020-01-02
 modified: 2020-01-03

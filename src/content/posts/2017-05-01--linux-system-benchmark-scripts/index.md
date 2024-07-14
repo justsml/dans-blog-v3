@@ -1,5 +1,4 @@
 ---
-layout: ../../../layouts/BlogPost.astro
 title:  "Linux Server Benchmarking Scripts"
 date: 2017-05-01
 modified: 2018-09-21

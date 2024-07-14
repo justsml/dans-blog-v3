@@ -3,7 +3,7 @@ import "./index.css";
 import React from "react";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import classNames from "classnames";
-import { CaretDownIcon } from "@radix-ui/react-icons";
+import { CaretDownIcon, TwitterLogoIcon } from "@radix-ui/react-icons";
 import { PostCollections } from "@/shared/dataCache";
 import { slugify } from "@/shared/pathHelpers";
 import avatarImage from "@/assets/avatar.png";
@@ -29,7 +29,7 @@ const NavMenu = () => {
               <li className="row-span-3">
                 <NavigationMenu.Link asChild>
                   <a
-                    className="Callout"
+                    className="Callout neon-bg-6"
                     href="/"
                   >
                     <img
@@ -72,33 +72,96 @@ const NavMenu = () => {
 
         <NavigationMenu.Item>
           <NavigationMenu.Trigger className="NavigationMenuTrigger">
-            Projects <CaretDownIcon className="CaretDown" aria-hidden />
+            Open Source <CaretDownIcon className="CaretDown" aria-hidden />
           </NavigationMenu.Trigger>
           <NavigationMenu.Content className="NavigationMenuContent">
             <ul className="List one">
               <li style={{ gridRow: "span 3" }}>
                 <NavigationMenu.Link asChild>
-                  <a className="Callout neon-bg-2" href="https://github.com/elite-libs" target="_blank">
-                    <div className="CalloutHeading">EliteLibs</div>
+                  <a className="Callout neon-bg-3" href="https://github.com/elite-libs" target="_blank">
+                    <div className="CalloutHeading">elite-libs</div>
                     <p className="CalloutText">
-                      The Elite-Libs group maintains popular Open Source projects.
+                      An Open Source joint.
                     </p>
                   </a>
                 </NavigationMenu.Link>
               </li>
 
-              <ListItem href="https://stitches.dev/" title="Stitches">
-                CSS-in-JS with best-in-class developer experience.
+              <ListItem href="https://dataanalyzer.app/" title="DataAnalyzer.app">
+                A data analysis tool for developers and data scientists.
               </ListItem>
-              <ListItem href="/colors" title="Colors">
-                Beautiful, thought-out palettes with auto dark mode.
-              </ListItem>
-              <ListItem href="https://icons.radix-ui.com/" title="Icons">
-                A crisp set of 15x15 icons, balanced and consistent.
+              <ListItem href="https://fpromises.io/" title="Functional Promises">
+                A functional programming library for JavaScript promises.
               </ListItem>
             </ul>
           </NavigationMenu.Content>
         </NavigationMenu.Item>
+
+        <NavigationMenu.Item>
+          <NavigationMenu.Trigger className="NavigationMenuTrigger">
+            Projects <CaretDownIcon className="CaretDown" aria-hidden />
+          </NavigationMenu.Trigger>
+          <NavigationMenu.Content className="NavigationMenuContent">
+            <ul className="List one">
+              <li style={{ gridRow: "span 2" }}>
+                <NavigationMenu.Link asChild>
+                  <a className="Callout neon-bg-2" href="https://github.com/justsml" target="_blank">
+                    <div className="CalloutHeading">Demos &amp; Examples</div>
+                    <p className="CalloutText">
+                      Check out a selection of my examples, experiments and misc repos.
+                    </p>
+                  </a>
+                </NavigationMenu.Link>
+              </li>
+              <ListItem href="https://github.com/justsml/node-streaming-image-proxy" title="Node Streaming Image Proxy">
+                High performance image resizing proxy for Node.js.
+              </ListItem>
+              <ListItem href="https://github.com/justsml/fact-service" title="Fact Service">
+                Powerful Key-Value Service. Feat. several DB adapters: Postgres, Redis, DynamoDB, Firestore, Cassandra, and more.
+              </ListItem>
+              <ListItem href="https://github.com/justsml/bun-elysia-htmx" title="Elysia &amp; HTMX magic">
+                A refactored Bun + HTMX experiment. Showcases Elysia's beautiful API, as my favorite Express alternative.
+              </ListItem>
+              <ListItem href="https://github.com/justsml/modern-app-template" title="Modern App Starter Base">
+                A modern app starter using TS, Vite, React, Tailwind CSS, and more.
+              </ListItem>
+              <ListItem href="https://github.com/justsml/knex-full-text-search" title="Knex Full Text Search">
+                Simplify Full-text web searches with a convenient Knex.js plugin.
+              </ListItem>
+              <ListItem href="https://github.com/justsml/knex-spatial" title="Knex Spatial">
+                Super simple spatial queries with my Knex.js plugin.
+              </ListItem>
+
+            </ul>
+          </NavigationMenu.Content>
+        </NavigationMenu.Item>
+
+
+        <NavigationMenu.Item>
+          <NavigationMenu.Trigger className="NavigationMenuTrigger">
+            Hire Me <CaretDownIcon className="CaretDown" aria-hidden />
+          </NavigationMenu.Trigger>
+          <NavigationMenu.Content className="NavigationMenuContent">
+            <ul className="List one">
+              <li style={{ gridRow: "span 2" }}>
+                <NavigationMenu.Link asChild>
+                  <div className="Callout neon-bg-4">
+                    <div className="CalloutHeading">
+                      Contact Me
+                    </div>
+                    <p className="CalloutText">
+                      <TwitterLogoIcon className="Icon" />
+                    </p>
+                  </div>
+                  
+                </NavigationMenu.Link>
+
+
+              </li>
+            </ul>
+          </NavigationMenu.Content>
+        </NavigationMenu.Item>
+
 
         <NavigationMenu.Item>
           <NavigationMenu.Trigger className="NavigationMenuTrigger">
@@ -142,15 +205,6 @@ const NavMenu = () => {
               </ListItem>
             </ul>
           </NavigationMenu.Content>
-        </NavigationMenu.Item>
-
-        <NavigationMenu.Item>
-          <NavigationMenu.Link
-            className="NavigationMenuLink"
-            href="https://github.com/radix-ui"
-          >
-            Github
-          </NavigationMenu.Link>
         </NavigationMenu.Item>
 
         <NavigationMenu.Indicator className="NavigationMenuIndicator">

@@ -1,5 +1,4 @@
 ---
-layout: ../../../layouts/BlogPost.astro
 title:  "AngularJS v2.0 and the Impending Schism"
 date: 2015-08-05
 modified: 2015-09-18

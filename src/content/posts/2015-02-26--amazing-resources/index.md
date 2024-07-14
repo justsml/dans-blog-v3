@@ -1,5 +1,4 @@
 ---
-layout: ../../../layouts/BlogPost.astro
 title:  "Winning Design Resource"
 subTitle: Solutions to Common UI Challenges
 date: 2015-02-26

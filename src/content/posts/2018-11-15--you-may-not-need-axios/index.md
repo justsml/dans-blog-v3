@@ -1,5 +1,4 @@
 ---
-layout: ../../../layouts/BlogPost.astro
 title: "You may not need Axios"
 subTitle: Fetch API to the rescue!
 date: 2018-11-14

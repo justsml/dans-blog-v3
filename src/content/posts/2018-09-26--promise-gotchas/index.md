@@ -1,5 +1,4 @@
 ---
-layout: ../../../layouts/BlogPost.astro
 title:  "Promise Gotchas"
 subTitle: Avoiding common mistakes
 date: 2018-09-26

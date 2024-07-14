@@ -72,10 +72,8 @@ const { title, subTitle } = Astro.props.frontmatter || Astro.props;
 
   <body>
     <Header />
-    <NavMenu client:only="react" />
-    <NavBar client:only="react" />
     <main>
-      <h1>{title}</h1>
+      <!-- <h1>{title}</h1> -->
       <slot />
     </main>
     <Footer />
