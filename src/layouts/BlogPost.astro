@@ -4,6 +4,7 @@ import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import FormattedDate from "../components/FormattedDate.astro";
+import { Image } from "astro:assets";
 
 type Props = CollectionEntry<"posts">["data"];
 
@@ -12,7 +13,6 @@ console.log("BlogPost.astro", Astro.props);
 const { title, subTitle, date, modified, cover, category, tags } = Astro.props;
 
 console.log("cover:", cover);
-
 ---
 
 <html lang="en">
@@ -21,13 +21,14 @@ console.log("cover:", cover);
     <style>
       main {
         width: calc(100% - 2em);
-        max-width: 100%;
-        margin: 0;
+        max-width: 720px;
+        line-height: 1.4;
+        margin: 0 auto;
       }
       .hero-image {
         /* width: 100%; */
         max-width: 265px;
-        border-radius: 100%;;
+        border-radius: 100%;
       }
       .hero-image img {
         display: block;
@@ -68,8 +69,11 @@ console.log("cover:", cover);
         {
           cover && (
             <div class="hero-image">
-              <img
-                {...cover}
+              <Image
+                src={cover}
+                widths={[240, 540, 720, cover.width]}
+                sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${cover.width}px`}
+                style={{objectFit: 'cover', objectPosition: 'center'}}
                 alt={`Article banner for ${subTitle}`}
               />
             </div>

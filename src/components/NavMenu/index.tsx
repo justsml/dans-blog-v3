@@ -13,6 +13,7 @@ import {
   RocketIcon,
   TwitterLogoIcon,
 } from "@radix-ui/react-icons";
+import {Image} from "astro:assets";
 
 const { getCategoryCounts, getPopularPosts, getTagCounts } = PostCollections;
 
@@ -26,15 +27,23 @@ const allPosts = PostCollections._posts;
 
 const NavMenu = () => {
   return (
-    <NavigationMenu.Root className="NavigationMenuRoot">
+    <NavigationMenu.Root className="NavigationMenuRoot" delayDuration={200}>
       <NavigationMenu.List className="NavigationMenuList">
-        <NavigationMenu.Item>
+        <NavigationMenu.Item value="/posts/">
           <NavigationMenu.Trigger className="NavigationMenuTrigger">
             Articles <CaretDownIcon className="CaretDown" aria-hidden />
           </NavigationMenu.Trigger>
-          <NavigationMenu.Content className="NavigationMenuContent">
-            <ul className="List one">
-              <h4>Browse by Category</h4>
+          <NavigationMenu.Content
+            className="NavigationMenuContent"
+            style={
+              {
+                // margin: '0 2rem',
+                // minWidth: '75vw',
+              }
+            }
+          >
+            <h4 style={{ gridColumn: "span 2" }}>Browse by Category</h4>
+            <ul className="List one item-list-sm">
               {categories.map(([tag, count]) => (
                 <ListItem
                   key={tag}
@@ -45,8 +54,9 @@ const NavMenu = () => {
                   {tag} <sup>{count}</sup>
                 </ListItem>
               ))}
-
-              <h4>Popular Posts</h4>
+            </ul>
+            <h4 style={{ gridColumn: "span 2" }}>Popular Posts</h4>
+            <ul className="List one item-list-lg">
               {popularPosts.map((post) => (
                 <ListItem
                   key={post.slug}
@@ -55,11 +65,11 @@ const NavMenu = () => {
                   className="ArticleCard"
                 >
                   {post.data.cover.src && (
-                    <img
-                      src={post.data.cover.src}
+                    <Image
+                      src={post.data.cover}
                       alt={post.data.title}
-                      width={75}
-                      height={75}
+                      width={50}
+                      height={50}
                     />
                   )}
                   <small>{post.data.subTitle}</small>
@@ -190,7 +200,6 @@ const NavMenu = () => {
                       Coder | Leader
                       <br /> Tinker | Thinker
                     </p>
-
                   </div>
                 </NavigationMenu.Link>
               </li>

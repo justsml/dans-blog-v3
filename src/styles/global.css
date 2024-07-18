@@ -7,6 +7,7 @@
 
   :root  {
     --neon-cyan: 180 100% 50%;
+    --neon-cyan-dark: 180 100% 25%;
     --neon-pink: 322 100% 72%;
     --neon-pink-subtle: 322 98% 82%;
     --neon-green: 120 100% 50%;
@@ -43,6 +44,11 @@
     --input: 210 30% 18%;
     --ring: var(--neon-pink);
     --radius: 0.5rem;
+
+    --link-text-color: 180 100% 50%;
+    --heading-text-color: 180 100% 25%;
+
+
   }
   .dark  {
     --background: 210 100% 95%;
@@ -65,6 +71,10 @@
     --input: 210 30% 18%;
     --ring: var(--neon-pink);
     --radius: 0.5rem;
+
+
+    --link-text-color: 180 100% 50%;
+    --heading-text-color: 180 100% 25%;
   }
   
   /* :root {
@@ -240,7 +250,9 @@
 
 .circular-radius {
   border-radius: 100%;
-  max-width: 60%;
+  object-fit: cover;
+  /* max-width: 20ch;
+  max-height: 20ch; */
   margin: 2rem auto;
   
 }
