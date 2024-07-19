@@ -1,24 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
-import injectSheet from "react-jss";
 import marked from "marked";
 import classnames from "classnames";
-import Button from "@material-ui/core/Button";
-import Card from "@material-ui/core/Card";
-import CardHeader from "@material-ui/core/CardHeader";
-// import CardMedia from "@material-ui/core/CardMedia";
-import CardContent from "@material-ui/core/CardContent";
-import CardActions from "@material-ui/core/CardActions";
-import Collapse from "@material-ui/core/Collapse";
-// import Avatar from "@material-ui/core/Avatar";
-import CancelIcon from "@material-ui/icons/Cancel";
-import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
-import CheckBoxIcon from "@material-ui/icons/CheckBox";
-import CheckCircle from "@material-ui/icons/CheckCircle";
-import HelpIcon from "@material-ui/icons/Help";
-import RefreshIcon from "@material-ui/icons/RefreshOutlined";
-import HelpOutlineIcon from "@material-ui/icons/HelpOutline";
-import Typography from "@material-ui/core/Typography";
+
 import Pulse from "react-reveal/Pulse";
 import HeadShake from "react-reveal/HeadShake";
 import Fade from "react-reveal/Fade";

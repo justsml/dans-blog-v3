@@ -13,7 +13,7 @@ import {
   RocketIcon,
   TwitterLogoIcon,
 } from "@radix-ui/react-icons";
-import {Image} from "astro:assets";
+import Image from "@/components/Image.astro";
 
 const { getCategoryCounts, getPopularPosts, getTagCounts } = PostCollections;
 
