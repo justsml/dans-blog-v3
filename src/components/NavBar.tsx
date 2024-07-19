@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { Image } from "astro:assets";
 
 import { cn } from "@/utils";
 import avatarImage from "@/assets/avatar.png";
@@ -37,10 +38,11 @@ export function NavBar() {
                     className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
                     href="/"
                   >
-                    <img
-                      src={avatarImage.src}
-                      width={avatarImage.width}
-                      height={avatarImage.height}
+                    <Image
+                      src={avatarImage}
+                      alt={"Dan Levy's avatar"}
+                      width={128}
+                      height={128}
                     />
                     <div className="mb-2 mt-4 text-lg font-medium">
                       Dan Levy

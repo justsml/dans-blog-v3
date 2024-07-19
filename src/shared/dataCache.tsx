@@ -1,3 +1,4 @@
+import { getImage } from "astro:assets";
 import { getCollection } from "astro:content";
 import { fixSlugPrefix } from "../shared/pathHelpers";
 // type PostType = CollectionEntry<"posts">;
@@ -97,7 +98,12 @@ export const PostCollections = {
       "naming-things-real-good",
     ].map((slug) => PostCollections._postsBySlug[slug]);
   },
+
+  generateCoverImgs() {
+    // TODO?
+  }
 };
+
 
 export const images = import.meta.glob<{ default: ImageMetadata }>(
   "/src/content/posts/**/*.{jpeg,jpg,png,gif,svg}"

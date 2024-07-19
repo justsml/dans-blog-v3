@@ -19,7 +19,7 @@ const posts = defineCollection({
   schema: ({ image }) =>
     z.object({
       title: z.string(),
-      subTitle: z.string().optional(),
+      subTitle: z.string().optional().default(""),
       // Transform string to Date object
       // date: z.coerce.date(),
       // modified: z.coerce.date().optional(),
@@ -27,6 +27,11 @@ const posts = defineCollection({
       date: z.coerce.string(),
       modified: z.coerce.string().optional(),
       cover: image(), // z.string().optional(),
+      cover_imgs: z.object({
+        mobile: image().optional(),
+        tablet: image().optional(),
+        desktop: image().optional(),
+      }).optional(),
       category: z.string(),
       subCategory: z.string().optional(),
 
