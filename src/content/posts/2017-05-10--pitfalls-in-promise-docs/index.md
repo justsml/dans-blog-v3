@@ -7,6 +7,10 @@ category: Code
 subCategory: promises
 tags: [programming, patterns, promises, functional river]
 cover: craig-whitehead-433328-unsplash.jpg
+cover_mobile: w300_craig-whitehead-433328-unsplash.jpg
+cover_tablet: w600_craig-whitehead-433328-unsplash.jpg
+cover_desktop: w900_craig-whitehead-433328-unsplash.jpg
+cover_icon: icon_craig-whitehead-433328-unsplash.jpg
 ---
 
 > Spotting Promise Anti-Patterns in google search results, and popular libraries.

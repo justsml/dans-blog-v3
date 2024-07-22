@@ -7,6 +7,10 @@ tags: [javascript,date,date class,gotchas,quiz,challenge]
 category: Code
 subCategory: Quiz
 cover: pocket-watch.jpg
+cover_mobile: w300_pocket-watch.jpg
+cover_tablet: w600_pocket-watch.jpg
+cover_desktop: w900_pocket-watch.jpg
+cover_icon: icon_pocket-watch.jpg
 ---
 
 # How well do you know the `Date` class?

@@ -6,6 +6,10 @@ category: DevOps
 subCategory: docker
 tags: [docker, security, devops]
 cover: charles-deluvio-456501-unsplash.jpg
+cover_mobile: w300_charles-deluvio-456501-unsplash.jpg
+cover_tablet: w600_charles-deluvio-456501-unsplash.jpg
+cover_desktop: w900_charles-deluvio-456501-unsplash.jpg
+cover_icon: icon_charles-deluvio-456501-unsplash.jpg
 ---
 
 # Setup Docker Host's Firewall

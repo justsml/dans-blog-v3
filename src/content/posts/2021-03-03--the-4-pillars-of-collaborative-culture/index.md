@@ -7,6 +7,10 @@ tags: [collaborative-culture, culture, teams, growth, personal-development]
 category: Leadership
 subCategory: culture
 cover: pexels-fauxels-3184430-cropped.jpg
+cover_mobile: w300_pexels-fauxels-3184430-cropped.jpg
+cover_tablet: w600_pexels-fauxels-3184430-cropped.jpg
+cover_desktop: w900_pexels-fauxels-3184430-cropped.jpg
+cover_icon: icon_pexels-fauxels-3184430-cropped.jpg
 credit: Photo by fauxels from Pexels
 ---
 

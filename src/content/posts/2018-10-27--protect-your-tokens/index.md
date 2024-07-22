@@ -7,6 +7,10 @@ tags: [tokens, api-keys, secrets, security, nodejs, json-web-tokens]
 category: Guides
 subCategory: security
 cover: dayne-topkin-78982-unsplash.jpg
+cover_mobile: w300_dayne-topkin-78982-unsplash.jpg
+cover_tablet: w600_dayne-topkin-78982-unsplash.jpg
+cover_desktop: w900_dayne-topkin-78982-unsplash.jpg
+cover_icon: icon_dayne-topkin-78982-unsplash.jpg
 ---
 
 ![credit: dayne-topkin-78982-unsplash.jpg](dayne-topkin-78982-unsplash.jpg)
@@ -127,4 +131,8 @@ const src = `//maps.googleapis.com/maps/api/js?key=${key}`;
 
 
 **Note:** There are other _Use Cases_ for environment variables. Some I didn't cover: CI/CD/testing, feature flags, and runtime configuration for special environments!
+cover_mobile: w300_CI/CD/testing, feature flags, and runtime configuration for special environments!
+cover_tablet: w600_CI/CD/testing, feature flags, and runtime configuration for special environments!
+cover_desktop: w900_CI/CD/testing, feature flags, and runtime configuration for special environments!
+cover_icon: icon_CI/CD/testing, feature flags, and runtime configuration for special environments!
 
