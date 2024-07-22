@@ -1,3 +1,4 @@
+---
 import React, {
   createContext,
   useState,
@@ -5,20 +6,23 @@ import React, {
   type ReactNode,
   type MouseEvent,
 } from "react";
+import { Button } from "../ui/button";
 
-// Define types for context and component props
+type OptionSelection = unknown; //number | null;
+type Answer = { option: OptionSelection; correct: boolean };
+
 interface ChallengeContextProps {
-  selectedOption: number | null;
-  setSelectedOption: (option: number | null) => void;
-  showHint: boolean;
-  setShowHint: (show: boolean) => void;
+  selectedOption: OptionSelection | null;
+  setSelectedOption: (option: OptionSelection | null) => void;
+  showHintText: string;
+  setShowHintText: (show: string) => void;
+  showExplanation: boolean;
+  setShowExplanation: (show: boolean) => void;
 }
 
 interface QuizContextProps {
-  answers: { title: string; answer: string; correct: boolean }[];
-  setAnswers: React.Dispatch<
-    React.SetStateAction<{ title: string; answer: string; correct: boolean }[]>
-  >;
+  answers: Array<Answer>;
+  setAnswers: React.Dispatch<React.SetStateAction<Array<Answer>>>;
   currentChallenge: number;
   setCurrentChallenge: React.Dispatch<React.SetStateAction<number>>;
 }
@@ -37,16 +41,16 @@ interface OptionsProps {
 
 interface OptionProps {
   children: ReactNode;
+  onClick?: () => void;
   answer?: boolean;
   hint?: string;
-  onClick: () => void;
-}
-
-interface HintsProps {
-  children: ReactNode;
 }
 
 interface HintProps {
+  children: ReactNode;
+}
+
+interface ExplainProps {
   children: ReactNode;
 }
 
@@ -54,7 +58,6 @@ const ChallengeContext = createContext<ChallengeContextProps | undefined>(
   undefined
 );
 const QuizContext = createContext<QuizContextProps | undefined>(undefined);
-
 
 /**
  Usage Example
@@ -97,9 +100,7 @@ const QuizContext = createContext<QuizContextProps | undefined>(undefined);
 ```
 */
 const QuizUI: React.FC<{ children: ReactNode }> = ({ children }) => {
-  const [answers, setAnswers] = useState<
-    { title: string; answer: string; correct: boolean }[]
-  >([]);
+  const [answers, setAnswers] = useState<Array<Answer>>([]);
   const [currentChallenge, setCurrentChallenge] = useState<number>(0);
 
   const nextChallenge = () => {
@@ -118,39 +119,50 @@ const QuizUI: React.FC<{ children: ReactNode }> = ({ children }) => {
     <QuizContext.Provider
       value={{ answers, setAnswers, currentChallenge, setCurrentChallenge }}
     >
-      <div className="quiz-ui">
+      <div class="quiz-ui">
         {React.Children.toArray(children)[currentChallenge]}
-        <div className="navigation">
-          <button onClick={prevChallenge} disabled={currentChallenge === 0}>
-            Previous
-          </button>
-          <button
-            onClick={nextChallenge}
-            disabled={currentChallenge === React.Children.count(children) - 1}
-          >
-            Next
-          </button>
-        </div>
+      </div>
+
+      <div class="navigation">
+        <Button onClick={prevChallenge} disabled={currentChallenge === 0}>
+          Previous
+        </Button>
+        <Button
+          onClick={nextChallenge}
+          disabled={currentChallenge === React.Children.count(children) - 1}
+        >
+          Next
+        </Button>
       </div>
     </QuizContext.Provider>
   );
 };
 
 const Challenge: React.FC<ChallengeProps> = ({ children }) => {
-  const [selectedOption, setSelectedOption] = useState<number | null>(null);
-  const [showHint, setShowHint] = useState<boolean>(false);
+  const [selectedOption, setSelectedOption] = useState<OptionSelection | null>(
+    null
+  );
+  const [showHintText, setShowHintText] = useState<string>("");
+  const [showExplanation, setShowExplanation] = useState<boolean>(false);
 
   return (
     <ChallengeContext.Provider
-      value={{ selectedOption, setSelectedOption, showHint, setShowHint }}
+      value={{
+        selectedOption,
+        setSelectedOption,
+        showHintText,
+        setShowHintText,
+        showExplanation,
+        setShowExplanation,
+      }}
     >
-      <div className="challenge">{children}</div>
+      <div class="challenge">{children}</div>
     </ChallengeContext.Provider>
   );
 };
 
 const Question: React.FC<QuestionProps> = ({ children }) => {
-  return <div className="question">{children}</div>;
+  return <div class="question">{children}</div>;
 };
 
 const Options: React.FC<OptionsProps> = ({ children }) => {
@@ -159,41 +171,39 @@ const Options: React.FC<OptionsProps> = ({ children }) => {
   if (!challengeContext || !quizContext) {
     throw new Error("Options must be used within a Challenge and QuizContext");
   }
-  const { selectedOption, setSelectedOption, showHint } = challengeContext;
+  const { selectedOption, setSelectedOption, showHintText } = challengeContext;
   const { answers, setAnswers, currentChallenge } = quizContext;
 
-  const handleOptionClick = ({
-    index,
-    answer,
-    hint,
-  }: {
-    index: number;
-    answer?: boolean;
-    hint?: string;
-  }) => {
+  const handleOptionClick = (
+    option: number,
+    isAnswer?: boolean,
+    hint?: string
+  ) => {
     setSelectedOption(option);
     if (!isAnswer && hint) {
       alert(hint);
     }
     const newAnswers = [...answers];
     newAnswers[currentChallenge] = {
-      title: `Q #${currentChallenge + 1}`,
-      answer: (children as ReactNode[])[option].toString(),
-      correct: !!answer,
+      option,
+      correct: !!isAnswer,
     };
     setAnswers(newAnswers);
   };
 
   return (
-    <div className="options">
+    <div class="options">
       {React.Children.map(children, (child, index) => {
         if (React.isValidElement<OptionProps>(child)) {
           const { answer, hint } = child.props;
-          return React.cloneElement(child, {
-            onClick: () => handleOptionClick({ answer, hint, index }),
-            selected: selectedOption === index,
-            showHint,
-          });
+          return (
+            <Button
+              onClick={() => handleOptionClick(index, answer, hint)}
+              class:list={["option", {selected: selectedOption === index}]}
+            >
+              {children}
+            </Button>
+          );
         }
         return null;
       })}
@@ -203,42 +213,52 @@ const Options: React.FC<OptionsProps> = ({ children }) => {
 
 const Option: React.FC<
   OptionProps & {
-    onClick: (e: MouseEvent) => void;
     selected: boolean;
-    showHint: boolean;
+    showHintText: boolean;
   }
-> = ({ children, onClick, selected, showHint, hint }) => {
+> = ({ children, onClick, selected, showHintText, hint }) => {
   return (
-    <button
+    <Button
       className={`option ${selected ? "selected" : ""}`}
       onClick={onClick}
-      title={showHint && hint ? hint : ""}
+      title={showHintText && hint ? hint : ""}
     >
       {children}
-    </button>
+    </Button>
   );
 };
 
-const Hints: React.FC<HintsProps> = ({ children }) => {
+const Hints: React.FC<{ children: ReactNode[] }> = ({ children }) => {
   const challengeContext = useContext(ChallengeContext);
   if (!challengeContext) {
     throw new Error("Hints must be used within a Challenge");
   }
-  const { showHint, setShowHint } = challengeContext;
+  const { showHintText } = challengeContext;
 
   return (
-    <div className="hints">
-      {showHint && children}
-      <button onClick={() => setShowHint(!showHint)}>
-        {showHint ? "Hide Hints" : "Show Hints"}
-      </button>
-    </div>
+    <div class="hints">{showHintText ? showHintText : children.length}</div>
   );
 };
 
 const Hint: React.FC<HintProps> = ({ children }) => {
-  return <div className="hint">{children}</div>;
+  return <div class="hint">{children}</div>;
 };
 
-export { Challenge, Question, Options, Option, Hints, Hint, QuizUI };
+const Explain: React.FC<ExplainProps> = ({ children }) => {
+  const challengeContext = useContext(ChallengeContext);
+  if (!challengeContext) {
+    throw new Error("Explain must be used within a Challenge");
+  }
+  const { showExplanation, setShowExplanation } = challengeContext;
 
+  return (
+    <div class="explanation">
+      {showExplanation && <div>{children}</div>}
+      <Button onClick={() => setShowExplanation(!showExplanation)}>
+        {showExplanation ? "Hide Explanation" : "Show Explanation"}
+      </Button>
+    </div>
+  );
+};
+
+export { Challenge, Question, Options, Option, Hints, Hint, Explain, QuizUI };

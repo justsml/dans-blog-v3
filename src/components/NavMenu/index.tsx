@@ -3,7 +3,12 @@ import "./index.css";
 import React from "react";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import classNames from "classnames";
-import { PostCollections } from "@/shared/dataCache";
+import {
+  getImageProps,
+  getSrcPath,
+  PostCollections,
+  getResponsiveImage,
+} from "@/shared/dataCache";
 import { slugify } from "@/shared/pathHelpers";
 import avatarImage from "@/assets/avatar.png";
 import {
@@ -13,7 +18,8 @@ import {
   RocketIcon,
   TwitterLogoIcon,
 } from "@radix-ui/react-icons";
-import Image from "@/components/Image.astro";
+import { ListItem } from "./ListItem";
+import { ArticleCard } from "./ArticleCard";
 
 const { getCategoryCounts, getPopularPosts, getTagCounts } = PostCollections;
 
@@ -58,22 +64,7 @@ const NavMenu = () => {
             <h4 style={{ gridColumn: "span 2" }}>Popular Posts</h4>
             <ul className="List one item-list-lg">
               {popularPosts.map((post) => (
-                <ListItem
-                  key={post.slug}
-                  title={post.data.title}
-                  href={`/${post.slug}/`}
-                  className="ArticleCard"
-                >
-                  {post.data.cover.src && (
-                    <Image
-                      src={post.data.cover}
-                      alt={post.data.title}
-                      width={50}
-                      height={50}
-                    />
-                  )}
-                  <small>{post.data.subTitle}</small>
-                </ListItem>
+                <ArticleCard key={post.slug} post={post} />
               ))}
             </ul>
           </NavigationMenu.Content>
@@ -243,32 +234,5 @@ const NavMenu = () => {
     </NavigationMenu.Root>
   );
 };
-
-interface ListItemProps {
-  title: string;
-  href: string;
-  className?: string;
-  children: React.ReactNode;
-}
-
-const ListItem = React.forwardRef<HTMLAnchorElement, ListItemProps>(
-  (
-    { className, children, title, ...props },
-    forwardedRef: React.ForwardedRef<HTMLAnchorElement>
-  ) => (
-    <li>
-      <NavigationMenu.Link asChild>
-        <a
-          className={classNames("ListItemLink", className)}
-          {...props}
-          ref={forwardedRef}
-        >
-          <div className="ListItemHeading">{title}</div>
-          <p className="ListItemText">{children}</p>
-        </a>
-      </NavigationMenu.Link>
-    </li>
-  )
-);
 
 export default NavMenu;

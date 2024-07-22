@@ -10,8 +10,18 @@ tags: [security, regex, dos, remote-exploit]
 cover_credit: Photo by Markus Spiske on Unsplash
 cover: markus-spiske-666905-unsplash.jpg
 ---
+import {Image} from 'astro:assets';
 
 # Denial-of-Service Regex Vulnerability
+
+
+<Image
+    class:list={"hero"}
+    src={import(frontmatter.cover)}
+    widths={[240, 540, 720, frontmatter.cover.width]}
+    sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${frontmatter.cover.width}px`}
+    alt="A description of my image."
+    />
 
 One of the more suprising, and yet hard-to-spot vulnerabilities I've found is related to regular expressions.
 Either poorly written or poorly implemented.

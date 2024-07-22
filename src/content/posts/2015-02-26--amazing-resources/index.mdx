@@ -9,13 +9,50 @@ tags: [development, design, resources, patterns]
 cover: carl-heyerdahl-181868-unsplash.jpg
 ---
 import Gist from 'src/components/Gist.astro';
+import QuizUI from 'src/components/QuizUI/index.astro';
+
 
 # Collection of Design Resources
 
 ![carl-heyerdahl-181868-unsplash.jpg](carl-heyerdahl-181868-unsplash.jpg)
 
-
 <section>
   <Gist path="justsml/badccebfb44fd20dae39b49a2e29085b"></Gist>
 </section>
 
+
+<QuizUI>
+ <Challenge>
+   <Question>
+     What is 2+2?
+   </Question>
+   <Options>
+     <Option hint="You ok?">NaN</Option>
+     <Option>3</Option>
+     <Option answer={true}>4</Option>
+     <Option hint="Too much...">5</Option>
+   </Options>
+   <Hints>
+     <Hint>Think about it</Hint>
+     <Hint>It's a number</Hint>
+   </Hints>
+   <Explanation>
+     4 - 2 = 2
+   </Explanation>
+ </Challenge>
+ <Challenge>
+   <Question>
+     What is the capital of France?
+   </Question>
+   <Options>
+     <Option hint="Not quite">Berlin</Option>
+     <Option answer={true}>Paris</Option>
+     <Option hint="Try again">Madrid</Option>
+     <Option hint="Nope">Rome</Option>
+   </Options>
+   <Hints>
+     <Hint>It's a famous city</Hint>
+     <Hint>It's known for the Eiffel Tower</Hint>
+   </Hints>
+ </Challenge>
+</QuizUI>
