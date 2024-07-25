@@ -1,13 +1,8 @@
 "use client";
 import "./index.css";
-import React from "react";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
-import classNames from "classnames";
 import {
-  getImageProps,
-  getSrcPath,
   PostCollections,
-  getResponsiveImage,
 } from "@/shared/dataCache";
 import { slugify } from "@/shared/pathHelpers";
 import avatarImage from "@/assets/avatar.png";

@@ -8,7 +8,7 @@ export const ArticleCard = ({post}: any) => {
   // console.warn("ArticleCard:", post?.data?.cover, post);
   const cover = post?.data?.cover_mobile.clone;
 
-  console.log("ArticleCard cover", cover);
+  // console.log("ArticleCard cover", cover);
   // useEffect(() => {
   //   console.log("ArticleCard post", post);
   //   if (smallImage instanceof Promise) {

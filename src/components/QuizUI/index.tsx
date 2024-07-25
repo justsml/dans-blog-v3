@@ -1,4 +1,3 @@
----
 import React, {
   createContext,
   useState,
@@ -7,6 +6,7 @@ import React, {
   type MouseEvent,
 } from "react";
 import { Button } from "../ui/button";
+import classNames from "classnames";
 
 type OptionSelection = unknown; //number | null;
 type Answer = { option: OptionSelection; correct: boolean };
@@ -119,11 +119,11 @@ const QuizUI: React.FC<{ children: ReactNode }> = ({ children }) => {
     <QuizContext.Provider
       value={{ answers, setAnswers, currentChallenge, setCurrentChallenge }}
     >
-      <div class="quiz-ui">
+      <div className="quiz-ui">
         {React.Children.toArray(children)[currentChallenge]}
       </div>
 
-      <div class="navigation">
+      <div className="navigation">
         <Button onClick={prevChallenge} disabled={currentChallenge === 0}>
           Previous
         </Button>
@@ -156,13 +156,13 @@ const Challenge: React.FC<ChallengeProps> = ({ children }) => {
         setShowExplanation,
       }}
     >
-      <div class="challenge">{children}</div>
+      <div className="challenge">{children}</div>
     </ChallengeContext.Provider>
   );
 };
 
 const Question: React.FC<QuestionProps> = ({ children }) => {
-  return <div class="question">{children}</div>;
+  return <div className="question">{children}</div>;
 };
 
 const Options: React.FC<OptionsProps> = ({ children }) => {
@@ -192,14 +192,16 @@ const Options: React.FC<OptionsProps> = ({ children }) => {
   };
 
   return (
-    <div class="options">
+    <div className="options">
       {React.Children.map(children, (child, index) => {
         if (React.isValidElement<OptionProps>(child)) {
           const { answer, hint } = child.props;
           return (
             <Button
               onClick={() => handleOptionClick(index, answer, hint)}
-              class:list={["option", {selected: selectedOption === index}]}
+              className={classNames("option", {
+                selected: selectedOption === index,
+              })}
             >
               {children}
             </Button>
@@ -236,12 +238,12 @@ const Hints: React.FC<{ children: ReactNode[] }> = ({ children }) => {
   const { showHintText } = challengeContext;
 
   return (
-    <div class="hints">{showHintText ? showHintText : children.length}</div>
+    <div className="hints">{showHintText ? showHintText : children.length}</div>
   );
 };
 
 const Hint: React.FC<HintProps> = ({ children }) => {
-  return <div class="hint">{children}</div>;
+  return <div className="hint">{children}</div>;
 };
 
 const Explain: React.FC<ExplainProps> = ({ children }) => {
@@ -252,7 +254,7 @@ const Explain: React.FC<ExplainProps> = ({ children }) => {
   const { showExplanation, setShowExplanation } = challengeContext;
 
   return (
-    <div class="explanation">
+    <div className="explanation">
       {showExplanation && <div>{children}</div>}
       <Button onClick={() => setShowExplanation(!showExplanation)}>
         {showExplanation ? "Hide Explanation" : "Show Explanation"}
@@ -261,4 +263,4 @@ const Explain: React.FC<ExplainProps> = ({ children }) => {
   );
 };
 
-export { Challenge, Question, Options, Option, Hints, Hint, Explain, QuizUI };
+export { Challenge, Question,Options,Option,Hints,Hint,Explain,QuizUI };

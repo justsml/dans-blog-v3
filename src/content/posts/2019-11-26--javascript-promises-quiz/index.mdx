@@ -13,6 +13,9 @@ cover_desktop: w900_olav-ahrens-rotne-jvBXiynINGE-resized.png
 cover_icon: icon_olav-ahrens-rotne-jvBXiynINGE-resized.png
 ---
 
+import { Challenge, Question, Options, Option, Explain, Hint, Hints, QuizUI} from '@/components/QuizUI';
+
+
 # Do you know your JavaScript & Promises???
 
 > * **Prove your JavaScript skillz!** 🚀
@@ -45,42 +48,37 @@ cover_icon: icon_olav-ahrens-rotne-jvBXiynINGE-resized.png
 
 </div>
 
-<section class="challenge" group="Handling Errors">
-  <div class="description">
+<QuizUI>
 
-# Multiple `.catch`'s
+<Challenge group="Handling Errors">
+  <Question>
+    What will the output be for the following code?
+    ```js
+    var p = new Promise((resolve, reject) => {
+      reject(Error('The Fails!'))
+    })
+    p.catch(error => console.log(error.message))
+    p.catch(error => console.log(error.message))
+    ```
+  </Question>
+  <Options>
+    <Option>print message once</Option>
+    <Option answer={true}>print message twice</Option>
+    <Option>UnhandledPromiseRejectionWarning</Option>
+    <Option>process exits</Option>
+  </Options>
+  <Explain>
+    We create a Promise using the constructor method, triggering an error immediately with the `reject` callback.
 
-```js
-var p = new Promise((resolve, reject) => {
-  reject(Error('The Fails!'))
-})
-p.catch(error => console.log(error.message))
-p.catch(error => console.log(error.message))
-```
-
-## What will the output be?
-
-  </div>
-  <ul class="options">
-    <li>print message once</li>
-    <li class="answer">print message twice</li>
-    <li>UnhandledPromiseRejectionWarning</li>
-    <li>process exits</li>
-  </ul>
-  <div class="explanation">
-
-We create a Promise using the constructor method, triggering an error immediately with the `reject` callback.
-
-Then the `.catch` handlers work like the DOM's `.addEventListener(event, callback)` or Event Emitter's `.on(event, callback)` where **multiple handler callbacks can be added.** Each will be called with the same arguments.
-
-  </div>
-</section>
+    Then the `.catch` handlers work like the DOM's `.addEventListener(event, callback)` or Event Emitter's `.on(event, callback)` where **multiple handler callbacks can be added.** Each will be called with the same arguments.
+  </Explain>
+</Challenge>
 
 
 <section class="challenge" group="Handling Errors">
   <div class="description">
 
-# Multiple `.catch`'s
+# Multiple `.catch`'s #2
 
 ```js
 var p = new Promise((resolve, reject) => {
@@ -354,4 +352,6 @@ Promise.resolve('Success!')
   </div>
 </section>
 
+
+</QuizUI>
 
