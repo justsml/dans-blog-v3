@@ -5,27 +5,18 @@ import { useEffect, useState } from "react";
 import type { ImageMetadata } from "astro";
 
 export const ArticleCard = ({post}: any) => {
-  console.warn("ArticleCard:", post?.data?.cover, post);
-  const cover = post?.data?.cover;
-  if (!cover || !('src' in cover)) {
-    console.error("ArticleCard: no src", post);
-    return null;
-  }
-  const p = Reflect.get(cover, 'src');
-  console.info('p', p)
-  const imagePath = getSrcPath(p);
-  const smallImage = getResponsiveImage(imagePath)?.mobile;
+  // console.warn("ArticleCard:", post?.data?.cover, post);
+  const cover = post?.data?.cover_mobile.clone;
 
-  const [image, setImage] = useState<ImageMetadata | null>(null);
-
-  useEffect(() => {
-    console.log("ArticleCard post", post);
-    if (smallImage instanceof Promise) {
-      smallImage.then((image) => {
-        setImage(image);
-      });
-    }
-  }, [smallImage]);
+  console.log("ArticleCard cover", cover);
+  // useEffect(() => {
+  //   console.log("ArticleCard post", post);
+  //   if (smallImage instanceof Promise) {
+  //     smallImage.then((image) => {
+  //       setImage(image);
+  //     });
+  //   }
+  // }, [smallImage]);
 
   return (<ListItem
     key={post.slug}
@@ -33,9 +24,9 @@ export const ArticleCard = ({post}: any) => {
     href={`/${post.slug}/`}
     className="ArticleCard"
   >
-    {image && 'src' in image && (
-      <Image
-        src={image}
+    {cover && 'src' in cover && (
+      <img
+        src={cover.src}
         alt={post.data.title}
         width={50}
         height={50}
