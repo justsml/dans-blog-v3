@@ -129,7 +129,7 @@ export type ResponsiveImagesType = {
 let responsiveImages: Record<string, ResponsiveImagesType> | [string, ResponsiveImagesType][] = (await Promise.all(
   Object.entries(images).map(async ([path, image]) => {
     const imgImport = image.default;
-    console.log("imgImport", imgImport);
+    // console.log("imgImport", imgImport);
     if (!imgImport) return [path, null];
     return [path, {
         mobile: getImage({ src: imgImport, width: 240, }),
@@ -148,7 +148,7 @@ let responsiveImageLookup: Record<string, ResponsiveImagesType> | undefined;
   if (!responsiveImages) return;
   return responsiveImages[imagePath];
 }
-console.log("responsiveImages", responsiveImages);
+// console.log("responsiveImages", responsiveImages);
 
 export const getImageProps = (
   imagePath: string,
