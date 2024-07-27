@@ -13,8 +13,9 @@ cover_desktop: w900_olav-ahrens-rotne-jvBXiynINGE-resized.png
 cover_icon: icon_olav-ahrens-rotne-jvBXiynINGE-resized.png
 ---
 
-import { Challenge, Question, Options, Option, Explain, Hint, Hints, QuizUI} from '@/components/QuizUI';
-
+import Challenge from '../../../components/QuizUI/Challenge';
+import QuizUI from '../../../components/QuizUI/QuizUI';
+import Explanation from '../../../components/QuizUI/Explanation';
 
 # Do you know JavaScript & Promises???
 
@@ -50,8 +51,19 @@ import { Challenge, Question, Options, Option, Explain, Hint, Hints, QuizUI} fro
 
 <QuizUI>
 
-<Challenge group="Handling Errors" title="Multiple `.catch`'s #1">
-  <Question>
+<Challenge
+  client:only="react"
+  group="Handling Errors"
+  title="Multiple `.catch`'s #1"
+  options={[
+    {text: 'print message once'},
+    {text: 'print message twice', isAnswer: true },
+    {text: 'UnhandledPromiseRejectionWarning'},
+    {text: 'process exits'}
+  ]}
+>
+  <slot name="question">
+  <div className="question">
     What will the output be for the following code?
     ```js
     var p = new Promise((resolve, reject) => {
@@ -60,18 +72,17 @@ import { Challenge, Question, Options, Option, Explain, Hint, Hints, QuizUI} fro
     p.catch(error => console.log(error.message))
     p.catch(error => console.log(error.message))
     ```
-  </Question>
-  <Options>
-    <Option>print message once</Option>
-    <Option answer={true}>print message twice</Option>
-    <Option>UnhandledPromiseRejectionWarning</Option>
-    <Option>process exits</Option>
-  </Options>
-  <Explain>
-    We create a Promise using the constructor method, triggering an error immediately with the `reject` callback.
+  </div>
+  </slot>
 
-    Then the `.catch` handlers work like the DOM's `.addEventListener(event, callback)` or Event Emitter's `.on(event, callback)` where **multiple handler callbacks can be added.** Each will be called with the same arguments.
-  </Explain>
+  <slot name='explanation'>
+  <div className="explanation">
+We create a Promise using the constructor method, triggering an error immediately with the `reject` callback.
+
+Then the `.catch` handlers work like the DOM's `.addEventListener(event, callback)` or Event Emitter's `.on(event, callback)` where **multiple handler callbacks can be added.** Each will be called with the same arguments.
+    </div>
+  </slot>
+
 </Challenge>
 
 

@@ -14,7 +14,9 @@ export default defineConfig({
 
   site: "https://danlevy.net",
   integrations: [
-    react(),
+    react({
+      // experimentalReactChildren: true,
+    }),
     mdx(),
     sitemap(),
     tailwind({
