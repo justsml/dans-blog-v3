@@ -15,8 +15,6 @@ cover_icon: icon_rawpixel-652639-unsplash.jpg
 
 # Naming stuff: Object Oriented Basics
 
-![credit: rawpixel-652639-unsplash.jpg](rawpixel-652639-unsplash.jpg)
-
 Let's look at Object/class design by example...
 
 ## The Situation

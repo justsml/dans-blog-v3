@@ -1,3 +1,6 @@
+.quiz-ui {
+  padding: 1rem 0;
+}
 
 .challenge {
   display: flex;
@@ -6,13 +9,14 @@
   justify-content: left;
   width: 100%;
   text-align: left;
-  margin: 1.5rem 0.5rem;
+  margin: 2.5rem 0.5rem;
   /* @apply sm:w-screen; md:w-95 lg:w-1/4 xl:w-1/5; */
 
   .title {
     color: var(--neon-cyan);
     font-size: 1.875rem;
     margin: 0.5rem -1rem;
+    padding: 1rem 0;
 
     svg {
       display: inline-block;
@@ -61,7 +65,7 @@
       }
       &:hover {
         /* background-color: var(--primary-foreground); */
-        color: var(--neon-cyan);
+        color: var(--secondary);
       }
 
     }
@@ -72,6 +76,7 @@
     justify-content: space-between;
     margin-top: 1rem;
     align-items: center;
+    gap: 0.5rem;
     /* align-content: center; */
     .btn {
       text-align: center;
@@ -104,6 +109,7 @@
   }
 
 
+
   &.incorrect {
     .title {
       color: var(--neon-pink);
@@ -114,12 +120,45 @@
     }
     /* color: var(--neon-pink); */
   }
+}
+
+@screen sm {
+  .challenge {
+    width: 100%;
+
+    .options {
+      margin-left: -2rem;
+    }
+
+    pre {
+      margin: 0 -0.2rem 0 -2rem;
+    }
+  }
+}
+
+@screen md {
+  .challenge {
+    width: 100%;
+  }
+
+  .options {
+    margin-left: -3rem;
+  }
+
+pre {
+    margin: 0 -0.2rem 0 -2rem;
+  }
+}
+
+@screen lg {
+  .challenge {
+    width: 100%;
+  }
 
 }
 
-
 .pulse {
-  animation: .5s cubic-bezier(0.24, 0.94, 0.53, 1.45) 0s 2 pulse;
+  animation: .3s cubic-bezier(0.24, 0.94, 0.53, 1.45) 0s 1 pulse;
 }
 
 @keyframes pulse {
@@ -127,7 +166,7 @@
     transform: scale(1);
   }
   50% {
-    transform: scale(1.1);
+    transform: scale(1.05);
   }
   100% {
     transform: scale(1);
@@ -135,7 +174,7 @@
 }
 
 .shake {
-  animation: .5s cubic-bezier(0.24, 0.94, 0.53, 1.45) 0s 1 shake;
+  animation: .3s cubic-bezier(0.24, 0.94, 0.53, 1.45) 0s 1 shake;
 }
 
 @keyframes shake {

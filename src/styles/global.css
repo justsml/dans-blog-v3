@@ -148,8 +148,16 @@
     @apply bg-background text-foreground;
   }
 
-  h1 {
+  /* first h1 in the page*/
+  h1:first-of-type {
     color: var(--primary);
+    @apply text-5xl;
+  }
+
+
+
+  h1 {
+    color: var(--neon-cyan);
     @apply mx-2 my-4 font-bold;
   }
   main {
@@ -157,7 +165,7 @@
       font-weight: 300;
       letter-spacing: 0.002em;
       @apply mx-2 my-4;
-      color: var(--neon-pink);
+      color: var(--neon-cyan);
       opacity: 0.965;
     }
   }
@@ -195,6 +203,10 @@
   }
 
 
+  h2, h3, h4, h5, h6 {
+    color: var(--neon-cyan);
+  }
+
   article {
     & ul {
       @apply list-item list-disc my-4 mx-4;
@@ -225,9 +237,9 @@
     @apply rounded ;
   }
 
-  main {
+  /* main {
     @apply mx-auto max-w-3xl p-4;
-  }
+  } */
 }
 
 /* GIST Stuff */
