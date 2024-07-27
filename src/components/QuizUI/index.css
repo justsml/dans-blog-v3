@@ -19,7 +19,7 @@
       margin-right: 0.5rem;
     }
   }
-
+  
   .icon {
     width: 2rem;
     height: 2rem;
@@ -54,7 +54,7 @@
     }
   }
 
-  .correct {
+  &.correct {
     .option {
       & * {
         cursor: not-allowed;
@@ -96,11 +96,30 @@
     border-radius: 5px;
     padding: 0.5rem 1.5rem;
   }
+
+  .explanation {
+    padding: 1rem 0.5rem;
+    line-height: 1.5;
+
+  }
+
+
+  &.incorrect {
+    .title {
+      color: var(--neon-pink);
+    }
+    btn {
+      background-color: var(--neon-pink);
+      color: var(--neon-cyan);
+    }
+    /* color: var(--neon-pink); */
+  }
+
 }
 
 
 .pulse {
-  animation: pulse .5s;
+  animation: .5s cubic-bezier(0.24, 0.94, 0.53, 1.45) 0s 2 pulse;
 }
 
 @keyframes pulse {
@@ -116,7 +135,7 @@
 }
 
 .shake {
-  animation: shake 0.5s;
+  animation: .5s cubic-bezier(0.24, 0.94, 0.53, 1.45) 0s 1 shake;
 }
 
 @keyframes shake {

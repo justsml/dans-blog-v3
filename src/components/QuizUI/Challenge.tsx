@@ -31,7 +31,7 @@ export default function Challenge({
   group,
   options,
   description,
-  hints = [],
+  // hints = [],
   explanation,
   question,
 }: {
@@ -40,7 +40,7 @@ export default function Challenge({
   group?: string;
   options: Option[];
   description: string;
-  hints?: string[];
+  // hints?: string[];
   explanation?: string;
   question?: string;
 }) {
@@ -84,17 +84,17 @@ export default function Challenge({
   }, [challengeClass]);
 
   useEffect(() => {
-    console.log("challengeRef.current", challengeRef.current);
-    console.log("challengeRef.current", challengeRef.current?.querySelector);
+    // console.log("challengeRef.current", challengeRef.current);
+    // console.log("challengeRef.current", challengeRef.current?.querySelector);
     if (challengeRef.current) {
       const e = challengeRef.current.querySelector(".explanation")?.innerHTML;
       if (e) setExplanationText(e);
-      console.log("explanation", e);
+      // console.log("explanation", e);
       // hints = challengeRef.current.querySelector(".hints")?.innerHTML;
     }
   }, [explanationText]);
 
-  hints ||= [];
+  // hints ||= [];
   explanation ||= "";
 
   return (
@@ -140,16 +140,6 @@ export default function Challenge({
           {showExplanation && (
             <p dangerouslySetInnerHTML={{ __html: explanationText }}></p>
           )}
-        </div>
-      )}
-      {hints && (
-        <div className="hints">
-          <h3>Hints</h3>
-          <ul>
-            {hints.map((hint) => (
-              <li key={hint}>{hint}</li>
-            ))}
-          </ul>
         </div>
       )}
     </div>

@@ -23,6 +23,7 @@ type Props = {
 const { title, subTitle, cover, category, date, modified, tags } =
   Astro.props.frontmatter || Astro.props;
 
+console.log("Main.astro", Astro.props);
 ---
 
 <html lang="en">
@@ -71,9 +72,21 @@ const { title, subTitle, cover, category, date, modified, tags } =
   </head>
 
   <body>
-    <Header />
+    <Header date={date} modified={modified} />
     <main>
-      <!-- <h1>{title}</h1> -->
+      <h1>{title}</h1>
+      <p>{subTitle}</p>
+      <div class="info">
+        <span class="date">{date}</span>
+        {modified && (
+          <span class="last-updated-on">Last updated on {modified}</span>
+        )}
+        <Badge text={category} class="" />
+      </div>
+      <div class="hero-image">
+        <img src={cover} alt={title} />
+      </div>
+
       <slot />
     </main>
     <Footer />
