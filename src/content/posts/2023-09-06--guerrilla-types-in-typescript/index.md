@@ -13,7 +13,7 @@ cover_desktop: w900_DALL-E 2023-09-06 00.20.58 - A rebellious gorilla wearing ca
 cover_icon: icon_DALL-E 2023-09-06 00.20.58 - A rebellious gorilla wearing camo and a red bandana typing on an Apple macbook oil painting-60q.jpg
 ---
 
-# Guerrilla Types in TypeScript
+## Guerrilla Types in TypeScript
 
 In this article, we’ll explore three intriguing (possibly terrible?) techniques to assist in type design!
 
@@ -40,7 +40,7 @@ The main goal is **consistent** and **predictable** Model/Entity/Class interface
 4.  Compose higher level types with multiple smaller reusable interfaces & types.
 5.  Utilize [Unions](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes-func.html#discriminated-unions) to 'automatically' match variants of a type. -->
 
-## Approaches to Designing Types
+### Approaches to Designing Types
 
 You've probably encountered or written varying patterns around "type implementations." Especially when consuming data from 3rd party APIs.
 
@@ -48,7 +48,7 @@ You've probably encountered or written varying patterns around "type implementat
 
 Let's explore two high-level approaches: **Single large object** (Top-down) vs. **Multiple named types** (Bottom-up.)
 
-### Single large object
+#### Single large object
 
 Prioritizes being explicit over reusability & DRY-ness.
 
@@ -65,7 +65,7 @@ interface ProductDetails {
 
 Since we are prioritizing explicit readability, it's okay to indulge in _some_ repetition (within reason.) When groups of properties repeat _many_ times, feel free to extract the repeated fields to a named type.
 
-### Multiple named types
+#### Multiple named types
 
 Prioritizing reusability & DRY-ness.
 
@@ -96,7 +96,7 @@ Overall, this approach is great. But it's not without drawbacks.
 
 Why do we have to choose between these two approaches? (Big ol' type vs. Named sub-types.)
 
-## Technique #1: Why not all
+### Technique #1: Why not all
 
 Can we have it all?
 
@@ -136,13 +136,13 @@ export type Availability = ProductDetails["availability"][number];
 This approach really shines in systems where "high-level" objects benefit from documentation in one place.
 Also, this technique supports re-use between many use cases: Models, Services, Query Results, etc.
 
-## Technique #2: Mix-ins
+### Technique #2: Mix-ins
 
 This strategy is all about putting together the **right fields**, with the **right names**, to **represent single logical objects.** The goal is to efficiently address multiple use cases with TypeScript Utilities and Type Unions.
 
 This approach differs from traditional OOP inheritance & hierarchies, which aims to create layers of objects into tightly bound taxonomies. The **mix-in approach is about flat and loosely-related types**, grouping related fields while reducing duplication.
 
-### Mix-in Examples
+#### Mix-in Examples
 
 ```tsx
 interface TodoModel {
@@ -158,7 +158,7 @@ export type TodoDraft = Partial<TodoModel>;
 export type Todo = TodoModel & InstanceMixin;
 ```
 
-### Example `User`
+#### Example `User`
 
 ```tsx
 interface User {
@@ -212,7 +212,7 @@ export type UserInstance = UserBase & InstanceMixin;
 
 No idea. Let's keep going!
 
-## Technique #3: Organizing with Namespaces
+### Technique #3: Organizing with Namespaces
 
 Here, we declare a `ModelMixins` namespace. This provides some organization plus a clearer reuse pattern.
 
@@ -266,7 +266,7 @@ export type UserPayload = UserBase & ModelMixins.Instance & ModelMixins.HashedPa
 export type UserInstance = UserBase & ModelMixins.InputPassword;
 ```
 
-### Real-world Usage
+#### Real-world Usage
 
 Here's an `upsert()` function that uses `in` operator to distinguish between `UserInstance` and `UserPayload` types.
 
@@ -282,7 +282,7 @@ function upsert(user: User) {
 }
 ```
 
-## Summary
+### Summary
 
 We covered three techniques and a few related supporting ideas.
 

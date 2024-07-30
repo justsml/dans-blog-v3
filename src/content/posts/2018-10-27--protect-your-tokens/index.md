@@ -15,7 +15,7 @@ cover_icon: icon_dayne-topkin-78982-unsplash.jpg
 
 ![credit: dayne-topkin-78982-unsplash.jpg](dayne-topkin-78982-unsplash.jpg)
 
-# When to protect your tokens?
+## When to protect your tokens?
 
 <!--  For the purpose of this article we'll treat the following terms as related: . **They are not interchangable** despite most documentation and [StackOverflow](https://stackoverflow.com/questions/51698672/how-to-secure-my-api-key) answers using them as such. -->
 
@@ -35,7 +35,6 @@ Let's re-frame this as between `secret` and `non-secret`.
 
 * 🔒 [`Secret keys`](#-secret-keys) MUST be kept hidden. Generally they should NEVER leave your private server (or service - like heroku, netlify or travis-ci).
 * 🌍 [`Non-secret keys`](#-non-secret-keys) describes strings which could be shared freely and included in browser requests.
-
 
 
 <br />
@@ -131,8 +130,3 @@ const src = `//maps.googleapis.com/maps/api/js?key=${key}`;
 
 
 **Note:** There are other _Use Cases_ for environment variables. Some I didn't cover: CI/CD/testing, feature flags, and runtime configuration for special environments!
-cover_mobile: w300_CI/CD/testing, feature flags, and runtime configuration for special environments!
-cover_tablet: w600_CI/CD/testing, feature flags, and runtime configuration for special environments!
-cover_desktop: w900_CI/CD/testing, feature flags, and runtime configuration for special environments!
-cover_icon: icon_CI/CD/testing, feature flags, and runtime configuration for special environments!
-

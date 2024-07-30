@@ -12,7 +12,7 @@ cover_desktop: w900_charles-deluvio-456501-unsplash.jpg
 cover_icon: icon_charles-deluvio-456501-unsplash.jpg
 ---
 
-# Setup Docker Host's Firewall
+## Setup Docker Host's Firewall
 
 ![credit: charles-deluvio-456501-unsplash.jpg](charles-deluvio-456501-unsplash.jpg)
 
@@ -20,7 +20,7 @@ cover_icon: icon_charles-deluvio-456501-unsplash.jpg
 1. Designed to run on Docker Host Server
 
 
-## Install Requirements
+### Install Requirements
 
 ~~~sh
 # Ultimate Firewall Needed
@@ -28,7 +28,7 @@ apt-get update && apt-get install -y ufw nmap curl
 ~~~
 
 
-## Get your Internal & External IP Addresses
+### Get your Internal & External IP Addresses
 
 ~~~sh
 # Get your IP Addresses, simple output:
@@ -39,7 +39,7 @@ ip addr
 ~~~
 
 
-## Firtewall (UFW) Setup - Example Cmds
+### Firtewall (UFW) Setup - Example Cmds
 
 ~~~sh
 ufw logging on # on=low - medium might be better for diagnostics
@@ -88,7 +88,7 @@ ufw reset
 -----------------
 
 
-## Test Your Firewall
+### Test Your Firewall
 
 > Important: USE A REMOTE IP ADDR/LOCATION
 
@@ -108,7 +108,7 @@ nmap -p 1-10240,27017 --open -v -APN $TARGET_HOST
 nmap -p 1-10240,27017 -O --osscan-guess $TARGET_HOST
 ~~~
 
-#### DONE! Now you should see ONLY the ports you configured!
+> DONE! Now you should see ONLY the ports you configured!
 
 
 

@@ -13,7 +13,7 @@ cover_desktop: w900_sven-kucinic-LxYxC6jdjcA-unsplash-cropped-1200.jpg
 cover_icon: icon_sven-kucinic-LxYxC6jdjcA-unsplash-cropped-1200.jpg
 ---
 
-# Master of Pipelines: Passing State - Part 1
+## Master of Pipelines: Passing State - Part 1
 
 Have you run into challenges passing state around using Functional Pipelines?
 
@@ -41,16 +41,16 @@ Now combine that with another issue that's easily missed by developers & TypeScr
 
 Before we decide how to improve this code, let's identify some pros/cons.
 
-## Pros & Cons
+### Pros & Cons
 
-### Pros
+#### Pros
 
 - Good use of a closure! Passing in `userId` & `products` once!
 - Consistent argument naming.
 - Relatively effective & succinct composition of 4 key functions for checkout.
 - “Free” error flow control. (Errors bubble up from any nested functions, rejecting on the Promise returned by `checkout()`.)
 
-### Cons
+#### Cons
 
 - Repeatedly passing `userId` around is tedious.
 - Functions are not single-parameter (aka unary.) _This affects composability. See [final example](#checkout-with-further-improvements) for why?_
@@ -58,11 +58,11 @@ Before we decide how to improve this code, let's identify some pros/cons.
 - Not obvious how to add functionality (e.g. Say we needed to load customer discount/credit/points/etc.)
 - Sometimes “temp” parameter names (like in each `.then(param => {})`) add context. However given time, they’ll likely become home to naming cruft.
 
-## Solution, Part 1: Make a module!
+### Solution, Part 1: Make a module!
 
 This technique is about organizing related functions into a single module (e.g. `CartHelpers`.) It doesn’t demand a specific pattern. Explore [factory functions](#carthelpers-factory), [Classes](#carthelpers-class), Closures, Mixins, etc. Find what makes sense for your project & team.
 
-### CartHelpers Factory
+#### CartHelpers Factory
 
 Example of a `CartHelpers` module, where `userId` is passed in once, and all methods are single-argument.
 
@@ -77,7 +77,7 @@ const CartHelpers = (userId: number) => {
 };
 ```
 
-### CartHelpers Class
+#### CartHelpers Class
 
 If classes are your thing, it's easy to adapt:
 
@@ -105,7 +105,7 @@ By grouping related functions, we create an opportunity to reduce exposed surfac
 > Less surface area === less cognitive load, better testing & maintainability.
 > _Design systems with intention & focus. ✨_
 
-### Checkout & CartHelpers Usage
+#### Checkout & CartHelpers Usage
 
 Let's see how the `checkout()` function looks now:
 
@@ -121,7 +121,7 @@ export const checkout = ({ userId, products }) => {
 };
 ```
 
-#### Checkout with further improvements
+##### Checkout with further improvements
 
 > Can it be improved further? Yes! We don't have to repeat arguments at all!
 
@@ -142,13 +142,13 @@ export const checkout = ({ userId, products }) => {
 
 **If it feels unnatural combining parameters into single (object) arguments,** consider breaking up your functions **OR** combining them into more appropriately scoped modules.
 
-### Where to Start?
+#### Where to Start?
 
 Find related functions, and group them together. (e.g. `CartHelpers`.)
 
 Part of the challenge when finding possible logical modules is identifying related code in the first place.
 
-#### What makes functions related?
+##### What makes functions related?
 
 One neat trick: Find repetition in function parameters. Ask is there a relationship at play? Or an underlying responsibility?
 
@@ -166,7 +166,7 @@ While there is no single “right answer” to designing modules, it helps to id
 
 > You might feel `cart.sendReceipt()` doesn’t belong with payment-related methods. Perhaps `customerNotifications.sendReceipt()` is a better home for customer messaging. If `CartHelper` is high-enough in importance, it may act as a **_controller_** internally calling all necessary **_services_**, like `customerNotifications`.
 
-### How do you know if you’re helping?
+#### How do you know if you’re helping?
 
 If readability doesn’t suffer as you eliminate ad-hoc arguments, **CONGRATULATIONS!!!** You’ve likely built a module with a clear and durable scope!
 
@@ -182,16 +182,16 @@ In my experience there are 2 primary strategies to evaluate when adding function
 
 Ultimately this makes it easier to decide where new functionality belongs. (e.g. `cart.applyDiscounts()`, `cart.applyTaxes()`, `rewards.getBalance()`.)
 
-## Conclusion
+### Conclusion
 
 Passing state through a complex pipeline can be tricky. However, with a little refactor practice, you’ll find yourself writing more readable code, with less cognitive load.
 
 Questions? Comments? Concerns? Feel free to reach out [@justsml](https://twitter.com/justsml) or [email](mailto:dan@danlevy.net).
 
-### Stay tuned for the next part in the series
+#### Stay tuned for the next part in the series
 
 We’ll explore externalizing state, and extending functionality in our module!
 
-### Related Reading
+#### Related Reading
 
 - [Similar struggles exist in the Component-driven React world.](https://kyleshevlin.com/quit-your-yapping)

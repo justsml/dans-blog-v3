@@ -13,11 +13,11 @@ cover_desktop: w900_rawpixel-652639-unsplash.jpg
 cover_icon: icon_rawpixel-652639-unsplash.jpg
 ---
 
-# Naming stuff: Object Oriented Basics
+## Naming stuff: Object Oriented Basics
 
 Let's look at Object/class design by example...
 
-## The Situation
+### The Situation
 
 Have you ever designed a `data model` (in code, Sql, or excel worksheets)?
 Does the following look familiar?
@@ -46,7 +46,7 @@ Does the following look familiar?
   - *userEmail* - 'Pointer' to User table ^^^
 ```
 
-## Where's the bug?
+### Where's the bug?
 
 Well, technically there's no bug, simply data in need of re-organization.
 
@@ -74,7 +74,7 @@ For starters, you are **not** creating an entirely new thing unto the universe. 
 
 Enough words Dan, what should it look like instead?
 
-## A Solution
+### A Solution
 
 ```
 // Consolidated Schema:

@@ -2,6 +2,7 @@
   padding: 1rem 0;
 }
 
+
 .challenge {
   display: flex;
   flex-direction: column;
@@ -11,6 +12,14 @@
   text-align: left;
   margin: 2.5rem 0.5rem;
   /* @apply sm:w-screen; md:w-95 lg:w-1/4 xl:w-1/5; */
+
+  &.untouched {
+    .btn-reset {
+      filter: grayscale(100%);
+      opacity: 50%;
+      cursor: not-allowed;
+    }
+  }
 
   .title {
     color: var(--neon-cyan);

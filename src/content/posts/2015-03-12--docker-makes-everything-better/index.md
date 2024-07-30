@@ -13,7 +13,7 @@ cover_desktop: w900_guillaume-bolduc-259596-unsplash.jpg
 cover_icon: icon_guillaume-bolduc-259596-unsplash.jpg
 ---
 
-# Docker Can Do Everything!\*
+## Docker Can Do Everything!\*
 
 ![credit: guillaume-bolduc-259596-unsplash.jpg](guillaume-bolduc-259596-unsplash.jpg)
 
@@ -25,7 +25,7 @@ Improve your process for:
 
 There may seem like a huge volume of new stuff to learn, **don't let that stop you** from getting started.
 
-## Notes
+### Notes
 
 - If you see a `docker run` command with either options `-d` or `-it`:
   _ `-it` or `-i -t` will run the configured command interactively
@@ -33,9 +33,9 @@ There may seem like a huge volume of new stuff to learn, **don't let that stop y
 
 ---
 
-## EXAMPLES
+### EXAMPLES
 
-## nginx
+### nginx
 
 ```bash
 # Note: using host-based, shared folders
@@ -46,7 +46,7 @@ sudo docker run --name web01 -d -p 8181:80 \
   -v $(NGINX_DIR)/www:/var/www/html \
   nginx:latest
 
-# Local data, isolated within instance
+## Local data, isolated within instance
 sudo docker run --name web01 -d -p 8181:80 nginx:latest
 
 # nodejs

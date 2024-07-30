@@ -61,5 +61,6 @@ Bottom line: the `deferred` pattern is a painful anti-pattern - it improves virt
 
 
 > Please take a look at (& star) this article's companion Github project, [Escape From Callback Mountain](https://github.com/justsml/escape-from-callback-mountain)
-#### Project Goal: research & develop better functional language patterns in JavaScript.
 
+
+> Project Goal: research & develop better functional language patterns in JavaScript.

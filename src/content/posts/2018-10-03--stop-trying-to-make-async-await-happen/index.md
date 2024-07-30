@@ -23,7 +23,7 @@ Since the beginning of time, developers have fought many silly fights. From the 
 
 ## The Fight...?
 
-#### Promises vs. Async/Await!
+### Promises vs. Async/Await!
 
 Wait, is this a fight? It must be right? We don't seem to talk about callbacks anymore?
 
@@ -67,7 +67,7 @@ Making an HTTP GET request using `fetch`:
 
 <!-- Before we see the solution, look over a common "recommended" implementation: -->
 
-#### Anti-Pattern
+### Anti-Pattern
 
 ```js
 // ❌ Using anonymous inline functions 💩
@@ -78,7 +78,7 @@ fetch(url)
   .then(response => response.text())
 ```
 
-#### Solution: Named Methods
+### Solution: Named Methods
 
 ```js
 // ✅ Clarity emerges: named functions
@@ -155,7 +155,7 @@ function logInOrder(urls) {
 }
 ```
 
-#### Single Purpose?
+### Single Purpose?
 
 I'd say no. What's `logInOrder` doing?
 
@@ -176,24 +176,24 @@ There are 5 anonymous methods defined in this single function. As Jake even poin
 
 
 
-### Solution: Single Purpose Functions
+#### Solution: Single Purpose Functions
 
-#### Begin by **extracting methods**...
+### Begin by **extracting methods**...
 
 ![](async-refactor-google-extract-methods-resized-75.gif "Extracting methods")
 
-#### Continue by replacing the `.reduce()` and `logPromise()` with a `Promise.all` and a `..map()`...
+### Continue by replacing the `.reduce()` and `logPromise()` with a `Promise.all` and a `..map()`...
 
 ![](async-refactor-google-chain-methods-resized-75.gif "Improving readability")
 
 
-## Summary
+### Summary
 
 Try apply these techniques to your own code! Then [tweet at me](https://twitter.com/justsml) & let me know how it went. Or if you have questions or comments, reach out as well!
 
 Help spread the #PromiseTruth & share this article. ❤️
 
-### Related Reading
+#### Related Reading
 
 * [Daniel Brain](https://medium.com/@bluepnume/even-with-async-await-you-probably-still-need-promises-9b259854c161)
 * [Eric Elliott](https://twitter.com/_ericelliott?lang=en)

@@ -15,7 +15,7 @@ cover_icon: icon_michal-parzuchowski-224092-unsplash.jpg
 
 ![credit: michal-parzuchowski-224092-unsplash.jpg](michal-parzuchowski-224092-unsplash.jpg)
 
-## Promises don't work like other values
+### Promises don't work like other values
 
 You cannot print their value like most values:
 
@@ -27,7 +27,7 @@ console.log(Promise.resolve(42));
 Promise.resolve(42).then(value => console.log(value));
 ```
 
-## Promises don't warn you when making a mistake
+### Promises don't warn you when making a mistake
 
 Well, a likely mistake.
 
@@ -35,7 +35,7 @@ For a variety of reasons, it was decided by TC39 that `.then` and `.catch` may b
 
 The unfortunate consequence of this is it's very easy to screw things up.
 
-#### By Example
+##### By Example
 
 Let's look at a mini challenge: which of the following option(s) will `console.log` 42?
 
@@ -55,7 +55,7 @@ Promise.resolve(42)
   .then(console.log);
 ```
 
-#### The Answer
+##### The Answer
 
 The answer is #2, #3 & #4.
 

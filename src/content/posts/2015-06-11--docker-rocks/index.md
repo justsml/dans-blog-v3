@@ -12,7 +12,7 @@ cover_desktop: w900_guillaume-bolduc-259596-unsplash.jpg
 cover_icon: icon_guillaume-bolduc-259596-unsplash.jpg
 ---
 
-# Docker Rocks
+## Docker Rocks
 
 ![credit: guillaume-bolduc-259596-unsplash.jpg](guillaume-bolduc-259596-unsplash.jpg)
 
@@ -20,7 +20,7 @@ cover_icon: icon_guillaume-bolduc-259596-unsplash.jpg
 > Updates September 2016, 2018
 > Boot2Docker has been replaced by Docker for Mac
 
-#### To those on OSX or Windows: Don't let a slow experience give you an impression that Docker isn't enterprise-grade!
+> To those on OSX or Windows: Don't let a slow experience give you an impression that Docker isn't enterprise-grade!
 
 1. Docker is amazing, fast, and flexible.
 1. Prior tools, boot2docker particularly, were slow and prone to crash.
@@ -31,7 +31,7 @@ cover_icon: icon_guillaume-bolduc-259596-unsplash.jpg
 
  ... c'mon those games aren't helping your code...
 
-## Check your setup
+### Check your setup
 
 Review the output of `docker info` command.
 

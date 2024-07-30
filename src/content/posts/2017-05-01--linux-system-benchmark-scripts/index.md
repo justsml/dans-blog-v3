@@ -12,7 +12,7 @@ cover_desktop: w900_rod-long-1052613-unsplash.jpg
 cover_icon: icon_rod-long-1052613-unsplash.jpg
 ---
 
-# Linux Benchmark Shell Scripts
+## Linux Benchmark Shell Scripts
 
 Current tests include CPU & HDD from `sysbench` (will auto install on Debian/Ubuntu flavors.)
 
@@ -135,7 +135,7 @@ And now add execute permissions:
 chmod +x $BENCH_DIR/*.sh
 ```
 
-## Usage:
+### Usage
 
 Make sure to `source ~/benchmarks/bench-library.sh`, then run `benchCpu` or `benchDisk`.
 

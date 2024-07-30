@@ -1,6 +1,12 @@
 "use client";
-import React, { useEffect, useRef, useState, type ReactNode } from "react";
-import { ChallengeContext } from "./ChallengeContext";
+import React, {
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+  type ReactNode,
+} from "react";
+import { QuizContext } from "./QuizContext";
 import type { Option, OptionSelection } from "./types";
 import {
   BoxIcon,
@@ -44,8 +50,10 @@ export default function Challenge({
   explanation?: string;
   question?: string;
 }) {
+  const { setTotalQuestions, setCorrectAnswers } = useContext(QuizContext);
+
   const challengeRef = useRef<HTMLDivElement>(null);
-  const [challengeClass, setChallengeClass] = useState<string>("");
+  const [challengeClass, setChallengeClass] = useState<string>("untouched");
 
   const [isCorrect, setIsCorrect] = useState<boolean | undefined>(undefined);
   const [selectedOption, setSelectedOption] = useState<OptionSelection>({
@@ -55,13 +63,20 @@ export default function Challenge({
   const [showExplanation, setShowExplanation] = useState<boolean>(false);
   const [explanationText, setExplanationText] = useState<string>(explanation!);
 
+  const updateCounts = () => {
+    const questions = document.querySelectorAll("main .challenge");
+    const correct = document.querySelectorAll("main .challenge.correct");
+    setTotalQuestions(questions?.length);
+    setCorrectAnswers(correct?.length);
+  };
+
   const reset = () => {
     setIsCorrect(undefined);
     setSelectedOption({ text: "" });
     setChallengeClass("");
     setShowExplanation(false);
     setShowHintText("");
-  }
+  };
 
   const handleAnswer = (option: Option) => {
     setSelectedOption(option);
@@ -72,6 +87,7 @@ export default function Challenge({
       setIsCorrect(false);
       setChallengeClass("incorrect shake");
     }
+    setTimeout(updateCounts, 200);
   };
 
   useEffect(() => {
@@ -101,7 +117,9 @@ export default function Challenge({
     <div className={"challenge " + challengeClass} ref={challengeRef}>
       <h2 className="title">
         {/* <CheckedBoxIcon className="icon" /> */}
-        {isCorrect === undefined && <QuestionMarkCircledIcon className="icon" />}
+        {isCorrect === undefined && (
+          <QuestionMarkCircledIcon className="icon" />
+        )}
 
         {isCorrect && <CheckCircledIcon className="icon" />}
         {isCorrect === false && <CrossCircledIcon className="icon" />}
@@ -126,11 +144,14 @@ export default function Challenge({
         ))}
       </section>
       <div className="toolbar">
-        <button className="btn" onClick={() => reset()}>
+        <button className="btn btn-reset" onClick={() => reset()}>
           <RefreshCwIcon className="icon" />
           <div>Reset</div>
         </button>
-        <button className="btn" onClick={() => setShowExplanation(!showExplanation)}>
+        <button
+          className="btn btn-hint"
+          onClick={() => setShowExplanation(!showExplanation)}
+        >
           <QuestionMarkCircledIcon className="icon" />
           <div>{showExplanation ? "Hide" : "Show"} Explanation</div>
         </button>

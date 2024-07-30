@@ -144,35 +144,6 @@
   * {
     @apply border-border;
   }
-  body {
-    @apply bg-background text-foreground;
-    font-family: "Raleway", sans-serif;
-    font-optical-sizing: auto;  
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    /* font-family: "Tilt Neon", sans-serif; */
-    /* font-family: "Orbitron", sans-serif; */
-    font-family: "Playwrite AU NSW", cursive;
-
-    line-height: 1.75;
-    margin: 2rem 0;
-
-  }
-
-  h2, h3, h4, h5, h6 {
-    color: var(--neon-cyan);
-  }
-
-  /* first h1 in the page*/
-  h1:first-of-type {
-    color: var(--primary);
-    /* // add glow/shadow effect */
-    text-shadow: 0 0 .5rem var(--primary), 0 0 2rem var(--primary);
-    @apply text-5xl;
-  }
-
-
 
   h1 {
     color: var(--neon-cyan);
@@ -256,6 +227,47 @@
     @apply mx-auto max-w-3xl p-4;
   } */
 }
+
+body {
+  @apply bg-background text-foreground;
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  line-height: 1.5;
+  font-size: 1rem;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  /* font-family: "Tilt Neon", sans-serif; */
+  /* font-family: "Orbitron", sans-serif; */
+  font-family: "Playwrite AU NSW", cursive;
+
+  line-height: 1.75;
+  margin: 2rem 0;
+
+}
+
+h2, h3, h4, h5, h6 {
+  color: var(--neon-cyan);
+}
+
+/* first h1 in the page*/
+h1:first-of-type {
+  color: #fff;
+  /* // add glow/shadow effect */
+  text-shadow: 
+    /* White glow */
+      0 0 2px #fff,
+      0 0 10px var(--primary),
+      0 0 21px var(--primary),
+      /* Green glow */
+      0 0 42px var(--primary);
+      
+  
+  @apply text-5xl;
+
+  line-height: 1.5;
+}
+
 
 /* GIST Stuff */
 

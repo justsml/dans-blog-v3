@@ -4,6 +4,7 @@ date: 2015-06-06
 modified: 2015-09-24
 category: Code
 subCategory: javascript
+draft: true
 tags: [javascript, programming, performance, patterns]
 cover: markus-spiske-197281-unsplash.jpg
 cover_mobile: w300_markus-spiske-197281-unsplash.jpg
@@ -12,7 +13,7 @@ cover_desktop: w900_markus-spiske-197281-unsplash.jpg
 cover_icon: icon_markus-spiske-197281-unsplash.jpg
 ---
 
-# Imperative vs. Recursive vs. Functional
+## Imperative vs. Recursive vs. Functional
 
 ![credit: markus-spiske-197281-unsplash.jpg](markus-spiske-197281-unsplash.jpg)
 
@@ -65,7 +66,7 @@ function fib(n) {
 }
 ```
 
-# Promises: Awesome!
+## Promises: Awesome!
 
 ```js
 // Example Using bluebird Promises and it's
@@ -88,9 +89,9 @@ fs.readFileAsync("./style.less") // Call promisified readFile()
 1.  **$q just sucks** just use bluebird, see above.
 1.  Worth mentioning: Bluebirds Benchmarks are best-case tests, so take note if doing crazy fancy promise chains
 
-# Java vs JavaScript
+## Java vs JavaScript
 
-## Rate Limiting / Debouncing / Throttling
+### Rate Limiting / Debouncing / Throttling
 
 1.  In JavaScript [David Walsh implemented debounce](http://davidwalsh.name/essential-javascript-functions) in less than 20 lines!
 1.  In Java, JDebounce, an library which is a lot more complicated, at ~500+ lines.
@@ -99,7 +100,7 @@ fs.readFileAsync("./style.less") // Call promisified readFile()
 1.  Whereas the Java has many more moving parts, annotations are used to apply behaviour at compile-time, and there's a ton of XML, just for funsies!
 
 <!--
-# Inversion of Control Techniques
+## Inversion of Control Techniques
 
 Work-in-progress
 -->

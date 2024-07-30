@@ -13,7 +13,7 @@ cover_desktop: w900_solaiman-hossen-553024-unsplash.jpg
 cover_icon: icon_solaiman-hossen-553024-unsplash.jpg
 ---
 
-# Boost Cloud Performance up to 70%
+## Boost Cloud Performance up to 70%
 
 ![credit: solaiman-hossen-553024-unsplash.jpg](solaiman-hossen-553024-unsplash.jpg)
 
@@ -25,7 +25,7 @@ cover_icon: icon_solaiman-hossen-553024-unsplash.jpg
 
 <a id='aws_tips'></a>
 
-## Amazon Web Services / EC2 / EBS / S3
+### Amazon Web Services / EC2 / EBS / S3
 
 > TLDR; While AWS usually offers restrictive hardware & intimidating pricing tiers, the **i3.large** (and larger) hardware is the most efficient in terms of Price vs. I/O Performance, AND is the Fastest in Overall Performance.
 
@@ -35,7 +35,7 @@ cover_icon: icon_solaiman-hossen-553024-unsplash.jpg
 <br />
 <br />
 
-## Head to Head
+### Head to Head
 
 \[[full-screen data view](https://docs.google.com/spreadsheets/d/1qQ62m1RFj73YScdS77Q9R2GpRqJOk7JHuTEOFDR4jJE/pubchart?oid=116848524&format=interactive)\]
 
@@ -53,6 +53,6 @@ Network tests used up to 9 additional instances in the same availability zone. A
 
 <iframe style="position: relative; left: -150px; height: 790px; width: 950px; min-width: 100%;" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/1qQ62m1RFj73YScdS77Q9R2GpRqJOk7JHuTEOFDR4jJE/pubchart?oid=13370750&amp;format=interactive"></iframe>
 
-### Credits
+#### Credits
 
 - [ec2instances.info](https://www.ec2instances.info/?filter=nvm&region=us-east-2&cost_duration=monthly&selected=c5d.large,i3.large,i3.xlarge,i3.2xlarge)

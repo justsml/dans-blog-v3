@@ -13,11 +13,11 @@ cover_desktop: w900_lennart-heim-766366-unsplash.jpg
 cover_icon: icon_lennart-heim-766366-unsplash.jpg
 ---
 
-# Are JavaScript Promises Broken?
+## Are JavaScript Promises Broken?
 
 ![credit: lennart-heim-766366-unsplash](lennart-heim-766366-unsplash.jpg)
 
-## In the Before Times
+### In the Before Times
 
 One of the most common myths about Promises is it's **alleged** error shortcomings.
 
@@ -25,11 +25,11 @@ One of the most common myths about Promises is it's **alleged** error shortcomin
 
 > And lo, **it got fixed**, even **widely deployed**.
 
-#### People rejoiced.
+#### People rejoiced
 
 And sadly, some didn't notice.
 
-## The Now Times
+### The Now Times
 
 The myth still persists, I see it everywhere: [popular articles on medium](https://hackernoon.com/6-reasons-why-javascripts-async-await-blows-promises-away-tutorial-c7ec10518dd9), [on dzone](https://dzone.com/articles/javascript-promises-and-why-asyncawait-wins-the-ba), and [many](https://medium.com/@avaq/broken-promises-2ae92780f33) other sources.
 
@@ -40,7 +40,7 @@ I'll admit, even "official" resources and documentation offer mostly [flimsy exa
 <br />
 <br />
 
-# Rules to Stay Out of Trouble
+## Rules to Stay Out of Trouble
 
 1. [Promises need something to hang on to](#1-promises-need-something-to-hang-on-to)
     * **Always** `return` from your functions.
@@ -54,7 +54,7 @@ I'll admit, even "official" resources and documentation offer mostly [flimsy exa
 -------------------------------------------
 
 
-### #1 Promises need something to hang on to
+#### #1 Promises need something to hang on to
 
 It is critical that you **always `return`** from your functions.
 
@@ -80,7 +80,7 @@ Promise.resolve(10)  // 10
 
 **Question:** How many promises were created in the prior example?
 
-### #2 Use real `Error` Instances
+#### #2 Use real `Error` Instances
 
 JavaScript has an interesting behavior around errors (which applys to asynchronous **and** synchronous code.)
 
@@ -110,7 +110,7 @@ Promise.reject(-42)    // ❌
 
 <iframe height="400px" width="100%" src="https://repl.it/@justsml/throwing-errors-in-javascript?lite=true" scrolling="no" frameborder="no" allowtransparency="true" allowfullscreen="true" sandbox="allow-forms allow-pointer-lock allow-popups allow-same-origin allow-scripts allow-modals"></iframe>
 
-### #3 Handle errors where it makes sense
+#### #3 Handle errors where it makes sense
 
 Promises provide a slick way to handle errors, using `.catch()`. It is basically a special kind of `.then()` - where any errors from preceding `.then()`'s get handled. Let's look at an example...
 
@@ -158,7 +158,7 @@ Here's an outline of the sequence:
 **Question:** How can `.catch()` ignore errors? How would you prevent errors from forcing an early exit of `Promise.all`?
 
 
-### #4 Add clarity with named functions 🦄✨
+#### #4 Add clarity with named functions 🦄✨
 
 Compare the **readability** of the following 2 examples:
 

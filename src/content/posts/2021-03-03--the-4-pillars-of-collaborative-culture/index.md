@@ -14,7 +14,7 @@ cover_icon: icon_pexels-fauxels-3184430-cropped.jpg
 credit: Photo by fauxels from Pexels
 ---
 
-# The 4 Pillars of Collaborative Culture
+## The 4 Pillars of Collaborative Culture
 
 Does **everyone on your team share ideas** regularly?
 Volunteer **feedback or ask questions?**
@@ -30,7 +30,7 @@ There are 4 essential pillars to a Culture of Collaboration:
 The first two substantially impact each other: ***Safety & Speed***.
 The next 2 pillars will ensure your process demonstrates value over the near- and long-term.
 
-### The 4 Pillars
+#### The 4 Pillars
 
 - [ ]  **Safety:** Is it *safe* to fail? Is experimentation celebrated?
     - A "fail" is always an opportunity to learn & improve.
@@ -43,7 +43,7 @@ The next 2 pillars will ensure your process demonstrates value over the near- an
 - [ ]  **Clarity:** Do you produce clear and actionable decisions? Is the value clear to all involved? Consider value to external teams getting earlier notification, avoiding wasted effort on code the legal & compliance folks may object to.
 - [ ]  **Commitment:** Can you find the decisions you made 2 weeks ago? 3 sprints ago? If not, it wont make sense to spend much time
 
-### Teams should define their norms & expectations
+#### Teams should define their norms & expectations
 
 **Tip:** Discuss and determine the best way to work as a team. Adjust as necessary.
 
@@ -54,7 +54,7 @@ Document your findings as succinctly as possible, for example:
 - Mock screens in proposed solutions, before final decision's due date.
 - Make specific label recommendations: (e.g. `Urgent`, `[Team-Name]`, `Needs C-Level Approval`, `Hackathon`, `Spike related`.)
 
-### Considerations for your Team
+#### Considerations for your Team
 
 Take some time to think about this process, demonstrate to your team that you value an environment where their ideas are heard.
 
@@ -87,7 +87,7 @@ Are fresh ideas celebrated? Do you celebrate "out there" proposals? This will im
 
 **Be intentional about modeling what you want to see.**
 
-### Scope & Expectations
+#### Scope & Expectations
 
 Whernever possible, responding to a proposal is ideally a few-click process.
 
@@ -99,7 +99,7 @@ Rejection (or the perception of failure) should never become a dis-incentive. A 
 
 Every team will have different norms & priorities here. Try to reflect & improve your teams approach as part of retrospectives.
 
-### Measuring Success
+#### Measuring Success
 
 Consider how ideas come about & evolve in your organization:
 

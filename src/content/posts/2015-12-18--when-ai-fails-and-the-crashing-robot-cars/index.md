@@ -12,7 +12,7 @@ cover_desktop: w900_sandy-millar-749381-unsplash.jpg
 cover_icon: icon_sandy-millar-749381-unsplash.jpg
 ---
 
-# Robotic Cars: More or Less Crashes?
+## Robotic Cars: More or Less Crashes?
 
 ![credit: sandy-millar-749381-unsplash.jpg](sandy-millar-749381-unsplash.jpg)
 
@@ -29,7 +29,7 @@ I understand Google's approach, especially when trying to minimize liability: al
 
 There would be **massive liability** if an accident happened because of intentionally designed 'flexibility' around the laws.
 
-## Don't let the future escape us
+### Don't let the future escape us
 
 The future will still arrive, even if the robots drive like octagenarians.
 
@@ -47,7 +47,7 @@ This would likely require a smart balancing act - say tier 1 detects an immenent
 
 Robotic cars are on the cusp of being technically smarter & faster than any human driver. Accept it. Welcome it.
 
-## References
+### References
 
 1.  [http://nn.cs.utexas.edu/pages/research/neat-warning/](http://nn.cs.utexas.edu/pages/research/neat-warning/)
 1.  [http://www.claimsjournal.com/magazines/idea-exchange/2014/09/29/255161.htm](http://www.claimsjournal.com/magazines/idea-exchange/2014/09/29/255161.htm)

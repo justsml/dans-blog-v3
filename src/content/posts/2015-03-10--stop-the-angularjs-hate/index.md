@@ -14,7 +14,7 @@ cover_icon: icon_sharon-mccutcheon-522851-unsplash.jpg
 
 ---
 
-# AngularJS CAN BE Fun!
+## AngularJS CAN BE Fun!
 
 ![credit: sharon-mccutcheon-522851-unsplash.jpg](sharon-mccutcheon-522851-unsplash.jpg)
 
@@ -23,7 +23,7 @@ cover_icon: icon_sharon-mccutcheon-522851-unsplash.jpg
 1.  AngularJS Developers quickly discover that their med-large apps are buckling under the weight of scattered `$watch's` and the often bloated crutch known as `$scope`.
 2.  Keep your `$scope` free of excess UI state, try limit the size & depth of your overall hierarchy.
 
-## 2-way data binding: 2-way Sword
+### 2-way data binding: 2-way Sword
 
 2-way binding alone makes coming from other frameworks like Backbone, well, **frickin amazeballs**.
 
@@ -32,7 +32,7 @@ This leads to directive sprawl and a `$scope/rootScope` which easily has 1000's 
 
 You know where this is going: an exhausted browser! Forever doomed to work at a **frantic pace** executing endless and redundant UI/DOM re-compiles.
 
-## Stop OVER-Angular.JSification
+### Stop OVER-Angular.JSification
 
 > “If your only tool is a hammer, then every problem looks like a nail.”
 >
@@ -78,9 +78,9 @@ user-widget
     a.btn(href='/login') Login
 ```
 
-# Solutions
+## Solutions
 
-## Angular Tips
+### Angular Tips
 
 1.  Use 1-way binding ( e.g. `{ :: title }` )
 1.  Limit recursive nesting of directives
@@ -88,7 +88,7 @@ user-widget
     I. Use native JS/DOM code in a factory pattern to create basic DOM/UI fragments, examples: Modal msg box, status bar. Call UI factories from either directives or controllers.
 1.  _Bonus:_ Understand cost and triggers of [browser render lifecycle](https://developers.google.com/web/fundamentals/performance/rendering/index?hl=en): animation, composite rendering, reflows
 
-## Use Browserify to Organize Project
+### Use Browserify to Organize Project
 
 Not specifically for Angular per-se, but essential for simple dependency resolution.
 
@@ -96,9 +96,9 @@ Not specifically for Angular per-se, but essential for simple dependency resolut
 
 [Just read this section](https://github.com/substack/browserify-handbook/blob/master/readme.markdown#exports) of the [Browserify Handbook](https://github.com/substack/browserify-handbook/).
 
-# Alternatives
+## Alternatives
 
-## [ReactJS](https://facebook.github.io/react/) from Facebook
+### [ReactJS](https://facebook.github.io/react/) from Facebook
 
 If you have tons of small reusable UI components - ReactJS might be a better choice:
 
@@ -107,9 +107,9 @@ If you have tons of small reusable UI components - ReactJS might be a better cho
   - Already has some kind of 'framework' - You can **use ReactJS alongside** AngularJS, Ember, Backbone. (Avoid if possible though).
   - Handles frequent data model changes in it's own code, you'll benefit by avoiding the ADHD-nature of digest/loop pattern in Angular
 
-## [Polymer Project](http://www.Polymer-Project.org/) from Google
+### [Polymer Project](http://www.Polymer-Project.org/) from Google
 
-## Pure-er JS Approach
+### Pure-er JS Approach
 
 - By the way, here's where I try create framework agnostic code (+1 testability, +1 reuse)
   1.  Use plain javascript class to load data (AJAX/JSONP/Embedded in page, et al.)

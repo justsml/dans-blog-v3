@@ -13,7 +13,7 @@ cover_desktop: w900_austin-kirk-cHX_Eih2hkY-unsplash-cropped.jpg
 cover_icon: icon_austin-kirk-cHX_Eih2hkY-unsplash-cropped.jpg
 ---
 
-# Should you use `named` or `default` exports in JavaScript?
+## Should you use `named` or `default` exports in JavaScript?
 
 There’s no shortage of strongly worded articles on this topic.
 
@@ -27,7 +27,7 @@ Have we missed the point of `export`ing in the first place?
 
 > We are sending a signal to `import`ers _how to use a thing._
 
-## So, what are we saying?
+### So, what are we saying?
 
 Broadly speaking, there are 2 ways to export things in modern JavaScript:
 
@@ -36,7 +36,7 @@ Broadly speaking, there are 2 ways to export things in modern JavaScript:
 
 Of course you can combine both, or use different approaches for different parts of your codebase. [See more examples at the end of the article.](#summary)
 
-## Weak Args, Man
+### Weak Args, Man
 
 Let’s address some of the common “temporary issues” folks run into.
 
@@ -79,7 +79,7 @@ import Handle from "./knife.js"; // 🔪
     // ^ ✅ Also valid to export a class as default
     ```
 
-## Summary
+### Summary
 
 There are actually many combinations of ways we could export things, each tells a different story:
 
@@ -93,6 +93,6 @@ There are actually many combinations of ways we could export things, each tells 
 
 **Something to think about:** What are we saying when the file name does or doesn’t match one of its exports? (For example, a `utils.js` with many functions.)
 
-## Conclusion
+### Conclusion
 
 If Code is Communication, please `export` like you fucking mean it. 💞

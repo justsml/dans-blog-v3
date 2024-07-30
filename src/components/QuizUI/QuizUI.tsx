@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import type { Answer } from "./types";
 import { QuizContext } from "./QuizContext";
 import { Button } from "../ui/button";
+
+import "./QuizUI.css";
 
 /**
  Usage Example
@@ -47,37 +49,47 @@ export default function QuizUI({ children }: any) {
   const [answers, setAnswers] = useState<Array<Answer>>([]);
   const [currentChallenge, setCurrentChallenge] = useState<number>(0);
 
-  const nextChallenge = () => {
-    if (currentChallenge < React.Children.count(children) - 1) {
-      setCurrentChallenge(currentChallenge + 1);
-    }
-  };
+  const [totalQuestions, setTotalQuestions] = useState<number>(0);
+  const [correctAnswers, setCorrectAnswers] = useState<number>(0);
 
-  const prevChallenge = () => {
-    if (currentChallenge > 0) {
-      setCurrentChallenge(currentChallenge - 1);
-    }
-  };
 
+  // useEffect(() => {
+  //   const int = setInterval(() => {
+  //     const questions = document.querySelectorAll("main .challenge");
+  //     const correct = document.querySelectorAll("main .challenge.correct");
+  //     setTotalQuestions(questions.length);
+  //     setCorrectAnswers(correct.length);
+
+  //   }, 1000);
+
+  //   return () => {
+  //     clearInterval(int);
+  //   };
+  // }, []);
+  
   return (
     <QuizContext.Provider
-      value={{ answers, setAnswers, currentChallenge, setCurrentChallenge }}
+      value={{
+        answers,
+        setAnswers,
+        currentChallenge,
+        setCurrentChallenge,
+        totalQuestions,
+        setTotalQuestions,
+        correctAnswers,
+        setCorrectAnswers,
+      }}
     >
-      <div className="quiz-ui">
-        {React.Children.toArray(children)[currentChallenge]}
-      </div>
+      <div className="quiz-ui">{children}</div>
 
-      <div className="navigation">
-        <Button onClick={prevChallenge} disabled={currentChallenge === 0}>
-          Previous
-        </Button>
-        <Button
-          onClick={nextChallenge}
-          disabled={currentChallenge === React.Children.count(children) - 1}
-        >
-          Next
-        </Button>
+      <div className="score">
+      <div className="score-wrapper">
+        Quiz Score:{" "}
+        <label>
+          {correctAnswers}/{totalQuestions}
+        </label>
+      </div>
       </div>
     </QuizContext.Provider>
   );
-};
+}

@@ -31,7 +31,7 @@ The delay in milliseconds will be passed to `.then`'s callback.
 
 Let's look at 4 examples (with animated timelines).
 
-#### Example #1/4
+## Example #1/4
 
 This shows how `console.log()`'s execution will be delayed by `delay(msec)`.
 
@@ -48,7 +48,7 @@ delay(1000) --------|.then(fn)
 0msec             1sec                 2sec                 3sec
 ``` -->
 
-#### Example #2/4
+## Example #2/4
 
 _This shows a common mistake._
 
@@ -73,7 +73,7 @@ console.log('done')
 0msec             1sec                 2sec                 3sec
 ``` -->
 
-#### Example #3/4
+## Example #3/4
 
 3 Promises execute simultaneously.
 
@@ -94,7 +94,7 @@ delay(3000) ------|--------------------|--------------------|.then(console.log)
 0msec           1sec                 2sec                 3sec
 ``` -->
 
-#### Example #4/4
+## Example #4/4
 
 `Promise.all` with 3 `delay` Promises. They will execute simultaneously.
 

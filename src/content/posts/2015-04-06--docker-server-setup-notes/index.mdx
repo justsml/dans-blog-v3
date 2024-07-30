@@ -13,9 +13,9 @@ cover_desktop: w900_markus-spiske-193031-unsplash.jpg
 cover_icon: icon_markus-spiske-193031-unsplash.jpg
 ---
 
-# Docker Server Setup
+## Docker Server Setup
 
-## Who's this guide for?
+### Who's this guide for?
 
 - Have you ever wanted to test an app with a 'throw-away' database?
 - Inherited a suspicious codebase? Prefer not sharing access to your existing database?
@@ -24,7 +24,7 @@ cover_icon: icon_markus-spiske-193031-unsplash.jpg
 
 > Never let those reasons get in your way again!
 
-## Quick Links To 1-liners
+### Quick Links To 1-liners
 
 This article features 1-line commands to start some of the most popular databases, including:
 
@@ -41,9 +41,9 @@ This article features 1-line commands to start some of the most popular database
 
 > **Advanced Docker Users:** If you are familiar with `docker-compose` you may want to convert the shell commands below for use in your `docker-compose.yml` files.
 
-## Postgres Server
+### Postgres Server
 
-##### Start a container, naming it `pg-server`
+> Start a container, naming it `pg-server`
 
 ```sh
 # Store db files on a local path, outside the container
@@ -66,13 +66,13 @@ docker run \
 
 > Adjust the command line options as needed. (The postgres daemon arguments start following the docker image name `postgres:12-alpine`. See `postgres -c 'listen_addresses=*'...`)
 
-##### Access the `psql` prompt as postgres user
+> Access the `psql` prompt as postgres user
 
 ```sh
 docker exec --user postgres -it pg-server psql
 ```
 
-##### Access the container's shell as root
+> Access the container's shell as root
 
 ```sh
 docker exec -it pg-server bash
@@ -82,7 +82,7 @@ docker exec -it pg-server bash
 
 > To use the debian/ubuntu base image, change `postgres:12-alpine` to `postgres:12`.
 
-## MongoDB Server
+### MongoDB Server
 
 ```sh
 mkdir -p $HOME/.mongodb/data
@@ -112,16 +112,16 @@ And you should see something like this:
 
 ![Preview of mongo shell output](mongo-shell-screenshot.png)
 
-### Setup mongo CLI tools
+#### Setup mongo CLI tools
 
-#### Using brew & OSX
+##### Using brew & OSX
 
 ```sh
 brew tap mongodb/brew
 brew install mongodb-community-shell
 ```
 
-## Mysql Server
+### Mysql Server
 
 > **WARNING:** CHANGE THE PASSWORD IN `MYSQL_ROOT_PASSWORD` BELOW.
 
@@ -138,7 +138,7 @@ docker run -d \
   mysql/mysql-server:8
 ```
 
-## ElasticSearch Server
+### ElasticSearch Server
 
 ```sh
 mkdir -p $HOME/.elastic
@@ -151,7 +151,7 @@ docker run -d \
   elasticsearch bash -c 'elasticsearch --cluster.name elastic_cluster --node.name elastic01 --path.data /data/elastic-data --path.logs /data/elastic-logs '
 ```
 
-#### Security Notes
+##### Security Notes
 
 > **NOTE:** the `-p 127.0.0.1:27017:27017`-style port option prevents access to your instance except from the docker server's localhost network.
 > To 'publish' the exposed ports, remove the local IP address prefix to allow external access: `-p 27017:27017`. **Make sure you have taken necessary security precautions.**
@@ -160,12 +160,12 @@ docker run -d \
 
 > Now that you have the commands to start your database servers, the next step is to package up your application as a docker image. Part 2 continued below:
 
-# Packaging a NodeJS Web App
+## Packaging a NodeJS Web App
 
 1.  Add a blank file named `Dockerfile` in your project root.
 1.  _(Optional, Recommended)_ Add a `.dockerignore` using .gitignore rules to exclude large non-essential paths. By default all project files are included.
 
-### Create a `Dockerfile` in your apps root
+#### Create a `Dockerfile` in your apps root
 
 ```dockerfile
 # Example for NodeJS

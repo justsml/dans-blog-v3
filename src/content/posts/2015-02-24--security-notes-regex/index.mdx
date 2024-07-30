@@ -16,7 +16,7 @@ cover_icon: icon_markus-spiske-666905-unsplash.jpg
 ---
 import {Image} from 'astro:assets';
 
-# Denial-of-Service Regex Vulnerability
+## Denial-of-Service Regex Vulnerability
 
 
 <Image
@@ -32,13 +32,13 @@ Either poorly written or poorly implemented.
 
 Memory/CPU can be exhausted with large or specially crafted user input.
 
-## Warning Signs
+### Warning Signs
 
 1. You have multiple capture groups
 2. Global matching
 3. Expression is used with un-checked user input
 
-## Mitigation / Resolution
+### Mitigation / Resolution
 
 1. RegEx is hard
     1.  For example, here is how the really smart folks at [OWASP recommend handling IP validation][owasp]: `^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$`
@@ -47,7 +47,7 @@ Memory/CPU can be exhausted with large or specially crafted user input.
 3. This affects almost every language and platform .NET/Node/Python/PERL/Java
 
 
-## Reference
+### Reference
 
 - [Regular Expression DoS and Node.js](https://blog.liftsecurity.io/2014/11/03/regular-expression-dos-and-node.js?utm_source=nodeweekly&utm_medium=email)
 - [OWASP](https://www.owasp.org/index.php/OWASP_Validation_Regex_Repository)
