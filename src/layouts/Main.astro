@@ -1,5 +1,4 @@
 ---
-import ms from "ms";
 import { formatDistance } from "date-fns/formatDistance";
 
 import BaseHead from "../components/BaseHead.astro";
@@ -117,7 +116,7 @@ const publishedTime = date ? new Date(date).toISOString().split("T")[0] : "";
     <Header date={date} modified={modified} />
     <main>
       <h1>{title}</h1>
-      <h3>{subTitle}</h3>
+      <h2>{subTitle}</h2>
       <div class="info">
         <div class="dates">
           <CalendarIcon className="icon" />

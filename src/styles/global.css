@@ -146,11 +146,29 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;  
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    /* font-family: "Tilt Neon", sans-serif; */
+    /* font-family: "Orbitron", sans-serif; */
+    font-family: "Playwrite AU NSW", cursive;
+
+    line-height: 1.75;
+    margin: 2rem 0;
+
+  }
+
+  h2, h3, h4, h5, h6 {
+    color: var(--neon-cyan);
   }
 
   /* first h1 in the page*/
   h1:first-of-type {
     color: var(--primary);
+    /* // add glow/shadow effect */
+    text-shadow: 0 0 .5rem var(--primary), 0 0 2rem var(--primary);
     @apply text-5xl;
   }
 
@@ -203,9 +221,6 @@
   }
 
 
-  h2, h3, h4, h5, h6 {
-    color: var(--neon-cyan);
-  }
 
   article {
     & ul {
