@@ -1,4 +1,5 @@
 ---
+import { ArticleCard } from "../../components/ArticleCard";
 import Page from "../../layouts/Page.astro";
 import { PostCollections } from "../../shared/dataCache";
 import { type CollectionEntry } from "astro:content";
@@ -31,5 +32,9 @@ const posts = await PostCollections.getPostsByCategory(category);
 
   <h1>{category}</h1>
   <p>Found {count} articles</p>
-  {category}
+  <div class:list={["article-list"]}>
+    {posts.map(post => (
+      <ArticleCard article={post} />
+    ))}
+  </div>
 </Page>

@@ -5,27 +5,21 @@ import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import { slugify } from "@/shared/pathHelpers";
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
-import Main from "../layouts/Main.astro";
+import Page from "../layouts/Page.astro";
 
 import { PostCollections } from "../shared/dataCache";
 import "@/styles/nav.css";
 import "@/styles/global.css";
 import FormattedDate from "../components/FormattedDate.astro";
+import { ArticleCard, type ArticlePost } from "../components/ArticleCard";
 
 const posts = await PostCollections.getPosts();
 ---
 
-<Main>
-  <ul slot="default">
-    {
-      posts.map(async (post) => (
-        <li>
-          <a href={`/${slugify(post.slug)}/`}>
-            <h4 class="title">{post.data.title}</h4>
-          </a>
-        </li>
-      ))
-    }
-  </ul>
-
-</Main>
+<Page>
+  <div class:list={["article-list"]}>
+    {posts.map(post => (
+      <ArticleCard article={post as ArticlePost} width={200} />
+    ))}
+  </div>
+</Page>

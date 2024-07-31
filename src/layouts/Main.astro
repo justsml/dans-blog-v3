@@ -162,7 +162,7 @@ const publishedTime = date ? new Date(date).toISOString().split("T")[0] : "";
       }
 
       {
-        typeof cover === "object" && (
+        cover && typeof cover === "object" && "src" in cover && (
           <div class="hero-image">
             <Image
               src={cover as ImageMetadata}

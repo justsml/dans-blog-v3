@@ -41,7 +41,7 @@ const NavMenu = () => {
               }
             }
           >
-            <h4 style={{ gridColumn: "span 2" }}>Browse by Category</h4>
+            <a href="/category/"><h4 style={{ gridColumn: "span 2" }}>Browse by Category</h4></a>
             <ul className="List one item-list-sm">
               {categories.map(([tag, count]) => (
                 <ListItem
@@ -54,12 +54,13 @@ const NavMenu = () => {
                 </ListItem>
               ))}
             </ul>
-            <h4 style={{ gridColumn: "span 2" }}>Popular Posts</h4>
+            <a href="/"><h4 style={{ gridColumn: "span 2" }}>Popular Posts</h4></a>
             <ul className="List one item-list-lg">
               {popularPosts.map((post) => (
                 <ArticleCard key={post.slug} post={post} />
               ))}
             </ul>
+
           </NavigationMenu.Content>
         </NavigationMenu.Item>
 
