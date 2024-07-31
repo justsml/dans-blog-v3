@@ -91,6 +91,7 @@
       text-align: center;
       display: grid;
       grid-template-columns: 2.5rem 1fr;
+      grid-template-rows: 1fr;
       width: 18ch;
       align-items: center;
       color: var(--secondary);
@@ -114,7 +115,10 @@
   .explanation {
     padding: 1rem 0.5rem;
     line-height: 1.5;
-
+    p {
+      margin: 1rem 0;
+      line-height: 1.75;
+    }
   }
 
 
@@ -140,7 +144,7 @@
     }
 
     pre {
-      margin: 0 -0.2rem 0 -2rem;
+      margin: .5rem -0.2rem 0 -2rem;
     }
   }
 }
@@ -155,7 +159,7 @@
   }
 
 pre {
-    margin: 0 -0.2rem 0 -2rem;
+    margin: .5rem -0.2rem 0 -2rem;
   }
 }
 

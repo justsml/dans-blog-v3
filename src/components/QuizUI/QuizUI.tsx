@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import type { Answer } from "./types";
 import { QuizContext } from "./QuizContext";
-import { Button } from "../ui/button";
 
 import "./QuizUI.css";
 
@@ -52,7 +51,6 @@ export default function QuizUI({ children }: any) {
   const [totalQuestions, setTotalQuestions] = useState<number>(0);
   const [correctAnswers, setCorrectAnswers] = useState<number>(0);
 
-
   // useEffect(() => {
   //   const int = setInterval(() => {
   //     const questions = document.querySelectorAll("main .challenge");
@@ -66,7 +64,7 @@ export default function QuizUI({ children }: any) {
   //     clearInterval(int);
   //   };
   // }, []);
-  
+
   return (
     <QuizContext.Provider
       value={{
@@ -83,12 +81,12 @@ export default function QuizUI({ children }: any) {
       <div className="quiz-ui">{children}</div>
 
       <div className="score">
-      <div className="score-wrapper">
-        Quiz Score:{" "}
-        <label>
-          {correctAnswers}/{totalQuestions}
-        </label>
-      </div>
+        <div className="score-wrapper">
+          Quiz Score:{" "}
+          <label>
+            {correctAnswers}/{totalQuestions}
+          </label>
+        </div>
       </div>
     </QuizContext.Provider>
   );

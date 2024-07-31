@@ -2,7 +2,7 @@
 title: "Deathmatch: Git Rebase vs. Merge"
 subTitle: A timeless question
 date: 2023-08-27
-modified: 2023-09-11
+modified: 2024-07-30
 tags: [engineering,git,rebase,merge]
 category: Code
 subCategory: Git

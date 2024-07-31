@@ -73,7 +73,7 @@ export default function Challenge({
   const reset = () => {
     setIsCorrect(undefined);
     setSelectedOption({ text: "" });
-    setChallengeClass("");
+    setChallengeClass("untouched");
     setShowExplanation(false);
     setShowHintText("");
   };

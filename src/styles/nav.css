@@ -10,14 +10,14 @@ main {
 
   .info {
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: auto auto;
     align-items: flex-start;
     gap: 2rem;
     justify-content: space-between;
-    width: 100%;;
+    width: 80%;
     > div {
       display: grid;
-      grid-template-columns: auto 1fr;
+      grid-template-columns: auto auto;
       align-items: flex-start;
       gap: .5rem;
       align-content: flex-start;

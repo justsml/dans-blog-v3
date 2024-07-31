@@ -295,5 +295,13 @@ h1:first-of-type {
   margin: 2rem auto;
   
 }
+.main > * + *,
+.main > * + :where(astro-island, astro-slot) > *:first-child {
+  margin: 1rem 0;
+}
 
-/* linear-gradient(to top left,#20002c,#cbb4d4) */
+main pre {
+  margin: 1rem 0;
+  border: .25px solid #fff;
+  border-radius: 0.5rem;
+}

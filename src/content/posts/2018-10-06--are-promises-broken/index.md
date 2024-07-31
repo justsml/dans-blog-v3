@@ -2,7 +2,7 @@
 title: Broken Promises?
 subTitle: Dropping errors, losing results...
 date: 2018-10-06
-modified: 2018-11-15
+modified: 2024-07-30
 tags: [promises, javascript, errors, programming]
 category: Code
 subCategory: promises

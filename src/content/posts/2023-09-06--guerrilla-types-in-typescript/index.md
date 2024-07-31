@@ -2,7 +2,7 @@
 title: "Guerrilla Types in TypeScript"
 subTitle: Renegade Type Design
 date: 2023-09-05
-modified: 2023-09-06
+modified: 2024-07-30
 tags: [engineering,typescript,composition,types]
 category: Guides
 subCategory: TypeScript

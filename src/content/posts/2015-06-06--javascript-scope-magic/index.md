@@ -1,7 +1,7 @@
 ---
 title:  "JavaScript Magic"
 date: 2015-06-06
-modified: 2015-09-24
+modified: 2024-07-30
 category: Code
 subCategory: javascript
 draft: true

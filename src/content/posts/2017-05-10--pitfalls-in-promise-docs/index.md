@@ -2,7 +2,7 @@
 title:  "Pitfalls in Promise Docs"
 subTitle: Avoiding issues from popular docs
 date: 2017-05-10
-modified: 2018-11-01
+modified: 2024-07-30
 category: Code
 subCategory: promises
 tags: [programming, patterns, promises, functional river]

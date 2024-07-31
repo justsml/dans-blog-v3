@@ -180,6 +180,32 @@ p {
   all: unset;
 }
 
+.SocialLinks {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+  a {
+    color: var(--neon-purple);
+    display: grid;
+    grid-template-columns: minmax(2rem, 1fr) auto;
+    /* justify-content: center; */
+    align-items: center;
+    text-wrap: nowrap;
+    line-height: 125%;
+    margin: 0.5rem 0;
+    svg.icon {
+      margin: .25rem;
+    }
+    .Icon {
+      scale: 1.25;
+      display: inline-block;
+    }
+  }
+}
+
 /* .SocialLinks {
   width: 100%;
   line-height: 1.25rem;

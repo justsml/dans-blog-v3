@@ -2,7 +2,7 @@
 title: "Stop trying to make async/await happen"
 subTitle: Promises are so fetch right now
 date: 2018-10-03
-modified: 2018-10-12
+modified: 2024-07-30
 category: Code
 subCategory: promises
 tags: [promises, async, await, async-await, javascript, composition]

@@ -2,7 +2,7 @@
 title: "Docker === Love"
 subTitle: Docker can do :allthethings:!
 date: 2015-02-26
-modified: 2015-09-23
+modified: 2024-07-30
 category: DevOps
 subCategory: docker
 tags: [docker, devops, patterns]

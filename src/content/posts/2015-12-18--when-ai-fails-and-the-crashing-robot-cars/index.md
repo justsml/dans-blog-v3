@@ -1,7 +1,7 @@
 ---
 title:  "When AI Fails & the Crashing Robotic Cars"
 date: 2015-12-18
-modified: 2018-07-24
+modified: 2024-07-30
 category: Leadership
 subCategory: machine-learning
 tags: [artificial intelligence, ai, self-driving cars, fails]

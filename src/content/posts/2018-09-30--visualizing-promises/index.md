@@ -2,7 +2,7 @@
 title:  "Visualizing Promises"
 subTitle: Break on through...
 date: 2018-09-30
-modified: 2018-12-14
+modified: 2024-07-30
 category: Guides
 subCategory: promises
 cover: junior-ferreira-735237-unsplash.jpg

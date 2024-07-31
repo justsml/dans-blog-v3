@@ -1,9 +1,7 @@
 "use client";
 import "./index.css";
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
-import {
-  PostCollections,
-} from "@/shared/dataCache";
+import { PostCollections } from "@/shared/dataCache";
 import { slugify } from "@/shared/pathHelpers";
 import avatarImage from "@/assets/avatar.png";
 import {
@@ -196,19 +194,32 @@ const NavMenu = () => {
                     <p className="CalloutText"></p>
                     <p className="SocialLinks">
                       <a href="http://twitter.com/justsml" target="_blank">
-                        <TwitterLogoIcon className="Icon" /> Twitter
+                        <span className="Icon">
+                          <TwitterLogoIcon className="Icon" />
+                        </span>
+                        <label>Twitter</label>
                       </a>
                       <a href="https://github.com/justsml" target="_blank">
-                        <GitHubLogoIcon className="Icon" /> GitHub
+                        <span className="Icon">
+                          <GitHubLogoIcon className="icon" />
+                        </span>
+                        <label>GitHub</label>
                       </a>
                       <a
                         href="https://linkedin.com/in/realdaniellevy"
                         target="_blank"
                       >
-                        <LinkedInLogoIcon className="Icon" /> LinkedIn
+                        <span className="Icon">
+                          <LinkedInLogoIcon className="icon" />
+                        </span>
+                        <label>LinkedIn</label>
                       </a>
+                      
                       <a href="/docs/resume.pdf" target="_blank">
-                        <RocketIcon className="Icon" /> Résumé (PDF)
+                        <span className="Icon">
+                          <RocketIcon className="Icon" />
+                        </span>
+                        <label>Résumé (PDF)</label>
                       </a>
                     </p>
                   </div>

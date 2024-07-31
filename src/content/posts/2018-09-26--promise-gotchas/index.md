@@ -2,7 +2,7 @@
 title:  "Promise Gotchas"
 subTitle: Avoiding common mistakes
 date: 2018-09-26
-modified: 2018-10-02
+modified: 2024-07-30
 category: Code
 subCategory: promises
 tags: [promises, async, debugging, errors, javascript, composition]

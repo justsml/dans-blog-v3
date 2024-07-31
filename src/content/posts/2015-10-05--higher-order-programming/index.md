@@ -1,7 +1,7 @@
 ---
 title:  "Higher Order Programming"
 date: 2015-09-22
-modified: 2017-05-13
+modified: 2024-07-30
 category: Code
 subCategory: programming
 tags: [programming, patterns, models, source code, organization]

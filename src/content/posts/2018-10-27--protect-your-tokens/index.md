@@ -2,7 +2,7 @@
 title: "Protecting Your Tokens, API Keys and Secrets"
 subTitle: Public? Private? Wat?
 date: 2018-10-27
-modified: 2018-12-07
+modified: 2024-07-30
 tags: [tokens, api-keys, secrets, security, nodejs, json-web-tokens]
 category: Guides
 subCategory: security

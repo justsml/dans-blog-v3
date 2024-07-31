@@ -2,7 +2,7 @@
 title:  "MongoDB Tuning: disable transparent huge pages"
 subTitle: a fix for Debian/Ubuntu
 date: 2015-12-22
-modified: 2018-09-28
+modified: 2024-07-30
 category: DevOps
 subCategory: mongodb
 tags: [devops, mongodb, performance, tuning]
