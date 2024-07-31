@@ -2,6 +2,22 @@
 import { globby } from "globby";
 import sharp, { type FormatEnum, type Sharp } from "sharp";
 import * as path from "path";
+import { existsSync, rmSync } from "fs";
+
+const config = {
+  replace: true,
+};
+
+const isFileNeeded = (file: string) => {
+  const exists = existsSync(file);
+  if (!exists) return true;
+
+  if (config.replace && exists) {
+    rmSync(file);
+    return true;
+  }
+  return false;
+};
 
 async function resizeImages(sourceFolder: string): Promise<void> {
   const sizes = [900, 600, 300];
@@ -10,7 +26,7 @@ async function resizeImages(sourceFolder: string): Promise<void> {
     `${sourceFolder}/**/*.{jpg,jpeg,png,gif,svg}`,
   ]).then((files) =>
     files.filter((file) => {
-      if (file.startsWith("icon_")) return false;
+      if (file.includes("icon_")) return false;
       if (sizes.some((size) => file.includes(`w${size}`))) return false;
       return true;
     })
@@ -24,26 +40,40 @@ async function resizeImages(sourceFolder: string): Promise<void> {
 
     const img = sharp(file);
 
-    if (fileExtension === ".jpg" || fileExtension === ".jpeg") {
+    if (
+      fileExtension === ".jpg" ||
+      fileExtension === ".jpeg" ||
+      fileExtension === ".png"
+    ) {
+      let ext = "jpeg";
+      if (fileExtension === ".png") ext = "png";
+
       const iconFileName = `icon_${bareName}${fileExtension}`;
       const iconFilePath = path.join(dirName, iconFileName);
-      const resizedImg = img.clone()
-      .resize({ width: 1024, fit: "cover" })
-      const region = await getCenterSquareRegion(resizedImg, 200);
-      console.log('region', region, await getImageInfo(resizedImg));
-      try {
-        await resizedImg
-          .extract(region)
-          .toFormat("jpeg")
-          .toFile(iconFilePath);
-      } catch (error) {
-        console.error("Error creating icon:", error, iconFilePath);
+      if (!isFileNeeded(iconFilePath)) {
+        console.log(`Skipping icon: ${file}`);
+      } else {
+        const resizedImg = img.clone().resize({ width: 2048, fit: "cover" });
+        const region = await getCenterSquareRegion(resizedImg, 200);
+        console.log("region", region, await getImageInfo(resizedImg));
+        try {
+          await resizedImg
+            .extract(region)
+            .toFormat(ext as "jpeg" | "png")
+            .toFile(iconFilePath);
+        } catch (error) {
+          console.error("Error creating icon:", error, iconFilePath);
+        }
       }
     }
 
     for (const size of sizes) {
       const outputFileName = `w${size}_${bareName}${fileExtension}`;
       const outputFilePath = path.join(dirName, outputFileName);
+      if (!isFileNeeded(outputFilePath)) {
+        console.log(`Skipping: ${file}`);
+        continue;
+      }
       const format = getValidImageType(fileExtension);
       if (format?.includes("svg")) {
         console.log(`Skipping SVG: ${file}`);
@@ -76,6 +106,17 @@ const getCenterSquareRegion = async (file: Sharp, size: number) => {
   if (!width || !height)
     throw new Error(`Invalid image dimensions ${width}x${height}`);
 
+  if (size > width || size > height) {
+    // no need to crop, image is smaller than the target size
+    console.log("No need to crop", { width, height, size });
+    return {
+      left: 0,
+      top: 0,
+      width,
+      height,
+      original: { width, height },
+    };
+  }
   // Calculate the region to extract
   const x = Math.floor((width - size) / 2);
   const y = Math.floor((height - size) / 2);
