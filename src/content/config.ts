@@ -19,6 +19,7 @@ const category = defineCollection({
   schema: () =>
     z.object({
       category: z.string(),
+      count: z.number(),
     })
 });
 

@@ -6,7 +6,6 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { InfoLabel } from "../components/ui/infoLabel";
 
-
 import { CalendarIcon } from "@radix-ui/react-icons";
 import { TagIcon } from "lucide-react";
 import { Image } from "astro:assets";
@@ -114,27 +113,25 @@ const publishedTime = date ? new Date(date).toISOString().split("T")[0] : "";
         const scoreLabel = document.querySelector(".score label");
         const questions = document.querySelectorAll("main .challenge");
         const correct = document.querySelectorAll("main .challenge.correct");
-        
+
         const isQuizPage = questions.length > 0;
 
         if (!isQuizPage) return; // Not a quiz page
 
-        if (scoreEls.length >= 2) console.error("Multiple score elements found");
-        if (!scoreLabel) return console.error("Expected score label, not found");
+        if (scoreEls.length >= 2)
+          console.error("Multiple score elements found");
+        if (!scoreLabel)
+          return console.error("Expected score label, not found");
 
         if (questions.length === correct.length) {
           scoreLabel.innerHTML = "All correct!";
         } else {
           scoreLabel.innerHTML = `${correct.length} / ${questions.length} correct`;
         }
-      }
+      };
 
       document.addEventListener("DOMContentLoaded", function () {
-        
         setInterval(updateCounts, 1000);
-        
-
-
       });
     </script>
   </head>
@@ -142,28 +139,40 @@ const publishedTime = date ? new Date(date).toISOString().split("T")[0] : "";
   <body>
     <Header date={date} modified={modified} />
     <main>
-      <h1>{title}</h1>
-      <h2>{subTitle}</h2>
-      <div class="info">
-        <InfoLabel
-          text={[`created ${createdAgo} ago`, `updated ${createdAgo} ago`]}
-          ><CalendarIcon className="icon" />
-        </InfoLabel>
+      {title && <h1>{title}</h1>}
+      {subTitle && <h2>{subTitle}</h2>}
+      {
+        createdAgo ||
+          (category && (
+            <div class="info">
+              <InfoLabel
+                text={[
+                  `created ${createdAgo} ago`,
+                  `updated ${createdAgo} ago`,
+                ]}
+              >
+                <CalendarIcon className="icon" />
+              </InfoLabel>
 
-        <InfoLabel text={category!}>
-          <TagIcon className="icon" />
-        </InfoLabel>
+              <InfoLabel text={category!}>
+                <TagIcon className="icon" />
+              </InfoLabel>
+            </div>
+          ))
+      }
 
-      </div>
-
-      <div class="hero-image">
-        <Image
-          src={cover as ImageMetadata}
-          width="265"
-          height="265"
-          alt={title}
-        />
-      </div>
+      {
+        typeof cover === "object" && (
+          <div class="hero-image">
+            <Image
+              src={cover as ImageMetadata}
+              width="265"
+              height="265"
+              alt={title}
+            />
+          </div>
+        )
+      }
 
       <slot />
     </main>

@@ -1,6 +1,6 @@
 import { getImage } from "astro:assets";
 import { getCollection } from "astro:content";
-import { fixSlugPrefix } from "../shared/pathHelpers";
+import { fixSlugPrefix, slugify } from "../shared/pathHelpers";
 // type PostType = CollectionEntry<"posts">;
 
 const getBaseName = (path: string) => path.split("/").pop() || "";
@@ -78,7 +78,7 @@ export const PostCollections = {
       props: { ...post, slug: fixSlugPrefix(post.slug) },
     }));
 
-    // console.log("getStaticPaths[0]", fixedPosts[0]);
+    console.log("getStaticPaths[0]", fixedPosts[0]);
 
     return fixedPosts;
   },
@@ -87,10 +87,16 @@ export const PostCollections = {
     params: Record<string, unknown>;
     props: Record<string, unknown>;
   }> {
-    return Object.keys(PostCollections.getCategoryList()).map((category) => ({
-      params: { category },
-      props: { category },
-    }));
+    const paths = Object.entries(PostCollections.getCategoryList()).map(
+      ([category, count]) => ({
+        params: { category: slugify(category) },
+        props: { category, count, slug: slugify(category) },
+      })
+    );
+
+    console.log("getStaticPathsCategoryList", paths);
+
+    return paths;
   },
   getCategoryList() {
     return PostCollections._categories;
