@@ -82,6 +82,16 @@ export const PostCollections = {
 
     return fixedPosts;
   },
+
+  getStaticPathsCategoryList(): Array<{
+    params: Record<string, unknown>;
+    props: Record<string, unknown>;
+  }> {
+    return Object.keys(PostCollections.getCategoryList()).map((category) => ({
+      params: { category },
+      props: { category },
+    }));
+  },
   getCategoryList() {
     return PostCollections._categories;
   },
@@ -105,7 +115,8 @@ export const PostCollections = {
 };
 
 export const images = import.meta.glob<{ default: ImageMetadata }>(
-  "/src/content/posts/**/*.{jpeg,jpg,png,gif,svg}", {
+  "/src/content/posts/**/*.{jpeg,jpg,png,gif,svg}",
+  {
     eager: true,
   }
 );
@@ -124,30 +135,35 @@ export type ResponsiveImagesType = {
   desktop: ImageMetadata | Promise<ImageMetadata>;
 
   large: ImageMetadata | Promise<ImageMetadata>;
-}
+};
 
-let responsiveImages: Record<string, ResponsiveImagesType> | [string, ResponsiveImagesType][] = (await Promise.all(
+let responsiveImages:
+  | Record<string, ResponsiveImagesType>
+  | [string, ResponsiveImagesType][] = (await Promise.all(
   Object.entries(images).map(async ([path, image]) => {
     const imgImport = image.default;
     // console.log("imgImport", imgImport);
     if (!imgImport) return [path, null];
-    return [path, {
-        mobile: getImage({ src: imgImport, width: 240, }),
+    return [
+      path,
+      {
+        mobile: getImage({ src: imgImport, width: 240 }),
         tablet: getImage({ src: imgImport, width: 360 }),
         desktop: getImage({ src: imgImport, width: 640 }),
         large: getImage({ src: imgImport, width: 960 }),
-      }];
+      },
+    ];
   })
 ).catch(console.error)) as unknown as Record<string, ResponsiveImagesType>;
 
 export const getResponsiveImage = (imagePath: string) => {
-let responsiveImageLookup: Record<string, ResponsiveImagesType> | undefined;
+  let responsiveImageLookup: Record<string, ResponsiveImagesType> | undefined;
   if (Array.isArray(responsiveImages)) {
     responsiveImageLookup = Object.fromEntries(responsiveImages);
   }
   if (!responsiveImages) return;
   return responsiveImages[imagePath];
-}
+};
 // console.log("responsiveImages", responsiveImages);
 
 export const getImageProps = (
@@ -166,15 +182,16 @@ export const getImageProps = (
 /**
  * Convert paths like:
  * `/@fs/Users/dan/code/oss/dans-blog-v3/src/content/posts/2024-01-16--contribute-to-open-source-the-easy-way/open-source-high-life.jpg?origWidth=1020&origHeight=673&origFormat=jpg`
- * 
+ *
  * Into:
- * 
+ *
  * `/src/content/posts/2024-01-16--contribute-to-open-source-the-easy-way/open-source-high-life.jpg`
  *
  */
 export const getSrcPath = (imagePath: string) => {
-  if (imagePath.includes('dans-blog-v3')) imagePath = imagePath.split('dans-blog-v3')[1];
-  if (imagePath.includes('?')) imagePath = imagePath.split('?')[0];
+  if (imagePath.includes("dans-blog-v3"))
+    imagePath = imagePath.split("dans-blog-v3")[1];
+  if (imagePath.includes("?")) imagePath = imagePath.split("?")[0];
 
   return imagePath;
-}
+};

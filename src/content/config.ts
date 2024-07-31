@@ -13,6 +13,15 @@ import { defineCollection, z } from "astro:content";
 // 	}),
 // });
 
+const category = defineCollection({
+  type: "content",
+  // Type-check frontmatter using a schema
+  schema: () =>
+    z.object({
+      category: z.string(),
+    })
+});
+
 const posts = defineCollection({
   type: "content",
   // Type-check frontmatter using a schema
@@ -48,4 +57,4 @@ const posts = defineCollection({
     }),
 });
 
-export const collections = { posts };
+export const collections = { posts, category };

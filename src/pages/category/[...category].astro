@@ -1,0 +1,18 @@
+---
+import Main from "../../layouts/Main.astro";
+import { type CollectionEntry } from "astro:content";
+import { PostCollections } from "../../shared/dataCache";
+
+export async function getStaticPaths() {
+  return PostCollections.getStaticPathsCategoryList();
+}
+
+type Props = CollectionEntry<"category">;
+
+const {data: {category}} = Astro.props;
+---
+
+<Main>
+  <h1>{category}</h1>
+  {category}
+</Main>

@@ -4,9 +4,9 @@ import BaseHead from "@/components/BaseHead.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import { slugify } from "@/shared/pathHelpers";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
 // import { Image } from "astro:assets";
-import { PostCollections } from "../shared/dataCache";
+import { PostCollections } from "../../shared/dataCache";
 
 const categories = await PostCollections.getCategoryList();
 
@@ -20,71 +20,68 @@ const categoryList = Object.entries(categories).sort((a, b) => {
   <head>
     <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     <style>
-      main {
-        width: 960px;
+      main section {
+        max-width: fit-content;
+        margin: 0 auto;
       }
-      ul {
-        display: flex;
-        flex-wrap: wrap;
+      .category-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 25%));
         gap: 2rem;
-        list-style-type: initial;
-        margin: 0;
+        justify-content: center;
+        align-items: center;
+
+        margin: 5rem 0;
         padding: 0;
       }
-      ul li {
-        width: calc(50% - 1rem);
+      .category-list .card {
+        width: calc(30% - 1rem);
       }
-      ul li * {
+      .category-list .card * {
         text-decoration: none;
         transition: 0.2s ease;
       }
-      ul li:first-child {
-        width: 100%;
-        margin-bottom: 1rem;
-        text-align: center;
-      }
-      ul li:first-child img {
-        width: 100%;
-      }
-      ul li:first-child .title {
-        font-size: 2.369rem;
-      }
-      ul li img {
+      .category-list .card img {
         margin-bottom: 0.5rem;
         border-radius: 12px;
       }
-      ul li a {
-        display: block;
+      .category-list .card a {
+        display: grid;
+        grid-template-columns: 1fr 2rem;
+        gap: 1rem;
+        align-items: center;
       }
       .title {
         margin: 0;
         color: rgb(var(--black));
         line-height: 1;
       }
-      .date {
+      .count {
         margin: 0;
-        color: rgb(var(--gray));
+        color: var(--neon-pink);
+        display: inline;
+        font-size: 1.5rem;
       }
-      ul li a:hover h4,
-      ul li a:hover .date {
+      .category-list .card a:hover h4,
+      .category-list .card a:hover .date {
         color: rgb(var(--accent));
       }
-      ul a:hover img {
+      .category-list a:hover img {
         box-shadow: var(--box-shadow);
       }
       @media (max-width: 720px) {
-        ul {
-          gap: 0.5em;
+        .category-list {
+          gap: 0.5rem;
         }
-        ul li {
-          width: 100%;
+        .category-list .card {
+          width: 30%;
           text-align: center;
         }
-        ul li:first-child {
+        .category-list .card:first-child {
           margin-bottom: 0;
         }
-        ul li:first-child .title {
-          font-size: 1.563em;
+        .category-list .card:first-child .title {
+          font-size: 1.563rem;
         }
       }
     </style>
@@ -93,18 +90,19 @@ const categoryList = Object.entries(categories).sort((a, b) => {
     <Header />
     <main>
       <section>
-        <ul>
+        <h1>Articles by Category</h1>
+        <div class="category-list">
           {
             categoryList.map(async ([category, count]) => (
-              <li>
+              <div class="card">
                 <a href={`/category/${slugify(category)}/`}>
                   <h4 class="title">{category}</h4>
                   <small class="count">{count}</small>
                 </a>
-              </li>
+              </div>
             ))
           }
-        </ul>
+        </div>
       </section>
     </main>
     <Footer />

@@ -13,7 +13,7 @@ import FormattedDate from "../components/FormattedDate.astro";
 
 const posts = await PostCollections.getPosts();
 
-type Props = CollectionEntry<"posts">;
+type Props = CollectionEntry<"category">;
 ---
 
 <!doctype html>
@@ -95,19 +95,8 @@ type Props = CollectionEntry<"posts">;
           {
             posts.map(async (post) => (
               <li>
-                <a href={`/${fixSlugPrefix(post.slug)}/`}>
-                  <Image
-                    src={post.data?.cover}
-                    width={post.data?.cover.width}
-                    height={post.data?.cover.height}
-                    alt=""
-                  />
-                  <h4 class="title">{post.data.title}</h4>
-                  <p class="date">
-                    {post.data?.date ?? (
-                      <FormattedDate date={new Date(post.data?.date)} />
-                    )}
-                  </p>
+                <a href={`/${fixSlugPrefix(post.data.category)}/`}>
+                  <h4 class="title">{post.data.category}</h4>
                 </a>
               </li>
             ))
