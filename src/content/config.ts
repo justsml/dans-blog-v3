@@ -40,11 +40,7 @@ const posts = defineCollection({
       cover_mobile: image().optional(),
       cover_tablet: image().optional(),
       cover_desktop: image().optional(),
-      cover_imgs: z.object({
-        mobile: image().optional(),
-        tablet: image().optional(),
-        desktop: image().optional(),
-      }).optional(),
+      cover_icon: image().optional(),
       
       category: z.string(),
       subCategory: z.string().optional(),
