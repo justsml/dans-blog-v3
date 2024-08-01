@@ -7,6 +7,11 @@ import FormattedDate from "../components/FormattedDate.astro";
 import { Image } from "astro:assets";
 import { ViewTransitions } from 'astro:transitions';
 
+import {wrapGrid} from './common';
+
+// @ts-ignore
+globalThis.wrapGrid = wrapGrid;
+
 console.log("Page.astro", Astro.props);
 
 const { title, subTitle } = Astro.props.frontmatter! || Astro.props;
@@ -15,13 +20,24 @@ const { title, subTitle } = Astro.props.frontmatter! || Astro.props;
 <html lang="en">
   <head>
     <BaseHead title={title} description={`${subTitle}`} />
-    <style>
-
-    </style>
+    
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        const grid = document.querySelector(".article-list");
+    
+        if (!grid) return;
+        // @ts-ignore
+        const wrapGrid = globalThis.wrapGrid!
+        // @ts-ignore
+        if (wrapGrid) wrapGrid(grid, {duration : 600});
+      });
+      
+    </script>
+    
     <ViewTransitions />
   </head>
 
-  <body>
+  <body class="layout-page">
     <Header />
     <main>
       <slot name="default"></slot>

@@ -57,7 +57,7 @@ export const ArticleCard = ({
   const categoryClass = `category-${slugify(category)}`;
 
   return (
-    <a href={slug} className={"article-card " + categoryClass} title={title}>
+    <a href={`/${slug}`} className={"article-card " + categoryClass} title={title}>
       <label className="small-label">
         {category}
       </label>

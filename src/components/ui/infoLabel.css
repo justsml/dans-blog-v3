@@ -10,17 +10,20 @@
 
   font-weight: 300;
   font-size: .9rem;
+
+  align-items: center;
 }
 
-.icon {
+div.icon {
   align-content: center;
   grid-row: span 2;
-  margin: 0 0.25rem;
+  margin: 0 0.5rem;
 }
 
 
 .line1 {
 
+  align-self: flex-end;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
@@ -40,7 +43,7 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   text-wrap: nowrap;
-  
+
   grid-row-start: 2;
   grid-column-start: 2;
 

@@ -56,58 +56,6 @@ const publishedTime = date ? new Date(date).toISOString().split("T")[0] : "";
       )
     }
 
-    <style>
-      main {
-        width: calc(100% - 2em);
-        max-width: 800px;
-        line-height: 1.5;
-        margin: 0 auto;
-      }
-
-      main .info {
-        width: 100%;
-        line-height: 1;
-      }
-
-      .icon {
-        width: 1.5rem;
-        height: 1.5rem;
-        display: inline-block;
-      }
-
-      .hero-image {
-        width: 100%;
-      }
-      .hero-image img {
-        display: block;
-        margin: 0 auto;
-        border-radius: 100%;
-        box-shadow: var(--box-shadow);
-      }
-      .prose {
-        width: 720px;
-        max-width: calc(100% - 2em);
-        margin: auto;
-        padding: 1em;
-        color: rgb(var(--gray-dark));
-      }
-      .title {
-        margin-bottom: 1em;
-        padding: 1em 0;
-        text-align: center;
-        line-height: 1;
-      }
-      .title h1 {
-        margin: 0 0 0.5em 0;
-      }
-      .date {
-        margin-bottom: 0.5em;
-        color: rgb(var(--gray));
-      }
-      .last-updated-on {
-        font-style: italic;
-      }
-    </style>
     <script>
       const updateCounts = () => {
         const scoreEls = document.querySelectorAll(".score");
@@ -156,7 +104,7 @@ const publishedTime = date ? new Date(date).toISOString().split("T")[0] : "";
               <InfoLabel
                 text={[
                   `created ${createdAgo} ago`,
-                  `updated ${createdAgo} ago`,
+                  `updated ${modifiedAgo} ago`,
                 ]}
               >
                 <CalendarIcon className="icon" />
