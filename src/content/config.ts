@@ -19,6 +19,7 @@ const category = defineCollection({
   schema: () =>
     z.object({
       category: z.string(),
+      url: z.string(),
       count: z.number(),
     })
 });
@@ -33,6 +34,7 @@ const posts = defineCollection({
       // Transform string to Date object
       // date: z.coerce.date(),
       // modified: z.coerce.date().optional(),
+      draft: z.boolean().optional(),
 
       date: z.coerce.string(),
       modified: z.coerce.string().optional(),

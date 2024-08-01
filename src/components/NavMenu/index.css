@@ -181,8 +181,18 @@ p {
 }
 
 p {
-  line-height: 1.5;
-  
+  line-height: 1.75;
+}
+
+main > ul {
+  margin: 2rem 0;
+}
+main ul li {
+  margin: 0.3rem 0;
+}
+
+pre {
+  margin: 2rem 0;
 }
 
 .SocialLinks {

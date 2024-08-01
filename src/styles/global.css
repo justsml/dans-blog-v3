@@ -150,6 +150,8 @@
     @apply mx-2 my-4 font-bold;
   }
   main {
+    margin: 0 auto;
+
     h2, h3, h4, h5, h6 {
       font-weight: 300;
       letter-spacing: 0.002em;
@@ -309,23 +311,27 @@ main pre {
 main .article-list {
   display: grid;
   grid-template-columns: 1fr;
-  max-width: 720px;
+  max-width: 700px;
   margin: 0 auto;
 
-  gap: 2rem;
+  gap: 1rem;
 
   img {
     border-radius: 100%;
-    margin: .5rem auto;
+    margin: .75rem auto;
     aspect-ratio: 1 / 1;
+    width: object-fit;
     max-width: 200px;
+    max-height: 200px;
 
   }
   .article-card {
     position: relative;
     display: grid;
+
+    margin: 0 .75rem;
     grid-template-columns: 1fr;
-    gap: 1rem;
+    /* gap: 1rem; */
     padding: 1rem;
     border-radius: 1.5rem;
     background-color: hsl(var(--secondary));
@@ -342,6 +348,9 @@ main .article-list {
       font-family: "Raleway", sans-serif;
       margin-top: 0.5rem;
       margin-bottom: 0;
+      margin-left: 0;
+      margin-right: 0;
+      line-height: 1.25;
       /* font-weight: 700; */
       /* color: var(--neon-cyan); */
     }
@@ -353,8 +362,8 @@ main .article-list {
       /* margin: 0 auto 0 0; */
 
       position: absolute;
-      right: 1rem;
-      top: 0.5rem;
+      right: 0.75rem;
+      top: 0.75rem;
     }
 
     .read-more {
@@ -369,5 +378,20 @@ main .article-list {
 @media (min-width: 600px) {
   main .article-list {
     grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 800px) {
+  main .article-list {
+    max-width: 880px;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media (min-width: 1200px) {
+  main .article-list {
+    max-width: 1020px;
+    gap: 2.5rem;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }

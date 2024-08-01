@@ -131,7 +131,13 @@ const publishedTime = date ? new Date(date).toISOString().split("T")[0] : "";
       };
 
       document.addEventListener("DOMContentLoaded", function () {
-        setInterval(updateCounts, 1000);
+        const quiz = document.querySelector('.quiz-ui');
+        
+        if (quiz) {
+          quiz.addEventListener('click', (e) => {
+              updateCounts();
+          });
+        }
       });
     </script>
   </head>

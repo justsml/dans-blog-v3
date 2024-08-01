@@ -14,6 +14,7 @@ export type ArticlePost = {
     title: string;
     subTitle: string;
     cover_icon: ImageMetadata;
+    cover_mobile: ImageMetadata;
     date: string;
     modified: string;
     category: string;
@@ -27,10 +28,10 @@ export const ArticleCard = ({
   width,
 }: {
   article: ArticlePost;
-  width: number;
+  width?: number;
 }) => {
   const slug = article.slug;
-  const { title, subTitle, cover_icon, date, modified, category, tags } =
+  const { title, subTitle, cover_icon, cover_mobile, date, modified, category, tags } =
     article.data;
 
   const createdAgo = date ? formatDistance(new Date(date), new Date()) : "";
@@ -38,16 +39,17 @@ export const ArticleCard = ({
     ? formatDistance(new Date(modified), new Date())
     : "";
 
-  console.log(cover_icon);
+  const icon = cover_mobile;
+  // console.log(cover_icon);
   const image =
-    typeof cover_icon === "string" ? (
-      <img src={cover_icon} alt={title} width={width} height={width} />
+    typeof icon === "string" ? (
+      <img src={icon} alt={title} width={width} height={width} />
     ) : (
       <img
-        src={cover_icon.src}
+        src={icon.src}
         alt={title}
-        width={cover_icon.width}
-        height={cover_icon.height}
+        width={icon.width}
+        height={icon.height}
       />
     );
 
@@ -67,7 +69,7 @@ export const ArticleCard = ({
       <InfoLabel
         text={[`created ${createdAgo} ago`, `updated ${modifiedAgo} ago`]}
       >
-        <CalendarIcon className="icon" width={"inherit"} />
+        <CalendarIcon className="icon" width={20} height={20} />
         
       </InfoLabel>
 
