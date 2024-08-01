@@ -10,13 +10,14 @@ import Page from "../layouts/Page.astro";
 import { PostCollections } from "../shared/dataCache";
 import "@/styles/nav.css";
 import "@/styles/global.css";
-import FormattedDate from "../components/FormattedDate.astro";
 import { ArticleCard, type ArticlePost } from "../components/ArticleCard";
+import ArticleFilterLinks from "../components/ArticleFilterLinks.astro";
 
 const posts = await PostCollections.getPosts();
 ---
 
 <Page>
+  <!-- <ArticleFilterLinks /> -->
   <div class:list={["article-list"]}>
     {posts.map(post => (
       <ArticleCard article={post as ArticlePost} width={200} />

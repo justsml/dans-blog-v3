@@ -14,8 +14,6 @@ cover_icon: icon_charles-deluvio-456501-unsplash.jpg
 
 ## Setup Docker Host's Firewall
 
-![credit: charles-deluvio-456501-unsplash.jpg](charles-deluvio-456501-unsplash.jpg)
-
 1. Debian/Ubuntu Server is assumed
 1. Designed to run on Docker Host Server
 

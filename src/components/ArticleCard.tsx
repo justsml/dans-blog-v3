@@ -3,6 +3,7 @@ import type { CollectionEntry } from "astro:content";
 import { formatDistance } from "date-fns/formatDistance";
 import { CalendarIcon, TagIcon } from "lucide-react";
 import { InfoLabel } from "../components/ui/infoLabel";
+import { slugify } from "../shared/pathHelpers";
 
 type PostsType = CollectionEntry<"posts">;
 
@@ -53,18 +54,20 @@ export const ArticleCard = ({
       />
     );
 
+  const categoryClass = `category-${slugify(category)}`;
+
   return (
-    <a href={slug} className="article-card" title={title}>
+    <a href={slug} className={"article-card " + categoryClass} title={title}>
       <label className="small-label">
         {category}
       </label>
       {/* <InfoLabel text={category} className="small-label">
         <TagIcon className="icon" />
       </InfoLabel> */}
-      {image}
       <h2>
         {title}
       </h2>
+      {image}
       <p>{subTitle}</p>
       <InfoLabel
         text={[`created ${createdAgo} ago`, `updated ${modifiedAgo} ago`]}

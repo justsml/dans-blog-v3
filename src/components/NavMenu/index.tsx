@@ -21,6 +21,8 @@ const popularPosts = getPopularPosts();
 const tagCounts = getTagCounts();
 const allPosts = PostCollections._posts;
 
+import { createPortal } from "react-dom";
+
 // const popIdx = Math.floor(Math.random() * popularPosts.length);
 // const popularSelection = popularPosts[popIdx];
 
@@ -41,7 +43,9 @@ const NavMenu = () => {
               }
             }
           >
-            <a href="/category/"><h4 style={{ gridColumn: "span 2" }}>Browse by Category</h4></a>
+            <a href="/category/">
+              <h4 style={{ gridColumn: "span 2" }}>Browse by Category</h4>
+            </a>
             <ul className="List one item-list-sm">
               {categories.map(([tag, count]) => (
                 <ListItem
@@ -54,13 +58,14 @@ const NavMenu = () => {
                 </ListItem>
               ))}
             </ul>
-            <a href="/"><h4 style={{ gridColumn: "span 2" }}>Popular Posts</h4></a>
+            <a href="/">
+              <h4 style={{ gridColumn: "span 2" }}>Popular Posts</h4>
+            </a>
             <ul className="List one item-list-lg">
               {popularPosts.map((post) => (
                 <ArticleCard key={post.slug} post={post} />
               ))}
             </ul>
-
           </NavigationMenu.Content>
         </NavigationMenu.Item>
 
@@ -165,7 +170,7 @@ const NavMenu = () => {
         </NavigationMenu.Item>
 
         <NavigationMenu.Item>
-          <NavigationMenu.Trigger className="NavigationMenuTrigger">
+          <NavigationMenu.Trigger className="NavigationMenuTrigger" data-state="open">
             Hire Me <CaretDownIcon className="CaretDown" aria-hidden />
           </NavigationMenu.Trigger>
           <NavigationMenu.Content className="NavigationMenuContent">
@@ -215,7 +220,7 @@ const NavMenu = () => {
                         </span>
                         <label>LinkedIn</label>
                       </a>
-                      
+
                       <a href="/docs/resume.pdf" target="_blank">
                         <span className="Icon">
                           <RocketIcon className="Icon" />
@@ -235,9 +240,12 @@ const NavMenu = () => {
         </NavigationMenu.Indicator>
       </NavigationMenu.List>
 
-      <div className="ViewportPosition">
-        <NavigationMenu.Viewport className="NavigationMenuViewport" />
-      </div>
+      {createPortal(
+        <div className="ViewportPosition">
+          <NavigationMenu.Viewport className="NavigationMenuViewport" />
+        </div>,
+        document.body
+      )}
     </NavigationMenu.Root>
   );
 };

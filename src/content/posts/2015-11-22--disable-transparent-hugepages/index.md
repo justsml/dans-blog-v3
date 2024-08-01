@@ -15,8 +15,6 @@ cover_icon: icon_victor-garcia-645096-unsplash.jpg
 
 ### disable-transparent-hugepages fix for Debian/Ubuntu
 
-![credit: victor-garcia-645096-unsplash.jpg](victor-garcia-645096-unsplash.jpg)
-
 > Are you getting "WARNING: /sys/kernel/mm/transparent_hugepage/defrag is 'always'." ?
 
 Run the following commands to quickly do what [MongoDB describes at greater length](https://docs.mongodb.org/v3.0/tutorial/transparent-huge-pages/).

@@ -18,16 +18,8 @@ import { GitHubLogoIcon, TwitterLogoIcon } from "@radix-ui/react-icons";
         <span class="title">{SITE_TITLE}</span>
       </a>
     </h2>
-    <NavMenu client:only="react" />
-    <div class="social-links">
-      <a href="https://twitter.com/justsml" target="_blank">
-        <span class="sr-only">Follow justsml on Twitter</span>
-				<TwitterLogoIcon />
-      </a>
-      <a href="https://github.com/justsml" target="_blank">
-        <span class="sr-only">Go to justsml's GitHub repo</span>
-				<GitHubLogoIcon />
-      </a>
+    <div class="nav-box">
+      <NavMenu client:only="react" />
     </div>
   </nav>
 </header>
@@ -75,12 +67,6 @@ import { GitHubLogoIcon, TwitterLogoIcon } from "@radix-ui/react-icons";
   h2 a,
   h2 a.active {
     text-decoration: none;
-  }
-  nav {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    padding: 1em 0.5em;
   }
   nav a {
     color: var(--text-color);

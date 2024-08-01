@@ -297,7 +297,7 @@ pre {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 80vw;
   animation-duration: 250ms;
   animation-timing-function: ease;
   padding: 1rem;
@@ -324,7 +324,7 @@ pre {
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  height: 10px;
+  height: 12px;
   top: 100%;
   overflow: hidden;
   z-index: 1;
@@ -467,7 +467,7 @@ pre {
   display: flex;
   justify-content: center;
   width: 100%;
-  top: 100%;
+  top: 3.5rem;
   left: 0;
   perspective: 2000px;
 }

@@ -15,8 +15,6 @@ cover_icon: icon_solaiman-hossen-553024-unsplash.jpg
 
 ## Boost Cloud Performance up to 70%
 
-![credit: solaiman-hossen-553024-unsplash.jpg](solaiman-hossen-553024-unsplash.jpg)
-
 > General notes & sections for select hosting providers below (mid-2017).
 
 - [AWS (Amazon Web Services), EC2 (Elastic Compute Cloud), EBS (Elastic Block Storage), etc.](#aws_tips)

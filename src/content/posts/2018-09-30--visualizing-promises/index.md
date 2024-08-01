@@ -13,8 +13,6 @@ cover_icon: icon_junior-ferreira-735237-unsplash.jpg
 tags: [promises, async, visualizing, javascript, composition]
 ---
 
-![credit: junior-ferreira-735237-unsplash.jpg](junior-ferreira-735237-unsplash.jpg)
-
 In order to visualize how Promises execute, let's define a new method `delay(millisecs)`.
 
 ```js

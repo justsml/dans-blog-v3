@@ -15,8 +15,6 @@ cover_icon: icon_john-salvino-417565-unsplash.jpg
 
 ## Handling Secrets & API Tokens Safely
 
-![credit: john-salvino-417565-unsplash.jpg](john-salvino-417565-unsplash.jpg)
-
 ### Related Article: [Protect Your Tokens](/protect-your-tokens/)
 
 Let's quickly recap the difference between `secret` and `non-secret`.

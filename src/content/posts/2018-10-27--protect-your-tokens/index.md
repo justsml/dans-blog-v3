@@ -13,8 +13,6 @@ cover_desktop: w900_dayne-topkin-78982-unsplash.jpg
 cover_icon: icon_dayne-topkin-78982-unsplash.jpg
 ---
 
-![credit: dayne-topkin-78982-unsplash.jpg](dayne-topkin-78982-unsplash.jpg)
-
 ## When to protect your tokens?
 
 <!--  For the purpose of this article we'll treat the following terms as related: . **They are not interchangable** despite most documentation and [StackOverflow](https://stackoverflow.com/questions/51698672/how-to-secure-my-api-key) answers using them as such. -->

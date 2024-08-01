@@ -16,8 +16,6 @@ cover_icon: icon_sharon-mccutcheon-522851-unsplash.jpg
 
 ## AngularJS CAN BE Fun!
 
-![credit: sharon-mccutcheon-522851-unsplash.jpg](sharon-mccutcheon-522851-unsplash.jpg)
-
 > For: AngularJS v1.x
 
 1.  AngularJS Developers quickly discover that their med-large apps are buckling under the weight of scattered `$watch's` and the often bloated crutch known as `$scope`.

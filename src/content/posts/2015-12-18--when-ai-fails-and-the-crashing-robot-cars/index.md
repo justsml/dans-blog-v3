@@ -14,8 +14,6 @@ cover_icon: icon_sandy-millar-749381-unsplash.jpg
 
 ## Robotic Cars: More or Less Crashes?
 
-![credit: sandy-millar-749381-unsplash.jpg](sandy-millar-749381-unsplash.jpg)
-
 Google's self-driving cars are apparently in 2x as many accidents as human drivers - If you think this is just buggy new tech, way too complex from the get-go - well, you're partially right. [An important detail I should share: as of Dec 2015 virtually **all accidents were not the robots fault.**](http://www.bloomberg.com/news/articles/2015-12-18/humans-are-slamming-into-driverless-cars-and-exposing-a-key-flaw)
 
 The accidents are **caused by humans drivers** unfamiliar with robotic drivers. Furthermore, Google has programmed the cars to obey the law in absolute terms - never speeding, difficulty merging in dense or fast freeway traffic.

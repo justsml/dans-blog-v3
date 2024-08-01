@@ -15,8 +15,6 @@ cover_icon: icon_lennart-heim-766366-unsplash.jpg
 
 ## Are JavaScript Promises Broken?
 
-![credit: lennart-heim-766366-unsplash](lennart-heim-766366-unsplash.jpg)
-
 ### In the Before Times
 
 One of the most common myths about Promises is it's **alleged** error shortcomings.

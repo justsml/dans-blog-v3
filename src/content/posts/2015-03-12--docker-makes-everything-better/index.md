@@ -15,8 +15,6 @@ cover_icon: icon_guillaume-bolduc-259596-unsplash.jpg
 
 ## Docker Can Do Everything!\*
 
-![credit: guillaume-bolduc-259596-unsplash.jpg](guillaume-bolduc-259596-unsplash.jpg)
-
 Improve your process for:
 
 1.  Testing Dev Tools & Servers WITH VIRTUALLY ZERO risk of messing up dependencies on your PC

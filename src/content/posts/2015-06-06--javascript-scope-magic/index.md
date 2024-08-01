@@ -15,8 +15,6 @@ cover_icon: icon_markus-spiske-197281-unsplash.jpg
 
 ## Imperative vs. Recursive vs. Functional
 
-![credit: markus-spiske-197281-unsplash.jpg](markus-spiske-197281-unsplash.jpg)
-
 > [ Work-in-progress ]
 
 ```javascript

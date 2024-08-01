@@ -10,6 +10,7 @@ import { CalendarIcon } from "@radix-ui/react-icons";
 import { TagIcon } from "lucide-react";
 import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
+import { ViewTransitions, fade } from 'astro:transitions';
 
 import "@/styles/nav.css";
 import "./common.css";
@@ -81,7 +82,7 @@ const publishedTime = date ? new Date(date).toISOString().split("T")[0] : "";
 
       document.addEventListener("DOMContentLoaded", function () {
         const quiz = document.querySelector('.quiz-ui');
-        
+
         if (quiz) {
           quiz.addEventListener('click', (e) => {
               updateCounts();
@@ -89,9 +90,10 @@ const publishedTime = date ? new Date(date).toISOString().split("T")[0] : "";
         }
       });
     </script>
+    <ViewTransitions />
   </head>
 
-  <body>
+  <body transition:animate={fade({ duration: '0.4s' })}>
     <Header date={date} modified={modified} />
     <main>
       {title && <h1>{title}</h1>}

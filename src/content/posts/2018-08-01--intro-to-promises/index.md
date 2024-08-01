@@ -2,7 +2,7 @@
 title:  "Intro to Promises"
 subTitle: JavaScript Promises Are Fun!
 date: 2018-08-01
-modified: 2024-07-30
+modified: 2024-07-31
 category: Guides
 subCategory: promises
 tags: [promises, async, javascript, composition]
@@ -13,9 +13,7 @@ cover_desktop: w900_joe-yates-480485-unsplash.jpg
 cover_icon: icon_joe-yates-480485-unsplash.jpg
 ---
 
-![credit: joe-yates-480485-unsplash.jpg](joe-yates-480485-unsplash.jpg)
-
-### Promises... What's their deal?
+## Promises... What's their deal?
 
 Whenever you execute any computer code, there are 2 possible outcomes: **success** or **failure**.
 
@@ -44,7 +42,9 @@ Many times you will not need to create a promise yourself. Native APIs like `fet
 
 However if you must create a promise, there are 2 ways to do so:
 
-#### Creating Promises #1/2:
+
+
+### Creating Promises #1/2:
 
 The simplest way to create a Promise is with the helper method: `Promise.resolve()`.
 
@@ -67,7 +67,7 @@ add10Promised(10)
   .then(x => console.log(x)) //=> 20
 ```
 
-#### Creating Promises #2/2:
+### Creating Promises #2/2:
 
 Another more flexible method: use the `Promise` constructor.
 

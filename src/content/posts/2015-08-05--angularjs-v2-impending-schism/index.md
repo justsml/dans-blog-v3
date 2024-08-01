@@ -12,8 +12,6 @@ cover_desktop: w900_alex-perez-753751-unsplash.jpg
 cover_icon: icon_alex-perez-753751-unsplash.jpg
 ---
 
-![credit: alex-perez-753751-unsplash.jpg](alex-perez-753751-unsplash.jpg)
-
 I think we are witnessing the Python 2->3 'Conversion' all over again.
 AngularJS v2.0 introduces too many changes. **Not least of which is TypeScript**, which is a big ask amidst the finalization of JS's latest version: ES6.
 

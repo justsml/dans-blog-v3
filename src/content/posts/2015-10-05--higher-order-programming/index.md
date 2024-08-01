@@ -14,8 +14,6 @@ cover_icon: icon_susan-holt-simpson-799094-unsplash.jpg
 
 ## Exploring Array- and Set-based Pipeline Techniques
 
-![credit: susan-holt-simpson-799094-unsplash.jpg](susan-holt-simpson-799094-unsplash.jpg)
-
 ### An Anti-Pattern?
 
 This is an exploration of advantages gained when you **code everything as an array.** (Using Jedi concepts from SmallTalk)

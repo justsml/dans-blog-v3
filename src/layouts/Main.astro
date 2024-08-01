@@ -10,6 +10,7 @@ import { CalendarIcon } from "@radix-ui/react-icons";
 import { TagIcon } from "lucide-react";
 import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
+import { ViewTransitions } from 'astro:transitions';
 
 import "@/styles/nav.css";
 
@@ -140,6 +141,7 @@ const publishedTime = date ? new Date(date).toISOString().split("T")[0] : "";
         }
       });
     </script>
+    <ViewTransitions />
   </head>
 
   <body>

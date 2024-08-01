@@ -19,8 +19,6 @@ Since the beginning of time, developers have fought many silly fights. From the 
 
 <!-- We're going to look at 2 rules to improve your life with Promises. -->
 
-![credit: matt-nelson-414464-unsplash.jpg](matt-nelson-414464-unsplash.jpg)
-
 ## The Fight...?
 
 ### Promises vs. Async/Await!
@@ -192,6 +190,8 @@ There are 5 anonymous methods defined in this single function. As Jake even poin
 Try apply these techniques to your own code! Then [tweet at me](https://twitter.com/justsml) & let me know how it went. Or if you have questions or comments, reach out as well!
 
 Help spread the #PromiseTruth & share this article. ❤️
+
+![credit: matt-nelson-414464-unsplash.jpg](matt-nelson-414464-unsplash.jpg)
 
 #### Related Reading
 

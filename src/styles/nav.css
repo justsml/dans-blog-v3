@@ -1,4 +1,4 @@
-main {
+main, body > header {
   width: 960px;
 }
 
@@ -78,7 +78,7 @@ header h2 .title {
 }
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {
-  main {
+  main, body > header {
     width: 100%;
   }
   header h2 .title {
@@ -88,19 +88,19 @@ header h2 .title {
 }
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
-  main {
+  main, body > header {
     width: 728px;
   }
 }
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-  main {
+  main, body > header {
     width: 960px;
   }
 }
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
-  main {
+  main, body > header {
     width: 1140px;
   }
 }

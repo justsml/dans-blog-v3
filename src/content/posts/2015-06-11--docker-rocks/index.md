@@ -14,9 +14,6 @@ cover_icon: icon_guillaume-bolduc-259596-unsplash.jpg
 
 ## Docker Rocks
 
-![credit: guillaume-bolduc-259596-unsplash.jpg](guillaume-bolduc-259596-unsplash.jpg)
-
-
 > Updates September 2016, 2018
 > Boot2Docker has been replaced by Docker for Mac
 
