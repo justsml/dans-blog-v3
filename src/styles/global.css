@@ -305,3 +305,69 @@ main pre {
   border: .25px solid #fff;
   border-radius: 0.5rem;
 }
+
+main .article-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  max-width: 720px;
+  margin: 0 auto;
+
+  gap: 2rem;
+
+  img {
+    border-radius: 100%;
+    margin: .5rem auto;
+    aspect-ratio: 1 / 1;
+    max-width: 200px;
+
+  }
+  .article-card {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 1.5rem;
+    background-color: hsl(var(--secondary));
+    box-shadow: 0 0 1rem 0.25rem hsla(var(--card-foreground));
+    transition: box-shadow 0.25s ease-in-out;
+    color: var(--muted);
+    &:hover {
+      box-shadow: 0 0 1rem 0.25rem hsla(var(--primary-foreground));
+      color: #DEDEDE;
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      font-family: "Raleway", sans-serif;
+      margin-top: 0.5rem;
+      margin-bottom: 0;
+      /* font-weight: 700; */
+      /* color: var(--neon-cyan); */
+    }
+
+    .small-label {
+      font-size: 0.75rem;
+        /* font-weight: 700; */
+      color: #DDD;
+      /* margin: 0 auto 0 0; */
+
+      position: absolute;
+      right: 1rem;
+      top: 0.5rem;
+    }
+
+    .read-more {
+      color: var(--neon-cyan);
+      font-size: 1rem;
+      font-weight: 700;
+    }
+  }
+}
+
+
+@media (min-width: 600px) {
+  main .article-list {
+    grid-template-columns: 1fr 1fr;
+  }
+}

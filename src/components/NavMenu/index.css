@@ -177,7 +177,12 @@
 /* reset */
 button,
 p {
-  all: unset;
+  color: var(--muted);
+}
+
+p {
+  line-height: 1.5;
+  
 }
 
 .SocialLinks {

@@ -1,7 +1,11 @@
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
+import { formatDistance } from "date-fns/formatDistance";
+import { CalendarIcon, TagIcon } from "lucide-react";
+import { InfoLabel } from "../components/ui/infoLabel";
 
 type PostsType = CollectionEntry<"posts">;
+
 export type ArticlePost = {
   slug: string;
   collection?: string;
@@ -16,8 +20,7 @@ export type ArticlePost = {
     subCategory?: string;
     tags: string[];
   };
-}
-
+};
 
 export const ArticleCard = ({
   article,
@@ -27,23 +30,47 @@ export const ArticleCard = ({
   width: number;
 }) => {
   const slug = article.slug;
-  const { title, subTitle, cover_icon, date, category, tags } = article.data;
+  const { title, subTitle, cover_icon, date, modified, category, tags } =
+    article.data;
 
-  console.log(cover_icon)
-  const image = <span>Image</span>
-    // typeof cover_icon === "string" ? (
-    //   <img src={cover_icon} alt={title} width={width} height={width} />
-    // ) : (
-    //   <Image src={cover_icon} alt={title} />
-    // );
+  const createdAgo = date ? formatDistance(new Date(date), new Date()) : "";
+  const modifiedAgo = modified
+    ? formatDistance(new Date(modified), new Date())
+    : "";
+
+  console.log(cover_icon);
+  const image =
+    typeof cover_icon === "string" ? (
+      <img src={cover_icon} alt={title} width={width} height={width} />
+    ) : (
+      <img
+        src={cover_icon.src}
+        alt={title}
+        width={cover_icon.width}
+        height={cover_icon.height}
+      />
+    );
 
   return (
-    <div className="article-card" title={title}>
+    <a href={slug} className="article-card" title={title}>
+      <label className="small-label">
+        {category}
+      </label>
+      {/* <InfoLabel text={category} className="small-label">
+        <TagIcon className="icon" />
+      </InfoLabel> */}
       {image}
-      <h2><a href={slug}>{title}</a></h2>
+      <h2>
+        {title}
+      </h2>
       <p>{subTitle}</p>
-      <div>{category}</div>
-      
-    </div>
+      <InfoLabel
+        text={[`created ${createdAgo} ago`, `updated ${modifiedAgo} ago`]}
+      >
+        <CalendarIcon className="icon" width={"inherit"} />
+        
+      </InfoLabel>
+
+    </a>
   );
 };

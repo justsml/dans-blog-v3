@@ -95,7 +95,7 @@ const publishedTime = date ? new Date(date).toISOString().split("T")[0] : "";
         {
           createdAgo && (
             <InfoLabel
-              text={[`created ${createdAgo} ago`, `updated ${createdAgo} ago`]}
+              text={[`created ${createdAgo} ago`, `updated ${modifiedAgo} ago`]}
             >
               <CalendarIcon className="icon" />
             </InfoLabel>

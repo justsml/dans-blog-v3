@@ -13,8 +13,6 @@ cover_desktop: w900_michal-parzuchowski-224092-unsplash.jpg
 cover_icon: icon_michal-parzuchowski-224092-unsplash.jpg
 ---
 
-![credit: michal-parzuchowski-224092-unsplash.jpg](michal-parzuchowski-224092-unsplash.jpg)
-
 ### Promises don't work like other values
 
 You cannot print their value like most values:

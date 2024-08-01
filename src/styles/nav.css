@@ -18,7 +18,8 @@ main {
     > div {
       display: grid;
       grid-template-columns: auto auto;
-      align-items: flex-start;
+
+      align-items: center;
       gap: .5rem;
       align-content: flex-start;
       justify-content: flex-start;
