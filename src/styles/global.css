@@ -454,10 +454,19 @@ main .info {
 .hero-image {
   width: 100%;
 }
+
+.hero-image-wrapper {
+  margin: 1rem auto;
+  padding: 0.25rem;
+  border: 0.5px solid var(--neon-pink);
+  border-radius: 1rem;
+  max-width: calc(2rem + 400px);
+  width: max-content;
+}
 .hero-image img {
   display: block;
   margin: 0 auto;
-  border-radius: 100%;
+  border-radius: 1rem;
   box-shadow: var(--box-shadow);
 }
 .prose {

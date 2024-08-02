@@ -23,7 +23,7 @@ div.icon {
 
 .line1 {
 
-  align-self: flex-end;
+  align-self: center;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;

@@ -140,7 +140,7 @@ const NavMenu = () => {
                     target="_blank"
                   >
                     <div className="CalloutHeading">Demos &amp; Examples</div>
-                    <p className="CalloutText">
+                    <p className="CalloutText" style={{ gridColumn: "span 2" }}>
                       Check out a selection of my examples, experiments and misc
                       repos.
                     </p>

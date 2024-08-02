@@ -120,12 +120,13 @@ const publishedTime = date ? new Date(date).toISOString().split("T")[0] : "";
       {
         cover && typeof cover === "object" && "src" in cover && (
           <div class="hero-image">
-            <Image
-              src={cover as ImageMetadata}
-              width="265"
-              height="265"
-              alt={title}
-            />
+            <div class="hero-image-wrapper">
+              <Image
+                src={cover as ImageMetadata}
+                width="400"
+                alt={title}
+              />
+            </div>
           </div>
         )
       }
