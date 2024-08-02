@@ -1,7 +1,7 @@
 ---
 title:  "AngularJS v2.0 and the Impending Schism"
 date: 2015-08-05
-modified: 2024-07-30
+modified: 2018-09-30
 category: Code
 subCategory: angularjs
 tags: [programming, angularjs, javascript, python, opinion]

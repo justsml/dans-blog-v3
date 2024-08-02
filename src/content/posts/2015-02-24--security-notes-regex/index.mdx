@@ -3,7 +3,7 @@
 title:  "Security Notes: RegEx"
 subTitle: Even RegEx can be vulnerable
 date: 2015-02-24
-modified: 2024-07-30
+modified: 2018-07-30
 category: Security
 subCategory: security
 tags: [security, regex, dos, remote-exploit]
@@ -14,18 +14,8 @@ cover_tablet: w600_markus-spiske-666905-unsplash.jpg
 cover_desktop: w900_markus-spiske-666905-unsplash.jpg
 cover_icon: icon_markus-spiske-666905-unsplash.jpg
 ---
-import {Image} from 'astro:assets';
 
 ## Denial-of-Service Regex Vulnerability
-
-
-<Image
-    class:list={"hero"}
-    src={import(frontmatter.cover)}
-    widths={[240, 540, 720, frontmatter.cover.width]}
-    sizes={`(max-width: 360px) 240px, (max-width: 720px) 540px, (max-width: 1600px) 720px, ${frontmatter.cover.width}px`}
-    alt="A description of my image."
-    />
 
 One of the more suprising, and yet hard-to-spot vulnerabilities I've found is related to regular expressions.
 Either poorly written or poorly implemented.

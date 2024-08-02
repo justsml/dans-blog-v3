@@ -2,7 +2,7 @@
 title:  "Compare NVMe SSD Cloud Options"
 subTitle: "NVMe SSD Head-to-Head: AWS, DigitalOcean, Packet.net"
 date: 2017-04-15
-modified: 2024-07-30
+modified: 2020-01-30
 category: DevOps
 subCategory: programming
 tags: [cloud, servers, architecture, scaling, digital-ocean, amazon-web-services, google-cloud-engine, azure, packet.net, ovh.net, ssd, io]
