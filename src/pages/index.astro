@@ -1,27 +1,38 @@
 ---
-import type { CollectionEntry } from "astro:content";
-import BaseHead from "@/components/BaseHead.astro";
-import Header from "@/components/Header.astro";
-import Footer from "@/components/Footer.astro";
-import { slugify } from "@/shared/pathHelpers";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
 import Page from "../layouts/Page.astro";
 
 import { PostCollections } from "../shared/dataCache";
 import "@/styles/nav.css";
 import "@/styles/global.css";
 import { ArticleCard, type ArticlePost } from "../components/ArticleCard";
-import ArticleFilterLinks from "../components/ArticleFilterLinks.astro";
+import { Combobox } from "../components/ui/combobox";
+// import ArticleFilterLinks from "../components/ArticleFilterLinks.astro";
 
 const posts = await PostCollections.getPosts();
+
+const filterOptions = [
+  { label: "By recently updated", value: "recent" },
+  { label: "By original publish date", value: "published" },
+  { label: "-----", value: "" },
+  ...PostCollections.getCategoryCounts().map(([cat, count]) => ({
+    label: `${cat}: ${count}`,
+    value: cat,
+  })),
+];
 ---
 
 <Page>
-  <!-- <ArticleFilterLinks /> -->
+  <Combobox
+    client:only={"react"}
+    options={filterOptions}
+    buttonText="View articles by..."
+    onChange={(value) => console.log("Combobox changed!", value)}
+  />
   <div class:list={["article-list"]}>
-    {posts.map(post => (
-      <ArticleCard article={post as ArticlePost} width={200} />
-    ))}
+    {
+      posts.map((post) => (
+        <ArticleCard article={post as ArticlePost} width={200} />
+      ))
+    }
   </div>
 </Page>
-

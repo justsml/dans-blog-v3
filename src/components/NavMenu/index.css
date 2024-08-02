@@ -458,8 +458,21 @@ pre {
 
 .CalloutText {
   color: var(--mauve-4);
-  font-size: 14px;
+  font-size: 1.2rem;
   line-height: 1.3;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 1rem;
+
+  .CategoryItem {
+    width: 38%;
+  }
+}
+
+.CategoryItem {
+  width: 38%;
 }
 
 .ViewportPosition {

@@ -1,9 +1,11 @@
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 import { formatDistance } from "date-fns/formatDistance";
-import { CalendarIcon, TagIcon } from "lucide-react";
+// import { CalendarIcon, TagIcon } from "lucide-react";
+
 import { InfoLabel } from "../components/ui/infoLabel";
 import { slugify } from "../shared/pathHelpers";
+import { CalendarIcon } from "./icons/CalendarIcon";
 
 type PostsType = CollectionEntry<"posts">;
 

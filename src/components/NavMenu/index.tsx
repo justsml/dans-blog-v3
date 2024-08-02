@@ -27,6 +27,10 @@ import { createPortal } from "react-dom";
 // const popularSelection = popularPosts[popIdx];
 
 const NavMenu = () => {
+  const handlePreventDefault = (e: CustomEvent) => {
+    e.preventDefault();
+  };
+
   return (
     <NavigationMenu.Root className="NavigationMenuRoot" delayDuration={200}>
       <NavigationMenu.List className="NavigationMenuList">
@@ -35,19 +39,29 @@ const NavMenu = () => {
             Articles <CaretDownIcon className="CaretDown" aria-hidden />
           </NavigationMenu.Trigger>
           <NavigationMenu.Content
+            onFocusOutside={handlePreventDefault}
             className="NavigationMenuContent"
-            style={
-              {
-                // margin: '0 2rem',
-                // minWidth: '75vw',
-              }
-            }
           >
-            <a href="/category/">
-              <h4 style={{ gridColumn: "span 2" }}>Browse by Category</h4>
-            </a>
             <ul className="List one item-list-sm">
-              {categories.map(([tag, count]) => (
+              <NavigationMenu.Link asChild>
+                <a className="Callout neon-bg-2" href="/category/">
+                  <div className="CalloutHeading">Categories</div>
+                  <p className="CalloutText">
+                    {categories.map(([category, count]) => (
+                      <a
+                        key={category}
+                        title={category}
+                        href={`/category/${slugify(category)}/`}
+                        className="CategoryItem"
+                      >
+                        {category} <sup>{count}</sup>
+                      </a>
+                    ))}
+                  </p>
+                </a>
+              </NavigationMenu.Link>
+
+              {/* {categories.map(([tag, count]) => (
                 <ListItem
                   key={tag}
                   title={tag}
@@ -56,7 +70,7 @@ const NavMenu = () => {
                 >
                   {tag} <sup>{count}</sup>
                 </ListItem>
-              ))}
+              ))} */}
             </ul>
             <a href="/">
               <h4 style={{ gridColumn: "span 2" }}>Popular Posts</h4>
@@ -73,7 +87,10 @@ const NavMenu = () => {
           <NavigationMenu.Trigger className="NavigationMenuTrigger">
             Open Source <CaretDownIcon className="CaretDown" aria-hidden />
           </NavigationMenu.Trigger>
-          <NavigationMenu.Content className="NavigationMenuContent">
+          <NavigationMenu.Content
+            onFocusOutside={handlePreventDefault}
+            className="NavigationMenuContent"
+          >
             <ul className="List one">
               <li style={{ gridRow: "span 3" }}>
                 <NavigationMenu.Link asChild>
@@ -108,7 +125,10 @@ const NavMenu = () => {
           <NavigationMenu.Trigger className="NavigationMenuTrigger">
             Projects <CaretDownIcon className="CaretDown" aria-hidden />
           </NavigationMenu.Trigger>
-          <NavigationMenu.Content className="NavigationMenuContent">
+          <NavigationMenu.Content
+            onFocusOutside={handlePreventDefault}
+            className="NavigationMenuContent"
+          >
             <ul className="List one">
               <li style={{ gridRow: "span 2" }}>
                 <NavigationMenu.Link asChild>
@@ -170,10 +190,13 @@ const NavMenu = () => {
         </NavigationMenu.Item>
 
         <NavigationMenu.Item>
-          <NavigationMenu.Trigger className="NavigationMenuTrigger" data-state="open">
+          <NavigationMenu.Trigger className="NavigationMenuTrigger">
             Hire Me <CaretDownIcon className="CaretDown" aria-hidden />
           </NavigationMenu.Trigger>
-          <NavigationMenu.Content className="NavigationMenuContent">
+          <NavigationMenu.Content
+            onFocusOutside={handlePreventDefault}
+            className="NavigationMenuContent"
+          >
             <ul className="List one">
               <li className="row-span-2">
                 <NavigationMenu.Link asChild>
