@@ -34,8 +34,16 @@ export const ArticleCard = ({
   width?: number;
 }) => {
   const slug = article.slug;
-  const { title, subTitle, cover_icon, cover_mobile, date, modified, category, tags } =
-    article.data;
+  const {
+    title,
+    subTitle,
+    cover_icon,
+    cover_mobile,
+    date,
+    modified,
+    category,
+    tags,
+  } = article.data;
 
   const createdAgo = date ? formatDistance(new Date(date), new Date()) : "";
   const modifiedAgo = modified
@@ -48,36 +56,28 @@ export const ArticleCard = ({
     typeof icon === "string" ? (
       <img src={icon} alt={title} width={width} height={width} />
     ) : (
-      <img
-        src={icon.src}
-        alt={title}
-        width={icon.width}
-        height={icon.height}
-      />
+      <img src={icon.src} alt={title} width={icon.width} height={icon.height} />
     );
 
   const categoryClass = `category-${slugify(category)}`;
 
   return (
-    <a href={`/${slug}`} className={"article-card " + categoryClass} title={title}>
-      <label className="small-label">
-        {category}
-      </label>
-      {/* <InfoLabel text={category} className="small-label">
-        <TagIcon className="icon" />
-      </InfoLabel> */}
-      <h2>
-        {title}
-      </h2>
+    <a
+      href={`/${slug}`}
+      className={"article-card " + categoryClass}
+      title={title}
+      data-created={date}
+      data-modified={modified}
+    >
+      <label className="small-label">{category}</label>
+      <h2>{title}</h2>
       {image}
       <p>{subTitle}</p>
       <InfoLabel
         text={[`created ${createdAgo} ago`, `updated ${modifiedAgo} ago`]}
       >
         <CalendarIcon className="icon" width={20} height={20} />
-        
       </InfoLabel>
-
     </a>
   );
 };

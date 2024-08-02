@@ -18,6 +18,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { cn } from "../../utils";
+import { ArrowRightIcon, CheckIcon } from "@radix-ui/react-icons";
 
 type KeyValuePair = {
   label: string;
@@ -41,7 +42,18 @@ export function Combobox({
   const handleItemSelected = (currentValue: string) => {
     setValue(currentValue === value ? "" : currentValue);
     setOpen(false);
-    onChange(currentValue);
+    if (
+      "sortCardsBy" in window &&
+      typeof window?.["sortCardsBy"] === "function"
+    ) {
+      // hack, make blarg work dan!
+      window["sortCardsBy"](currentValue);
+    }
+    if (typeof onChange === "function") {
+      onChange(currentValue);
+    } else {
+      console.log("onChange is not a function", onChange);
+    }
   };
 
   return (
@@ -60,81 +72,24 @@ export function Combobox({
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0">
-        <Command>
-          <CommandInput placeholder="Search..." />
-          <CommandEmpty>No matches found.</CommandEmpty>
-          <CommandList>
-            <CommandGroup>
-              <CommandItem
-                key={"sort-created-desc"}
-                value={"sort-created-desc"}
-                onSelect={handleItemSelected}
-              >
-                <Check
-                  className={cn(
-                    "mr-2 h-4 w-4",
-                    value === "sort-created-desc" ? "opacity-100" : "opacity-0"
-                  )}
-                />
-                By Published date, desc.
-              </CommandItem>
-              <CommandItem
-                key={"sort-created-asc"}
-                value={"sort-created-asc"}
-                onSelect={handleItemSelected}
-              >
-                <Check
-                  className={cn(
-                    "mr-2 h-4 w-4",
-                    value === "sort-created-asc" ? "opacity-100" : "opacity-0"
-                  )}
-                />
-                By Published date, ascending
-              </CommandItem>
-              <CommandItem
-                key={"sort-modified-desc"}
-                value={"sort-modified-desc"}
-                onSelect={handleItemSelected}
-              >
-                <Check
-                  className={cn(
-                    "mr-2 h-4 w-4",
-                    value === "sort-modified-desc" ? "opacity-100" : "opacity-0"
-                  )}
-                />
-                By Modified date, desc.
-              </CommandItem>
-              <CommandItem
-                key={"sort-modified-asc"}
-                value={"sort-modified-asc"}
-                onSelect={handleItemSelected}
-              >
-                <Check
-                  className={cn(
-                    "mr-2 h-4 w-4",
-                    value === "sort-modified-asc" ? "opacity-100" : "opacity-0"
-                  )}
-                />
-                By Modified date, ascending
-              </CommandItem>
-              {options.map((opt) => (
-                <CommandItem
-                  key={opt.value}
-                  value={opt.value}
-                  onSelect={handleItemSelected}
-                >
-                  <Check
-                    className={cn(
-                      "mr-2 h-4 w-4",
-                      value === opt.value ? "opacity-100" : "opacity-0"
-                    )}
-                  />
-                  {opt.label}
-                </CommandItem>
-              ))}
-            </CommandGroup>
-          </CommandList>
-        </Command>
+        <ul className="combobox-options list-none p-0 m-0" data-value={value}>
+          {options.map((opt) => (
+            <li
+              className="p-2 cursor-pointer hover:bg-gray-100 hover:text-gray-900"
+              key={opt.value}
+              value={opt.value}
+              onClick={() => handleItemSelected(opt.value)}
+            >
+              <ArrowRightIcon
+                className={cn(
+                  "mr-2 h-4 w-4 d-inline-block",
+                  value === opt.value ? "opacity-100" : "opacity-50"
+                )}
+              />
+              <div>{opt.label}</div>
+            </li>
+          ))}
+        </ul>
       </PopoverContent>
     </Popover>
   );

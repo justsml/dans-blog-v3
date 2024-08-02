@@ -2,7 +2,7 @@
 title: "ESM exports: named vs. default?"
 subTitle: To name, or not to name?
 date: 2023-08-10
-modified: 2024-07-30
+modified: 2024-08-01
 tags: [typescript,javascript,modules]
 category: Guides
 subCategory: JavaScript

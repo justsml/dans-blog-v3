@@ -369,7 +369,7 @@ main .article-list {
     h2 {
       font-size: 1.4rem;
       font-family: "Raleway", sans-serif;
-      margin-top: 0.5rem;
+      margin-top: 0.75rem;
       margin-bottom: 0;
       margin-left: 0;
       margin-right: 0;
@@ -490,5 +490,29 @@ main .info {
   .gist-data {
     background-color: hsl(var(--background));
     color: #EEEEEE;
+  }
+}
+
+.filter-toolbar {
+  display: grid;
+  place-content: center end;
+  margin: 0.5rem 0 1rem 0;
+}
+
+.combobox-options {
+  
+  li {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    width: 100%;
+  }
+  &> div, &> svg {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    border-bottom: 1px solid var(--border);
+    cursor: pointer;
+    &:hover {
+      background-color: var(--primary-foreground);
+    }
   }
 }

@@ -78,7 +78,7 @@ export const PostCollections = {
       props: { ...post, slug: fixSlugPrefix(post.slug) },
     }));
 
-    console.log("getStaticPaths[0]", fixedPosts[0]);
+    // console.log("getStaticPaths[0]", fixedPosts[0]);
 
     return fixedPosts;
   },
@@ -94,7 +94,7 @@ export const PostCollections = {
       })
     );
 
-    console.log("getStaticPathsCategoryList", paths);
+    // console.log("getStaticPathsCategoryList", paths);
 
     return paths;
   },

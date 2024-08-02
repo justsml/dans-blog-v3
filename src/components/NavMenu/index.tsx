@@ -42,24 +42,34 @@ const NavMenu = () => {
             onFocusOutside={handlePreventDefault}
             className="NavigationMenuContent"
           >
-            <ul className="List one item-list-sm">
-              <NavigationMenu.Link asChild>
-                <a className="Callout neon-bg-2" href="/category/">
-                  <div className="CalloutHeading">Categories</div>
-                  <p className="CalloutText">
-                    {categories.map(([category, count]) => (
-                      <a
-                        key={category}
-                        title={category}
-                        href={`/category/${slugify(category)}/`}
-                        className="CategoryItem"
-                      >
-                        {category} <sup>{count}</sup>
-                      </a>
-                    ))}
-                  </p>
-                </a>
-              </NavigationMenu.Link>
+            
+            <ul className="List one">
+            <li style={{ gridRow: "span 1" }}>
+                <NavigationMenu.Link asChild>
+                  <a
+                    className="Callout neon-bg-3"
+                    href="https://github.com/elite-libs"
+                    target="_blank"
+                  >
+                    <div className="CalloutHeading">Categories</div>
+                    <p className="CalloutText">
+                      {categories.map(([category, count]) => (
+                        <a
+                          key={category}
+                          title={category}
+                          href={`/category/${slugify(category)}/`}
+                          className="CategoryItem"
+                        >
+                          {category} <sup>{count}</sup>
+                        </a>
+                      ))}
+                    </p>
+                  </a>
+                </NavigationMenu.Link>
+              </li>
+              {popularPosts.map((post) => (
+                <ArticleCard key={post.slug} post={post} />
+              ))}
 
               {/* {categories.map(([tag, count]) => (
                 <ListItem
@@ -71,14 +81,6 @@ const NavMenu = () => {
                   {tag} <sup>{count}</sup>
                 </ListItem>
               ))} */}
-            </ul>
-            <a href="/">
-              <h4 style={{ gridColumn: "span 2" }}>Popular Posts</h4>
-            </a>
-            <ul className="List one item-list-lg">
-              {popularPosts.map((post) => (
-                <ArticleCard key={post.slug} post={post} />
-              ))}
             </ul>
           </NavigationMenu.Content>
         </NavigationMenu.Item>
@@ -209,7 +211,7 @@ const NavMenu = () => {
                       />
                     </a>
                     <div className="CalloutHeading">Dan Levy</div>
-                    <p className="CalloutText">
+                    <p className="CalloutText" style={{textWrap: 'nowrap'}}>
                       Coder | Leader
                       <br /> Tinker | Thinker
                     </p>
@@ -220,17 +222,17 @@ const NavMenu = () => {
                 <NavigationMenu.Link asChild>
                   <div className="Callout">
                     <div className="CalloutHeading">Contact Me</div>
-                    <p className="CalloutText"></p>
-                    <p className="SocialLinks">
+                    <p className="CalloutText">
+                    <span className="SocialLinks">
                       <a href="http://twitter.com/justsml" target="_blank">
                         <span className="Icon">
-                          <TwitterLogoIcon className="Icon" />
+                          <TwitterLogoIcon className="svg-icon" />
                         </span>
                         <label>Twitter</label>
                       </a>
                       <a href="https://github.com/justsml" target="_blank">
                         <span className="Icon">
-                          <GitHubLogoIcon className="icon" />
+                          <GitHubLogoIcon className="svg-icon" />
                         </span>
                         <label>GitHub</label>
                       </a>
@@ -239,17 +241,18 @@ const NavMenu = () => {
                         target="_blank"
                       >
                         <span className="Icon">
-                          <LinkedInLogoIcon className="icon" />
+                          <LinkedInLogoIcon className="svg-icon" />
                         </span>
                         <label>LinkedIn</label>
                       </a>
 
                       <a href="/docs/resume.pdf" target="_blank">
                         <span className="Icon">
-                          <RocketIcon className="Icon" />
+                          <RocketIcon className="svg-icon" />
                         </span>
                         <label>Résumé (PDF)</label>
                       </a>
+                    </span>
                     </p>
                   </div>
                 </NavigationMenu.Link>
