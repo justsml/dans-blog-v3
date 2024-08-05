@@ -25,6 +25,16 @@ export default defineConfig({
 			
     }),
   ],
+  image: {
+    // Example: Enable the Sharp-based image service with a custom config
+    service: {
+      //  entrypoint: 'astro/assets/services/sharp',
+       config: {
+         limitInputPixels: false,
+      },
+     },
+  },
+
   // prefetch: {
   // 	defaultStrategy: 'viewport', // 'hover',
   // }

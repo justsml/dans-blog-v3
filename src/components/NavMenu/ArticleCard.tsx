@@ -1,5 +1,3 @@
-import { getResponsiveImage, getSrcPath, type ResponsiveImagesType } from "../../shared/dataCache";
-import Image from "@/components/Image.astro";
 import { ListItem } from "./ListItem";
 import { useEffect, useState } from "react";
 import type { ImageMetadata } from "astro";

@@ -6,6 +6,7 @@ import { slugify } from "@/shared/pathHelpers";
 import avatarImage from "@/assets/avatar.png";
 import {
   CaretDownIcon,
+  EnvelopeClosedIcon,
   GitHubLogoIcon,
   LinkedInLogoIcon,
   RocketIcon,
@@ -22,6 +23,7 @@ const tagCounts = getTagCounts();
 const allPosts = PostCollections._posts;
 
 import { createPortal } from "react-dom";
+import { getComputedDates } from "../../shared/dateUtils";
 
 // const popIdx = Math.floor(Math.random() * popularPosts.length);
 // const popularSelection = popularPosts[popIdx];
@@ -29,12 +31,13 @@ import { createPortal } from "react-dom";
 const NavMenu = () => {
   const handlePreventDefault = (e: CustomEvent) => {
     e.preventDefault();
+    e.stopPropagation();
   };
 
   return (
     <NavigationMenu.Root className="NavigationMenuRoot" delayDuration={200}>
       <NavigationMenu.List className="NavigationMenuList">
-        <NavigationMenu.Item value="/posts/">
+        <NavigationMenu.Item value="/">
           <NavigationMenu.Trigger className="NavigationMenuTrigger">
             Articles <CaretDownIcon className="CaretDown" aria-hidden />
           </NavigationMenu.Trigger>
@@ -46,10 +49,8 @@ const NavMenu = () => {
             <ul className="List one">
             <li style={{ gridRow: "span 1" }}>
                 <NavigationMenu.Link asChild>
-                  <a
-                    className="Callout neon-bg-3"
-                    href="https://github.com/elite-libs"
-                    target="_blank"
+                  <div
+                    className="Callout neon-bg-7"
                   >
                     <div className="CalloutHeading">Categories</div>
                     <p className="CalloutText">
@@ -64,12 +65,33 @@ const NavMenu = () => {
                         </a>
                       ))}
                     </p>
-                  </a>
+                  </div>
                 </NavigationMenu.Link>
               </li>
-              {popularPosts.map((post) => (
-                <ArticleCard key={post.slug} post={post} />
-              ))}
+              <li style={{ gridRow: "span 1" }}>
+                <NavigationMenu.Link asChild>
+                  <div
+                    className="Callout neon-bg-2"
+                  >
+                    <div className="CalloutHeading">Popular</div>
+                    <p className="CalloutText">
+                      {popularPosts.map(({data: {title, subTitle, modified, date}, slug}) => {
+                        const { modifiedAgo } = getComputedDates({date, modified});
+                        return (
+                        <a
+                          key={slug}
+                          title={title}
+                          href={`/${slug}/`}
+                          className="ArticleItem"
+                        >
+                          {title}
+                          <sup>{modifiedAgo} ago</sup>
+                        </a>
+                      )})}
+                    </p>
+                  </div>
+                </NavigationMenu.Link>
+              </li>
 
               {/* {categories.map(([tag, count]) => (
                 <ListItem
@@ -193,7 +215,7 @@ const NavMenu = () => {
 
         <NavigationMenu.Item>
           <NavigationMenu.Trigger className="NavigationMenuTrigger">
-            Hire Me <CaretDownIcon className="CaretDown" aria-hidden />
+            Contact <CaretDownIcon className="CaretDown" aria-hidden />
           </NavigationMenu.Trigger>
           <NavigationMenu.Content
             onFocusOutside={handlePreventDefault}
@@ -213,7 +235,7 @@ const NavMenu = () => {
                     <div className="CalloutHeading">Dan Levy</div>
                     <p className="CalloutText" style={{textWrap: 'nowrap'}}>
                       Coder | Leader
-                      <br /> Tinker | Thinker
+                      <br /> Thinker | Tinker
                     </p>
                   </div>
                 </NavigationMenu.Link>
@@ -252,6 +274,14 @@ const NavMenu = () => {
                         </span>
                         <label>Résumé (PDF)</label>
                       </a>
+
+                      <a href="mailto:dan@danlevy.net">
+                        <span className="Icon">
+                          <EnvelopeClosedIcon className="svg-icon" />
+                        </span>
+                        <label>dan@danlevy.net</label>
+                      </a>
+
                     </span>
                     </p>
                   </div>

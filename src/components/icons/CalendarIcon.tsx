@@ -6,8 +6,8 @@ export const CalendarIcon = (props: IconProps) => {
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
       stroke="currentColor"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+      strokeLinecap="round"
+      strokeLinejoin="round"
       className={"app-calendar-icon " + props.className}
       style={{
         strokeWidth: '.5px',

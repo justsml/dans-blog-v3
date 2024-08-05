@@ -1,5 +1,5 @@
 "use client";
-import React, {
+import {
   useContext,
   useEffect,
   useRef,
@@ -10,18 +10,13 @@ import { QuizContext } from "./QuizContext";
 import type { Option, OptionSelection } from "./types";
 import {
   BoxIcon,
-  CheckboxIcon,
   CheckCircledIcon,
-  CheckIcon,
   CrossCircledIcon,
   QuestionMarkCircledIcon,
-  QuestionMarkIcon,
 } from "@radix-ui/react-icons";
 
 import "./index.css";
 import { CheckedBoxIcon } from "../icons/CheckedBoxIcon";
-import Explanation from "./Explanation";
-import Hints from "./Hints";
 import { RefreshCwIcon } from "lucide-react";
 
 /**

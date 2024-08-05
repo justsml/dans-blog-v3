@@ -1,7 +1,6 @@
 import { getImage } from "astro:assets";
 import { getCollection } from "astro:content";
 import { fixSlugPrefix, slugify } from "../shared/pathHelpers";
-// type PostType = CollectionEntry<"posts">;
 
 const getBaseName = (path: string) => path.split("/").pop() || "";
 

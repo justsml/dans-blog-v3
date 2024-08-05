@@ -2,7 +2,7 @@
 // You can import this data from anywhere in your site by using the `import` keyword.
 
 export const SITE_TITLE = 'DanLevy.net';
-export const SITE_DESCRIPTION = 'Coder | Leader | Tinker | Thinker';
+export const SITE_DESCRIPTION = 'Coder | Leader | Thinker | Tinker';
 
 export const COPYRIGHT = `Dan Levy. All rights rebased.`;
 

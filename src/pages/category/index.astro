@@ -8,7 +8,7 @@ import { SITE_TITLE, SITE_DESCRIPTION } from "../../consts";
 // import { Image } from "astro:assets";
 import { PostCollections } from "../../shared/dataCache";
 
-const categories = await PostCollections.getCategoryList();
+const categories = PostCollections.getCategoryList();
 
 const categoryList = Object.entries(categories).sort((a, b) => {
   return a[1] === b[1] ? 0 : a[1] < b[1] ? 1 : -1;

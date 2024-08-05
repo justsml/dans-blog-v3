@@ -23,7 +23,7 @@ const getProps = () => {
   return { category, count };
 };
 const { category, count } = getProps();
-const posts = await PostCollections.getPostsByCategory(category);
+const posts = PostCollections.getPostsByCategory(category);
 
 // console.log("category.astro.props", Astro.props);
 ---

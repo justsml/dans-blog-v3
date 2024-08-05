@@ -73,7 +73,7 @@ Prioritizing reusability & DRY-ness.
 
 This approach is likely the favored approach by a wide margin.
 
-```text
+```ts
 interface ProductDetails {
   name: string;
   seller: Seller;

@@ -1,30 +1,8 @@
-import { Image } from "astro:assets";
-import type { CollectionEntry } from "astro:content";
-import { formatDistance } from "date-fns/formatDistance";
-// import { CalendarIcon, TagIcon } from "lucide-react";
-
 import { InfoLabel } from "../components/ui/infoLabel";
 import { slugify } from "../shared/pathHelpers";
 import { CalendarIcon } from "./icons/CalendarIcon";
-
-type PostsType = CollectionEntry<"posts">;
-
-export type ArticlePost = {
-  slug: string;
-  collection?: string;
-
-  data: {
-    title: string;
-    subTitle: string;
-    cover_icon: ImageMetadata;
-    cover_mobile: ImageMetadata;
-    date: string;
-    modified: string;
-    category: string;
-    subCategory?: string;
-    tags: string[];
-  };
-};
+import type { ArticlePost } from "../types";
+import { getComputedDates } from "../shared/dateUtils";
 
 export const ArticleCard = ({
   article,
@@ -37,7 +15,6 @@ export const ArticleCard = ({
   const {
     title,
     subTitle,
-    cover_icon,
     cover_mobile,
     date,
     modified,
@@ -45,10 +22,8 @@ export const ArticleCard = ({
     tags,
   } = article.data;
 
-  const createdAgo = date ? formatDistance(new Date(date), new Date()) : "";
-  const modifiedAgo = modified
-    ? formatDistance(new Date(modified), new Date())
-    : "";
+
+  const { createdAgo, modifiedAgo } = getComputedDates({date, modified});
 
   const icon = cover_mobile;
   // console.log(cover_icon);
