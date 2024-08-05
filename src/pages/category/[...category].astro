@@ -3,6 +3,7 @@ import { ArticleCard } from "../../components/ArticleCard";
 import Page from "../../layouts/Page.astro";
 import { PostCollections } from "../../shared/dataCache";
 import { type CollectionEntry } from "astro:content";
+import type { ArticlePost } from "../../types";
 
 export async function getStaticPaths() {
   return PostCollections.getStaticPathsCategoryList();
