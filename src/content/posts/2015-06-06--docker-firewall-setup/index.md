@@ -1,7 +1,7 @@
 ---
 title: "Docker Firewall Setup"
 date: 2015-06-06
-modified: 2024-07-30
+modified: 2016-07-30
 category: DevOps
 subCategory: docker
 tags: [docker, security, devops]

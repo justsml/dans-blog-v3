@@ -60,7 +60,7 @@ export const PostCollections = {
   },
 
   async getPosts() {
-    let posts = this._posts;
+    let posts = PostCollections._posts;
 
     console.log("dataCache.getPosts", posts.length);
 
@@ -70,7 +70,7 @@ export const PostCollections = {
     params: Record<string, unknown>;
     props: Record<string, unknown>;
   }> {
-    let posts = this._posts;
+    let posts = PostCollections._posts;
 
     let fixedPosts = posts.map((post) => ({
       params: { slug: fixSlugPrefix(post.slug) },
@@ -101,7 +101,7 @@ export const PostCollections = {
     return PostCollections._categories;
   },
   getPostsByCategory(category: string) {
-    return this._posts.filter((post) => post.data.category === category);
+    return PostCollections._posts.filter((post) => post.data.category === category);
   },
 
   /** Popular posts according to google analytics. 2024/Q2 */
@@ -117,6 +117,16 @@ export const PostCollections = {
   generateCoverImgs() {
     // TODO?
   },
+  getRecentPosts() {
+    return [...PostCollections._posts].sort((a, b) => {
+      const aDate = new Date(a.data.date!);
+      const bDate = new Date(b.data.date!);
+
+      return aDate === bDate ? 0 : aDate > bDate ? -1 : 1;
+      // return a.data.modified! === b.data.modified! ? 0 : a.data.modified! > b.data.modified! ? -1 : 1;
+    })
+    .slice(0, 7);
+  }
 };
 
 export const images = import.meta.glob<{ default: ImageMetadata }>(

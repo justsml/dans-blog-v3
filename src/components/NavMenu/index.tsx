@@ -15,11 +15,12 @@ import {
 import { ListItem } from "./ListItem";
 import { ArticleCard } from "./ArticleCard";
 
-const { getCategoryCounts, getPopularPosts, getTagCounts } = PostCollections;
+const { getCategoryCounts, getPopularPosts, getTagCounts, getRecentPosts } = PostCollections;
 
 const categories = getCategoryCounts();
 const popularPosts = getPopularPosts();
 const tagCounts = getTagCounts();
+const recentPosts = getRecentPosts();
 const allPosts = PostCollections._posts;
 
 import { createPortal } from "react-dom";
@@ -35,7 +36,7 @@ const NavMenu = () => {
   };
 
   return (
-    <NavigationMenu.Root className="NavigationMenuRoot" delayDuration={200}>
+    <NavigationMenu.Root className="NavigationMenuRoot" delayDuration={300}>
       <NavigationMenu.List className="NavigationMenuList">
         <NavigationMenu.Item value="/">
           <NavigationMenu.Trigger className="NavigationMenuTrigger">
@@ -50,7 +51,7 @@ const NavMenu = () => {
             <li style={{ gridRow: "span 1" }}>
                 <NavigationMenu.Link asChild>
                   <div
-                    className="Callout neon-bg-7"
+                    className="Callout neon-bg-3"
                   >
                     <div className="CalloutHeading">Categories</div>
                     <p className="CalloutText">
@@ -59,7 +60,7 @@ const NavMenu = () => {
                           key={category}
                           title={category}
                           href={`/category/${slugify(category)}/`}
-                          className="CategoryItem"
+                          className="CalloutItem"
                         >
                           {category} <sup>{count}</sup>
                         </a>
@@ -82,7 +83,7 @@ const NavMenu = () => {
                           key={slug}
                           title={title}
                           href={`/${slug}/`}
-                          className="ArticleItem"
+                          className="CalloutItem"
                         >
                           {title}
                           <sup>{modifiedAgo} ago</sup>
@@ -92,7 +93,30 @@ const NavMenu = () => {
                   </div>
                 </NavigationMenu.Link>
               </li>
-
+            <li style={{ gridColumn: "span 2" }}>
+                <NavigationMenu.Link asChild>
+                  <div
+                    className="Callout neon-bg-6"
+                  >
+                    <div className="CalloutHeading">Recent</div>
+                    <p className="CalloutText">
+                      {recentPosts.map(({data: {title, subTitle, modified, date}, slug}) => {
+                        const { modifiedAgo } = getComputedDates({date, modified});
+                        return (
+                        <a
+                          key={slug}
+                          title={title}
+                          href={`/${slug}/`}
+                          className="CalloutItem"
+                        >
+                          {title}
+                          <sup>{modifiedAgo} ago</sup>
+                        </a>
+                      )})}
+                    </p>
+                  </div>
+                </NavigationMenu.Link>
+              </li>
               {/* {categories.map(([tag, count]) => (
                 <ListItem
                   key={tag}
@@ -242,19 +266,19 @@ const NavMenu = () => {
               </li>
               <li style={{ gridRow: "span 2" }}>
                 <NavigationMenu.Link asChild>
-                  <div className="Callout">
+                  <div className="Callout ContactSubMenu">
                     <div className="CalloutHeading">Contact Me</div>
                     <p className="CalloutText">
                     <span className="SocialLinks">
                       <a href="http://twitter.com/justsml" target="_blank">
                         <span className="Icon">
-                          <TwitterLogoIcon className="svg-icon" />
+                          <TwitterLogoIcon className="svg-icon" width={30} height={30} />
                         </span>
                         <label>Twitter</label>
                       </a>
                       <a href="https://github.com/justsml" target="_blank">
                         <span className="Icon">
-                          <GitHubLogoIcon className="svg-icon" />
+                          <GitHubLogoIcon className="svg-icon" width={30} height={30} />
                         </span>
                         <label>GitHub</label>
                       </a>
@@ -263,21 +287,21 @@ const NavMenu = () => {
                         target="_blank"
                       >
                         <span className="Icon">
-                          <LinkedInLogoIcon className="svg-icon" />
+                          <LinkedInLogoIcon className="svg-icon" width={30} height={30} />
                         </span>
                         <label>LinkedIn</label>
                       </a>
 
                       <a href="/docs/resume.pdf" target="_blank">
                         <span className="Icon">
-                          <RocketIcon className="svg-icon" />
+                          <RocketIcon className="svg-icon" width={30} height={30} />
                         </span>
                         <label>Résumé (PDF)</label>
                       </a>
 
                       <a href="mailto:dan@danlevy.net">
                         <span className="Icon">
-                          <EnvelopeClosedIcon className="svg-icon" />
+                          <EnvelopeClosedIcon className="svg-icon" width={30} height={30} />
                         </span>
                         <label>dan@danlevy.net</label>
                       </a>

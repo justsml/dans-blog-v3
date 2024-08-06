@@ -153,26 +153,38 @@
 
 .neon-bg-1 {
   background: var(--neon-bg-1);
+  color: var(--background);
 }
 .neon-bg-2 {
   background: var(--neon-bg-2);
+  color: var(--background);
 }
 .neon-bg-3 {
   background: var(--neon-bg-3);
+  color: var(--background);
 }
 .neon-bg-4 {
   background: var(--neon-bg-4);
+  color: var(--background);
 }
 .neon-bg-5 {
   background: var(--neon-bg-5);
+  color: var(--background);
 }
 .neon-bg-6 {
   background: var(--neon-bg-6);
+  color: var(--background);
+  .CalloutHeading {
+    color: var(--background);
+  }
 }
 .neon-bg-7 {
   background: var(--neon-bg-7);
+  color: var(--background);
+  .CalloutHeading {
+    color: var(--background);
+  }
 }
-
 
 /* reset */
 button,
@@ -189,7 +201,6 @@ main > ul {
   li {
     margin: 0.3rem 0;
   }
-
 }
 
 pre {
@@ -207,26 +218,30 @@ pre {
     align-self: flex-start;
   }
   a {
-    color: var(--neon-purple);
+    font-size: 1.5rem;
+    color: var(--neon-purple) !important;
     display: grid;
     cursor: pointer;
     /* grid-template-rows: 1fr 1fr; */
-    grid-template-columns: 1.5rem 1fr;
+    grid-template-columns: 2.5rem 1fr;
     justify-content: stretch;
     align-items: center;
-    align-content: flex-start;
+    align-content: center;
     text-wrap: nowrap;
     line-height: 125%;
     margin: 0.5rem 0;
     svg.icon {
-      margin: .25rem;
+      margin: 0.25rem;
+      width: 2.5rem;
+      height: 2.5rem;
     }
     .Icon {
-      width: 1.5rem;
-      height: 1.5rem;
+      width: 2.5rem;
+      height: 2.5rem;
 
       align-items: center;
       place-self: center;
+      justify-content: center;
       /* scale: 1.25; */
       display: inline-block;
     }
@@ -367,7 +382,7 @@ pre {
 .NavigationMenuViewport {
   position: relative;
   transform-origin: top center;
-  margin-top: .75rem;
+  margin-top: 0.75rem;
   width: 100%;
   background-color: white;
   border-radius: 0.5rem;
@@ -404,6 +419,7 @@ pre {
   column-gap: 0.7rem;
   list-style: none;
   padding-top: 0;
+  gap: 1rem;
 }
 @media only screen and (min-width: 600px) {
   .List.one {
@@ -469,9 +485,9 @@ pre {
   text-decoration: none;
   outline: none;
   user-select: none;
-  
+
   a {
-    color: #FFFFFF;
+    color: #ffffff;
   }
 }
 .Callout:focus {
@@ -485,8 +501,14 @@ pre {
   line-height: 1.2;
   margin-top: 1rem;
   margin-bottom: 0.4375rem;
+  color: var(--neon-cyan);
 }
 
+.ContactSubMenu {
+  .CalloutHeading {
+    color: #333;
+  }
+}
 .CalloutText {
   font-size: 1.2rem;
   line-height: 1.3;
@@ -494,7 +516,7 @@ pre {
   display: grid;
   gap: 1rem;
   margin-top: 1rem;
-  
+
   .col-2 {
     grid-template-columns: 1fr 1fr;
   }
@@ -543,25 +565,23 @@ pre {
   border-top-left-radius: 2px;
 }
 
-
-.ArticleItem {
+.Callout .CalloutItem {
   font-size: 1.1rem;
 }
 
-.ArticleItem  sup {
+.Callout .CalloutItem sup {
   display: block;
   height: 1rem;
-  margin-top: .5rem;
+  margin-top: 0.5rem;
 }
 
-  .ArticleCard {
+.ArticleCard {
   width: 16rem;
 
   & img {
     border-radius: 100%;
     width: 120px;
     height: 120px;
-  
   }
 }
 
