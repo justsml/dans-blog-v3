@@ -298,7 +298,9 @@ pre {
 
 @screen md {
   .ViewportPosition {
-    top: 3.9rem;
+    top: 4.5rem;
+    /* margin-right: -50px; */
+
   }
 }
 
@@ -362,7 +364,8 @@ pre {
 @screen md {
   .NavigationMenuContent {
     max-width: 85vw;
-    width: 100%;
+    width: auto;
+    min-width: 680px;
   }
 }
 
