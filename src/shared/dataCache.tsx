@@ -59,7 +59,7 @@ export const PostCollections = {
       .filter(([tag, count]) => count > 1);
   },
 
-  async getPosts() {
+  getPosts() {
     let posts = PostCollections._posts;
 
     console.log("dataCache.getPosts", posts.length);
@@ -119,8 +119,8 @@ export const PostCollections = {
   },
   getRecentPosts() {
     return [...PostCollections._posts].sort((a, b) => {
-      const aDate = new Date(a.data.date!);
-      const bDate = new Date(b.data.date!);
+      const aDate = new Date(a.data.date!).getTime();
+      const bDate = new Date(b.data.date!).getTime();
 
       return aDate === bDate ? 0 : aDate > bDate ? -1 : 1;
       // return a.data.modified! === b.data.modified! ? 0 : a.data.modified! > b.data.modified! ? -1 : 1;
