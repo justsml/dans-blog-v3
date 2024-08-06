@@ -1,5 +1,5 @@
 ---
-title:  "Naming things real good"
+title:  "Naming things good"
 subTitle: "Naming stuff: Object Oriented Basics"
 date: 2016-06-01
 modified: 2024-07-30

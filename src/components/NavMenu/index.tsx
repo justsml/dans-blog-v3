@@ -133,44 +133,6 @@ const NavMenu = () => {
 
         <NavigationMenu.Item>
           <NavigationMenu.Trigger className="NavigationMenuTrigger">
-            Open Source <CaretDownIcon className="CaretDown" aria-hidden />
-          </NavigationMenu.Trigger>
-          <NavigationMenu.Content
-            onFocusOutside={handlePreventDefault}
-            className="NavigationMenuContent"
-          >
-            <ul className="List one">
-              <li style={{ gridRow: "span 3" }}>
-                <NavigationMenu.Link asChild>
-                  <a
-                    className="Callout neon-bg-3"
-                    href="https://github.com/elite-libs"
-                    target="_blank"
-                  >
-                    <div className="CalloutHeading">elite-libs</div>
-                    <p className="CalloutText">An Open Source joint.</p>
-                  </a>
-                </NavigationMenu.Link>
-              </li>
-
-              <ListItem
-                href="https://dataanalyzer.app/"
-                title="DataAnalyzer.app"
-              >
-                A data analysis tool for developers and data scientists.
-              </ListItem>
-              <ListItem
-                href="https://fpromises.io/"
-                title="Functional Promises"
-              >
-                A functional programming library for JavaScript promises.
-              </ListItem>
-            </ul>
-          </NavigationMenu.Content>
-        </NavigationMenu.Item>
-
-        <NavigationMenu.Item>
-          <NavigationMenu.Trigger className="NavigationMenuTrigger">
             Projects <CaretDownIcon className="CaretDown" aria-hidden />
           </NavigationMenu.Trigger>
           <NavigationMenu.Content
@@ -194,10 +156,22 @@ const NavMenu = () => {
                 </NavigationMenu.Link>
               </li>
               <ListItem
+                href="https://dataanalyzer.app/"
+                title="DataAnalyzer.app"
+              >
+                A code + schema generator capable of handling any JSON or CSV input.
+              </ListItem>
+              <ListItem
+                href="https://fpromises.io/"
+                title="Functional Promises"
+              >
+                A functional & fluent API built around native JavaScript promises.
+              </ListItem>
+              <ListItem
                 href="https://github.com/justsml/node-streaming-image-proxy"
                 title="Node Streaming Image Proxy"
               >
-                High performance image resizing proxy for Node.js.
+                High performance, low latency image resizing & streaming proxy for Node.js.
               </ListItem>
               <ListItem
                 href="https://github.com/justsml/fact-service"
