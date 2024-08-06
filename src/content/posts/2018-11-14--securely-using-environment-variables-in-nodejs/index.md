@@ -1,8 +1,8 @@
 ---
-title: "Securely Using Environment Variables in NodeJS"
+title: "Using Environment Variables in NodeJS"
 subTitle: Using `dotenv`
 date: 2018-11-13
-modified: 2024-07-30
+modified: 2020-07-30
 tags: [dotenv, api-keys, secrets, tokens, security, nodejs]
 category: Code
 subCategory: howto

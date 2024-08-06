@@ -121,6 +121,7 @@ This quiz is designed to test (and deepen) your knowledge of the native `Date` A
     {text: 'Current Date, in UTC/GMT'},
     {text: 'Current Date', isAnswer: true },
     {text: 'NaN'},
+    {text: 'RangeError: Invalid argument.'},
   ]}
 >
 
@@ -139,13 +140,54 @@ This quiz is designed to test (and deepen) your knowledge of the native `Date` A
 
   <slot name='explanation'>
   <div className="explanation">
+    Don't forget the `new` keyword! `Date` is a class, and should be called with `new`.
+
+    `Date('...')` without `new` ignores what you give it. It appears to always produce the current date & time with `new Date()` (no arguments).
+
     This is a **common gotcha** that's **easy to overlook**, even in code review.
-
-    A `Date` instance created with `Date([args])` will always return today's date. In other words, the arguments are ignored. `Date('blah')` is an alias for `new Date()`.
-
-    The missing piece is the `new` keyword: `new Date(dateString)`.
   </div>
   </slot>
+
+</Challenge>
+
+<Challenge
+  client:only="react"
+  group="Handling Dates"
+  title="Date Constructor Part 4"
+  options={[
+    {text: '1969', isAnswer: true },
+    {text: '1970'},
+    {text: '2019'},
+    {text: '2020'},
+    {text: '2021'},
+    {text: 'RangeError: Invalid argument.'},
+  ]}
+>
+  
+    <slot name="question">
+    <div className="question">
+      What will the output include?
+      ```js
+      const date = new Date(2020)
+      console.log(date.getFullYear())
+      ```
+    </div>
+    </slot>
+  
+    <slot name='hints'>
+    </slot>
+
+    <slot name='explanation'>
+    <div className="explanation">
+      A Date instance created with a single integer argument is interpreted as a Unix `Epoch` value. `Epoch` is a count of milliseconds since Jan 1st, 1970.
+
+      A value of `2020` (milliseconds) translates to 2 seconds after Jan 1st, 1970.
+      
+      Then since our local time zone is a negative offset of -7 hours, we end up with `Wed Dec 31 1969 17:00:02 GMT-0700 (Mountain Standard Time)`.
+  
+      You can side-step the local timezone offset by using [`.getUTCFullYear()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getUTCFullYear).
+    </div>
+    </slot>
 
 </Challenge>
 
@@ -177,9 +219,14 @@ This quiz is designed to test (and deepen) your knowledge of the native `Date` A
 
     <slot name='explanation'>
     <div className="explanation">
-      The `Date` constructor parses date strings using **either UTC/GMT or local time.**
+      The string without a `T` time value may appear to be Jan 1st, 2020 - but it's interpreted as a GMT time, and when adjusted to our local timezone (GMT-7) we find we're still in 2019.
+
+      The `Date` class implicitly applies local time to date strings when a time is not provided.
   
-      The trick is knowing if your local timezone will be used... The `T00:00` causes it to use UTC/GMT time.
+      The `T00:00` causes it to adjust for local time.
+
+      The first date is interpreted as `Tue Dec 31 2019 17:00:00 GMT-0700 (Mountain Standard Time)`.
+      The second date is interpreted as `Wed Jan 01 2020 00:00:00 GMT-0700 (Mountain Standard Time)`.
     </div>
     </slot>
 
@@ -188,7 +235,7 @@ This quiz is designed to test (and deepen) your knowledge of the native `Date` A
 <Challenge
   client:only="react"
   group="Handling Dates"
-  title="Formatting"
+  title="Formatting Part 1"
   options={[
     {text: 'date.toLocaleFormat(\'en-US\', { timeZone: \'UTC\', timeZoneName: \'short\' })', isAnswer: true },
     {text: 'date.toLocaleDateString(\'en-US\', { timeZone: \'UTC\', timeZoneName: \'short\' })'},
@@ -199,10 +246,6 @@ This quiz is designed to test (and deepen) your knowledge of the native `Date` A
     
       <slot name="question">
       <div className="question">
-        Given the following date...
-        ```js
-        const date = new Date('2020-01-01T00:00')
-        ```
         Select an _incorrect_ formatting method:
       </div>
       </slot>
@@ -213,9 +256,12 @@ This quiz is designed to test (and deepen) your knowledge of the native `Date` A
 
       <slot name='explanation'>
       <div className="explanation">
-        The method [`Date.toLocaleFormat()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleFormat) is not standard, or well supported.
-    
-        Before I reach for a 3rd party library, I prefer to use the native [`toLocaleDateString`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString) method. It's behavior is documented under [`Intl.DateTimeFormat`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat).
+
+        It can be hard to remember what to use when both `toLocaleDateString` and `toLocaleTimeString` exist. I feel `toLocaleFormat` _should_ exist. 
+        The method [`Date.toLocaleFormat()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleFormat) is not standard. It's not supported in any browser, and should not be used.
+
+        Check out the [`toLocaleDateString` docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString) method. It's behavior is documented under [`Intl.DateTimeFormat`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DateTimeFormat).
+
       </div>
       </slot>
 
@@ -224,50 +270,12 @@ This quiz is designed to test (and deepen) your knowledge of the native `Date` A
 <Challenge
   client:only="react"
   group="Handling Dates"
-  title="Formatting"
-  options={[
-    {text: '1969', isAnswer: true },
-    {text: '1970'},
-    {text: '2019'},
-    {text: '2020'},
-    {text: '2021'},
-  ]}
->
-  
-    <slot name="question">
-    <div className="question">
-      What will the output include?
-      ```js
-      const date = new Date(2020)
-      console.log(date.getFullYear())
-      ```
-    </div>
-    </slot>
-  
-    <slot name='hints'>
-    </slot>
-
-    <slot name='explanation'>
-    <div className="explanation">
-      A Date instance cannot be created with a single integer as an argument. It is invalid, and will default to the start of 'computer time' (milliseconds since Jan 1st, 1970.)
-  
-      The reason the answer is not 1970 is because you'd need to use [`.getUTCFullYear()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getUTCFullYear) to get the year without timezone offset (for these questions, GMT-7 is assumed.)
-  
-      You won't observe this effect if you live at GMT-0 (or greater than GMT+1.)
-    </div>
-    </slot>
-
-</Challenge>
-
-<Challenge
-  client:only="react"
-  group="Handling Dates"
   title="UTC Dates Part 1"
   options={[
-    {text: '2020 2020'},
-    {text: '2020 2019', isAnswer: true },
-    {text: '2019 2020'},
-    {text: '2019 2019'},
+    {text: 'Wed, 01 Jan 2020 00:00:00 GMT'},
+    {text: 'Thu, 02 Jan 2020 00:00:00 GMT'},
+    {text: 'TypeError', isAnswer: true },
+    {text: 'NaN'},
   ]}
 >
   
@@ -275,8 +283,8 @@ This quiz is designed to test (and deepen) your knowledge of the native `Date` A
     <div className="question">
       What will the output include?
       ```js
-      var date = new Date(Date.UTC(2020, 0, 1))
-      console.log(date.getUTCFullYear(), date.getFullYear())
+      var date = Date.UTC('2020-01-02T00:00')
+      console.log(date.toUTCString())
       ```
     </div>
     </slot>
@@ -286,7 +294,13 @@ This quiz is designed to test (and deepen) your knowledge of the native `Date` A
 
     <slot name='explanation'>
     <div className="explanation">
-      The [`getFullYear()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getFullYear) method is based off a local offset of GMT-07:00. Which means it will give the previous year, as the date is represented locally is `Dec 31 2019 17:00:00`.
+
+      You'll get `TypeError: date.toUTCString is not a function`, since [`Date.UTC()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/UTC) returns an integer in milliseconds, not a date instance.
+
+      {/* The [`getFullYear()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getFullYear) method uses your local offset (assume GMT-07:00 for these questions.)
+      Which means it will give the previous year (NYE -7 hours).
+      The [`getUTCFullYear()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getUTCFullYear) method will give the year as we supplied to `Date.UTC()`, 2020.
+      */}
     </div>
     </slot>
     
@@ -299,7 +313,7 @@ This quiz is designed to test (and deepen) your knowledge of the native `Date` A
   options={[
     {text: 'A UTC-based date instance'},
     {text: 'A date instance adjusted for local time-zone'},
-    {text: 'Milliseconds since Jan 1st, 1970', isAnswer: true },
+    {text: 'Milliseconds since Jan 1st, 1970 GMT', isAnswer: true },
     {text: 'An error'},
   ]}
 >
@@ -354,9 +368,9 @@ This quiz is designed to test (and deepen) your knowledge of the native `Date` A
 
     <slot name='explanation'>
     <div className="explanation">
-      Date's will be implicitly presented in local time, with an unchanging [`.getTimezoneOffset()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getTimezoneOffset).
+      Date's will be implicitly presented in local time, with an (effectively) unchanging [`.getTimezoneOffset()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/getTimezoneOffset).
   
-      Date instances do not store 'original' timezone data. Date instances essentially store only the # of milliseconds since the Unix Epoch (Jan 1, 1970). The timezone is accounted for when Date String parsing. And the default display behavior is automatically determined based on the system or browser's locale settings.
+      `Date` instances do not store timezone data. They store the # of milliseconds since the Unix Epoch (Jan 1, 1970). The timezone is accounted for when Date String parsing & rendering. The default display behavior is automatically determined based on the system or browser's locale settings.
     </div>
     </slot>
 
@@ -419,10 +433,6 @@ This quiz is designed to test (and deepen) your knowledge of the native `Date` A
     </div>
     </slot>
   
-    <slot name='hints'>
-      <aside class="hint">`setDate` sets the day of the month, typically in the range 1-31.</aside>
-    </slot>
-
     <slot name='explanation'>
     <div className="explanation">
       The [`.setMonth()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setMonth) method sets the month of the given date instance.
@@ -438,9 +448,10 @@ This quiz is designed to test (and deepen) your knowledge of the native `Date` A
   group="Handling Dates"
   title="Date Setters Part 3"
   options={[
-    {text: 'Jan 01 2020'},
+    {text: 'Jan 01 2020' },
+    {text: 'Jan 01 2021', isAnswer: true },
     {text: 'Feb 01 2020'},
-    {text: 'RangeError: Invalid argument.', isAnswer: true },
+    {text: 'RangeError: Invalid argument.' },
   ]}
 >
   
@@ -463,7 +474,9 @@ This quiz is designed to test (and deepen) your knowledge of the native `Date` A
     <div className="explanation">
       The [`.setMonth()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setMonth) method sets the month of the given date instance.
   
-      The month argument is zero-based, with a range of 0-11 (using western calendars.)
+      The `month` argument is zero-based, with 12 values in the range of 0-11 (using western calendars.)
+
+      Here we see the year is adjusted to 2021, because `setMonth(12)` is 1 more than 11 (December).
     </div>
     </slot>
 
@@ -476,7 +489,9 @@ This quiz is designed to test (and deepen) your knowledge of the native `Date` A
   options={[
     {text: 'Jan 01 2020'},
     {text: 'Feb 01 2020'},
-    {text: 'RangeError: Invalid argument.', isAnswer: true },
+    {text: 'Jan 01 2021'},
+    {text: 'Feb 01 2021', isAnswer: true },
+    {text: 'RangeError: Invalid argument.' },
   ]}
 >
   
@@ -492,8 +507,10 @@ This quiz is designed to test (and deepen) your knowledge of the native `Date` A
     </slot>
   
     <slot name='hints'>
-      <aside class="hint">`setDate` sets the day of the month, typically in the range 1-31.</aside>
-      <aside class="hint">Negative numbers and any numbers greater than `31` will cause the day & month to adjust, sometimes in surprising ways.</aside>
+      <aside class="hint">`setMonth` sets the month by index, 12 months are indexed from 0-11. </aside>
+      <aside class="hint">
+        Numbers outside the range of 0-11 will cause the year to over- or under-flow. For example, `setMonth(13)` will adjust the year to 2021 (in February because 13 is 2 more than 11).
+      </aside>
     </slot>
 
     <slot name='explanation'>
@@ -501,6 +518,8 @@ This quiz is designed to test (and deepen) your knowledge of the native `Date` A
       The [`.setMonth()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setMonth) method sets the month of the given date instance.
   
       The month argument is zero-based, with a range of 0-11 (using western calendars.)
+
+      Here we see the month and year is adjusted to February 2021, because `setMonth(13)` is 2 more than 11 (December).
     </div>
     </slot>
 
@@ -513,7 +532,10 @@ This quiz is designed to test (and deepen) your knowledge of the native `Date` A
   options={[
     {text: 'Jan 01 2020'},
     {text: 'Feb 01 2020'},
-    {text: 'RangeError: Invalid argument.', isAnswer: true },
+    {text: 'Jan 01 2019'},
+    {text: 'Feb 01 2019', isAnswer: true },
+
+    {text: 'RangeError: Invalid argument.' },
   ]}
 >
   
@@ -528,16 +550,18 @@ This quiz is designed to test (and deepen) your knowledge of the native `Date` A
     </div>
     </slot>
   
-    <slot name='hints'>
+    {/* <slot name='hints'>
       <aside class="hint">Months are non-uniform, range between 28-31 days.</aside>
       <aside class="hint">`setDate` sets the day of the month, typically in the range 1-31. Negative numbers and any numbers greater than `31` will cause the day & month to adjust, sometimes in surprising ways.</aside>
-    </slot>
+    </slot> */}
 
     <slot name='explanation'>
     <div className="explanation">
       The [`.setMonth()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/setMonth) method sets the month of the given date instance.
   
       The month argument is zero-based, with a range of 0-11 (using western calendars.)
+
+      Here we see the month and year rolls back to December 2019, because `setMonth(-1)` is less than 0 (January).
     </div>
     </slot>
 

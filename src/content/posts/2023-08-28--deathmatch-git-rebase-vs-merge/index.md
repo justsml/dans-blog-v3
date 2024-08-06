@@ -72,8 +72,8 @@ Mental model: "I want to create an alternate version of an existing history. (e.
 #### Cons
 
 - 😰 Absolute power. You can change history. (Ok, a Pro & Con...)
-- 🔂 You can end up in a seemingly endless cycle of conflict & `—-continue`.
-- 🙀 Breaks key collaboration features: lost/orphan PR comments.
+- 🔂 You can end up in a seemingly endless cycle of conflict & `—-continue`. (Sometimes even with `git rerere`)
+- 🙀 Breaks key collaboration features: lost/orphan PR comments. Rude.
 - 🖇️ Permalinks can become not that permanent.
 
 ### The (Squash) Merge Way

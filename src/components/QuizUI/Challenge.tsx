@@ -18,6 +18,8 @@ import {
 import "./index.css";
 import { CheckedBoxIcon } from "../icons/CheckedBoxIcon";
 import { RefreshCwIcon } from "lucide-react";
+import classNames from "classnames";
+import { slugify } from "../../shared/pathHelpers";
 
 /**
  * Challenge component
@@ -110,7 +112,7 @@ export default function Challenge({
 
   return (
     <div className={"challenge " + challengeClass} ref={challengeRef}>
-      <h2 className="title">
+      <h2 className="title" id={slugify(title)}>
         {/* <CheckedBoxIcon className="icon" /> */}
         {isCorrect === undefined && (
           <QuestionMarkCircledIcon className="icon" />
@@ -123,20 +125,22 @@ export default function Challenge({
       </h2>
       <div className="question">{question || children}</div>
       <section className="options">
-        {options.map((option) => (
+        {options.map((option) => {
+          const isCurrentOptionCorrectAnswer = isCorrect && option.isAnswer;
+          return (
           <a
             key={option.text}
-            className="option"
+            className={classNames("option", {'correctly-answered': isCurrentOptionCorrectAnswer})}
             onClick={() => !isCorrect && handleAnswer(option)}
           >
-            {isCorrect && option.isAnswer ? (
+            {isCurrentOptionCorrectAnswer ? (
               <CheckedBoxIcon className="icon" />
             ) : (
               <BoxIcon className="icon" />
             )}
             <label>{option.text}</label>
           </a>
-        ))}
+        )})}
       </section>
       <div className="toolbar">
         <button className="btn btn-reset" onClick={() => reset()}>

@@ -72,31 +72,26 @@ main {
     margin: 0 -0.2rem 0 -2rem;
   }
 }
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
-  main, body > header {
-    width: 100%;
-  }
-  header h2 .title {
-    display: block;
-  }
-
+main, body > header {
+  width: clamp(300px, 99%, 920px);
+  margin: 0 auto;
 }
-/* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {
+header h2 .title {
+  display: block;
+}
+
+/* @media only screen and (min-width: 768px) {
   main, body > header {
     width: 700px;
   }
 }
-/* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
   main, body > header {
     width: 800px;
   }
 }
-/* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
   main, body > header {
     width: 1000px;
   }
-}
+} */

@@ -51,12 +51,14 @@
   .option {
     font-size: 1.25rem;
     margin-bottom: 0.5rem;
-    /* list-style-type: none; */
     display: grid;
     grid-template-columns: 3rem 1fr;
     cursor: pointer;
     line-height: 1.5;
     color: var(--secondary);
+    border: 1px dashed transparent;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
 
     & * {
       cursor: pointer;
@@ -64,19 +66,32 @@
     &:hover {
       /* background-color: var(--primary-foreground); */
       color: var(--primary-forground);
+      border: 1px dashed rgba(200, 200, 200, 0.5);
+    }
+    /* &:hover {
+      color: var(--primary-forground);
+      border: 1px dashed rgba(200, 200, 200, 0.5);
+    } */
+    &.correctly-answered {
+      border: 1px dashed rgba(230, 230, 230, 0.75);
     }
   }
 
   &.correct {
     .option {
+
       & * {
-        cursor: not-allowed;
+        cursor: default;
       }
       &:hover {
-        /* background-color: var(--primary-foreground); */
         color: var(--secondary);
+        border: inherit;
+        border: 1px dashed transparent;
       }
-
+      &.correctly-answered {
+        border: 1px dashed rgba(230, 230, 230, 0.75);
+      }
+  
     }
   }
 
@@ -92,7 +107,7 @@
       display: grid;
       grid-template-columns: 2.5rem 1fr;
       grid-template-rows: 1fr;
-      width: 18ch;
+      width: 45%;
       align-items: center;
       color: var(--secondary);
       text-wrap: nowrap;

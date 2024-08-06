@@ -48,7 +48,7 @@ const publishedTime = date ? new Date(date).toISOString().split("T")[0] : "";
 
 <html lang="en">
   <head>
-    <BaseHead title={title} description={`${subTitle}`} />
+    <BaseHead title={title} description={`${subTitle}`} image={`${cover}`} />
     {lastModified && <meta http-equiv="last-modified" content={lastModified} />}
     {
       publishedTime && (
