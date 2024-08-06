@@ -13,10 +13,15 @@ interface Props {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const { title, description, image } = Astro.props;
+let { title, description, image } = Astro.props;
+if (description === 'undefined') {
+	// @ts-ignore
+	description = undefined;
+}
 
 const siteTitle = title || (SITE_TITLE + ' ' + SITE_DESCRIPTION);
 const siteDescription = description || SITE_SEO_DESCRIPTION;
+
 ---
 
 <!-- Global Metadata -->
@@ -48,9 +53,9 @@ const siteDescription = description || SITE_SEO_DESCRIPTION;
 	<meta property="og:title" content={siteTitle} />
 </slot>
 <slot name="description">
-	<meta name="description" content={siteDescription} />
-	<meta property="twitter:description" content={siteDescription} />
-	<meta property="og:description" content={siteDescription} />
+	{siteDescription && <meta name="description" content={siteDescription} />}
+	{siteDescription && <meta property="twitter:description" content={siteDescription} />}
+	{siteDescription && <meta property="og:description" content={siteDescription} />}
 </slot>
 
 <!-- Open Graph / Facebook -->
