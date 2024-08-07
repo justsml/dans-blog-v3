@@ -106,6 +106,7 @@ Some guiding principles:
 
 **Recommended reading includes:**
 
+1. [Maybe Normalizing Isn't Normal](https://blog.codinghorror.com/maybe-normalizing-isnt-normal/)
 1.  [The Trade-offs Between Database Normalization and Denormalization](https://dev.to/er_dward/the-trade-offs-between-database-normalization-and-denormalization-4kdo)
 2.  [http://phlonx.com/resources/nf3/](http://phlonx.com/resources/nf3/)
 3.  [https://en.wikipedia.org/wiki/Database_normalization](https://en.wikipedia.org/wiki/Database_normalization)

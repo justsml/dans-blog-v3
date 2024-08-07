@@ -1,5 +1,6 @@
 .quiz-ui {
   padding: 1rem 0;
+  max-width: 80vw;
 }
 
 
@@ -25,7 +26,7 @@
     color: var(--neon-cyan);
     font-size: 1.875rem;
     margin: 0.5rem -1rem;
-    padding: 1rem 0;
+    text-align: left;
 
     svg {
       display: inline-block;
@@ -96,7 +97,8 @@
   }
 
   .toolbar {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto auto;
     justify-content: space-between;
     margin-top: 1rem;
     align-items: center;
@@ -107,7 +109,8 @@
       display: grid;
       grid-template-columns: 2.5rem 1fr;
       grid-template-rows: 1fr;
-      width: 45%;
+      /* max-width: 40%; */
+      width: auto;
       align-items: center;
       color: var(--secondary);
       text-wrap: nowrap;

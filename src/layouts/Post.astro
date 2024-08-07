@@ -60,7 +60,7 @@ const coverUrl = cover && typeof cover === "object" && "src" in cover ? (cover a
       )
     }
 
-    <script>
+    <script is:inline>
       const updateCounts = () => {
         const scoreEls = document.querySelectorAll(".score");
         const scoreLabel = document.querySelector(".score label");
@@ -79,7 +79,7 @@ const coverUrl = cover && typeof cover === "object" && "src" in cover ? (cover a
         if (questions.length === correct.length) {
           scoreLabel.innerHTML = "All correct!";
         } else {
-          scoreLabel.innerHTML = `${correct.length} / ${questions.length} correct`;
+          scoreLabel.innerHTML = `${correct.length} / ${questions.length}`;
         }
       };
 
@@ -87,6 +87,7 @@ const coverUrl = cover && typeof cover === "object" && "src" in cover ? (cover a
         const quiz = document.querySelector('.quiz-ui');
 
         if (quiz) {
+          setTimeout(updateCounts, 500);
           quiz.addEventListener('click', (e) => {
               updateCounts();
           });

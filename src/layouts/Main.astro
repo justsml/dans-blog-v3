@@ -58,40 +58,6 @@ const siteTitle = title || (SITE_TITLE + ' ' + SITE_DESCRIPTION);
         <meta property="article:published_time" content={publishedTime} />
       )
     }
-
-    <script>
-      const updateCounts = () => {
-        const scoreEls = document.querySelectorAll(".score");
-        const scoreLabel = document.querySelector(".score label");
-        const questions = document.querySelectorAll("main .challenge");
-        const correct = document.querySelectorAll("main .challenge.correct");
-
-        const isQuizPage = questions.length > 0;
-
-        if (!isQuizPage) return; // Not a quiz page
-
-        if (scoreEls.length >= 2)
-          console.error("Multiple score elements found");
-        if (!scoreLabel)
-          return console.error("Expected score label, not found");
-
-        if (questions.length === correct.length) {
-          scoreLabel.innerHTML = "All correct!";
-        } else {
-          scoreLabel.innerHTML = `${correct.length} / ${questions.length} correct`;
-        }
-      };
-
-      document.addEventListener("DOMContentLoaded", function () {
-        const quiz = document.querySelector('.quiz-ui');
-        
-        if (quiz) {
-          quiz.addEventListener('click', (e) => {
-              updateCounts();
-          });
-        }
-      });
-    </script>
     <ViewTransitions />
   </head>
 

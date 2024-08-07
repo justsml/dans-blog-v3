@@ -139,7 +139,7 @@ const NavMenu = () => {
             onFocusOutside={handlePreventDefault}
             className="NavigationMenuContent"
           >
-            <ul className="List one">
+            <ul className="List two">
               <li style={{ gridRow: "span 2" }}>
                 <NavigationMenu.Link asChild>
                   <a
@@ -219,7 +219,7 @@ const NavMenu = () => {
             onFocusOutside={handlePreventDefault}
             className="NavigationMenuContent"
           >
-            <ul className="List one">
+            <ul className="List one contact-info-list">
               <li className="row-span-2">
                 <NavigationMenu.Link asChild>
                   <div className="Callout neon-bg-6">
