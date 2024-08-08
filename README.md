@@ -2,6 +2,9 @@
 
 ## TODO
 
+- [ ] Fix responsive menu
+- [ ] Update counts
+
 ### Features
 
 - [ ] Add new nav

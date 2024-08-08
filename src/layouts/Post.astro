@@ -63,7 +63,8 @@ const coverUrl = cover && typeof cover === "object" && "src" in cover ? (cover a
     }
 
     <script is:inline>
-      const updateCounts = () => {
+      // Hackety hack to update the score on quiz pages
+      window.__updateCounts = () => {
         const scoreEls = document.querySelectorAll(".score");
         const scoreLabel = document.querySelector(".score label");
         const questions = document.querySelectorAll("main .challenge");
@@ -89,9 +90,9 @@ const coverUrl = cover && typeof cover === "object" && "src" in cover ? (cover a
         const quiz = document.querySelector('.quiz-ui');
 
         if (quiz) {
-          setTimeout(updateCounts, 500);
+          setTimeout(window.__updateCounts, 500);
           quiz.addEventListener('click', (e) => {
-              updateCounts();
+            window.__updateCounts();
           });
         }
       });
