@@ -25,12 +25,9 @@ const getProps = () => {
 };
 const { category, count } = getProps();
 const posts = PostCollections.getPostsByCategory(category);
-
-// console.log("category.astro.props", Astro.props);
 ---
 
 <Page>
-
   <h1>{category}</h1>
   <p>Found {count} articles</p>
   <div class:list={["article-list"]}>

@@ -9,3 +9,5 @@ export const COPYRIGHT = `Dan Levy. All rights rebased.`;
 export const SOCIAL_TWITTER = 'justsml';
 export const SOCIAL_GITHUB = 'justsml';
 export const SOCIAL_LINKEDIN = 'realdaniellevy';
+
+export const GOOGLE_ANALYTICS_ID = 'G-E35F2E1LWT';

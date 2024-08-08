@@ -15,6 +15,8 @@ import { ViewTransitions, fade } from 'astro:transitions';
 import "@/styles/nav.css";
 import "@/styles/global.css";
 import "./common.css";
+import AnalyticsTag from "../components/AnalyticsTag.astro";
+import { GOOGLE_ANALYTICS_ID } from "../consts";
 
 type Props = {
   children: any[];
@@ -61,6 +63,7 @@ const coverUrl = cover && typeof cover === "object" && "src" in cover ? (cover a
     }
 
     <script is:inline>
+      window.answerCounts = {};
       const updateCounts = () => {
         const scoreEls = document.querySelectorAll(".score");
         const scoreLabel = document.querySelector(".score label");
@@ -94,6 +97,7 @@ const coverUrl = cover && typeof cover === "object" && "src" in cover ? (cover a
         }
       });
     </script>
+    <AnalyticsTag googleAnalyticsId={GOOGLE_ANALYTICS_ID} />
     <ViewTransitions />
   </head>
 

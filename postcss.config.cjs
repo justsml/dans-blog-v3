@@ -4,6 +4,5 @@ module.exports = {
     require('tailwindcss'),
     require('autoprefixer'),
     require('cssnano'),
-
   ],
 };
