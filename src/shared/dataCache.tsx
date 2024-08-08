@@ -112,8 +112,8 @@ export const PostCollections = {
       "contribute-to-open-source-the-easy-way",
       "the-4-pillars-of-collaborative-culture",
       "you-may-not-need-axios",
-      // "naming-things-real-good",
       "should-you-use-named-or-default-exports",
+      // "naming-things-real-good",
     ].map((slug) => PostCollections._postsBySlug[slug]);
   },
 

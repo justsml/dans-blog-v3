@@ -4,18 +4,15 @@ type Props = {
 };
 
 const { googleAnalyticsId } = Astro.props;
-
-const analyticsId = googleAnalyticsId || "";
 ---
 
-<span class:list={["analytics-tag", "hidden"]} data-google-id={analyticsId}
-></span>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-E35F2E1LWT"
-></script>
+<span class="analytics-tag hidden" data-google-id={googleAnalyticsId}></span>
+
+
 <script is:inline>
   // DOM HACK TO GET THE GOOGLE ANALYTICS ID
   const googleAnalyticsId =
-    document.querySelector("span.analytics-tag")?.dataset?.googleId;
+    document.querySelector("span.analytics-tag").dataset.googleId;
 
   //// STANDARDISH GA CODE
   window.dataLayer = window.dataLayer || [];
@@ -25,9 +22,7 @@ const analyticsId = googleAnalyticsId || "";
   gtag("js", new Date());
 
   gtag("config", googleAnalyticsId);
-</script>
 
-<script is:inline>
   function trackCustomEvent({
     category,
     action,
@@ -57,3 +52,9 @@ const analyticsId = googleAnalyticsId || "";
     }
   }
 </script>
+
+<script
+  async
+  src={`https://www.googletagmanager.com/gtag/js?id=${googleAnalyticsId}`}
+></script>
+

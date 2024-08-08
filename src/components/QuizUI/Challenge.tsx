@@ -1,5 +1,11 @@
 "use client";
-import { useContext, useEffect, useRef, useState, type ReactNode } from "react";
+import {
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+  type ReactNode,
+} from "react";
 import { QuizContext } from "./QuizContext";
 import type { Option, OptionSelection } from "./types";
 import {
@@ -78,38 +84,7 @@ export default function Challenge({
       setIsCorrect(false);
       setChallengeClass("incorrect shake");
     }
-    setTimeout(updateCounts, 100);
-    setTimeout(updateCounts, 300);
-
-    if (
-      "trackCustomEvent" in window &&
-      typeof window.trackCustomEvent === "function"
-    ) {
-      const label = title + " #" + option.text;
-
-      // @ts-ignore
-      window.answerCounts[label] = window.answerCounts[label] || 0;
-      // @ts-ignore
-      window.answerCounts[label]++;
-
-      window.trackCustomEvent({
-        // string - required - The object that was interacted with (e.g.video)
-        category: `Quiz: ${
-          window.location.host
-        }/${window.location.pathname.replace(/^\/|\/$/g, "")}`,
-        // string - required - Type of interaction (e.g. 'play')
-        action: option.isAnswer ? "Correct" : "Incorrect",
-        // string - optional - Useful for categorizing events (e.g. 'Spring Campaign')
-        label: title + " #" + option.text,
-        // number - optional - Numeric value associated with the event. (e.g. A product ID)
-        // @ts-ignore
-        value: window.answerCounts[label] || -1,
-      });
-    } else {
-      console.warn(
-        "window.trackCustomEvent is not setup correctly!!! Verify all client scripts are in correct sequence."
-      );
-    }
+    setTimeout(updateCounts, 200);
   };
 
   useEffect(() => {
@@ -153,22 +128,19 @@ export default function Challenge({
         {options.map((option) => {
           const isCurrentOptionCorrectAnswer = isCorrect && option.isAnswer;
           return (
-            <a
-              key={option.text}
-              className={classNames("option", {
-                "correctly-answered": isCurrentOptionCorrectAnswer,
-              })}
-              onClick={() => !isCorrect && handleAnswer(option)}
-            >
-              {isCurrentOptionCorrectAnswer ? (
-                <CheckedBoxIcon className="icon" />
-              ) : (
-                <BoxIcon className="icon" />
-              )}
-              <label>{option.text}</label>
-            </a>
-          );
-        })}
+          <a
+            key={option.text}
+            className={classNames("option", {'correctly-answered': isCurrentOptionCorrectAnswer})}
+            onClick={() => !isCorrect && handleAnswer(option)}
+          >
+            {isCurrentOptionCorrectAnswer ? (
+              <CheckedBoxIcon className="icon" />
+            ) : (
+              <BoxIcon className="icon" />
+            )}
+            <label>{option.text}</label>
+          </a>
+        )})}
       </section>
       <div className="toolbar">
         <button className="btn btn-reset" onClick={() => reset()}>

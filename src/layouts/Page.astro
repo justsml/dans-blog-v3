@@ -3,13 +3,14 @@ import type { CollectionEntry } from "astro:content";
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import FormattedDate from "../components/FormattedDate.astro";
+import { Image } from "astro:assets";
 import { ViewTransitions } from 'astro:transitions';
-
-import {wrapGrid} from './common';
 
 import "@/styles/nav.css";
 import "@/styles/global.css";
-import "./common.css";
+
+console.log("Page.astro", Astro.props);
 
 import AnalyticsTag from "../components/AnalyticsTag.astro";
 import { GOOGLE_ANALYTICS_ID } from "../consts";
@@ -17,17 +18,12 @@ import { GOOGLE_ANALYTICS_ID } from "../consts";
 // @ts-ignore
 globalThis.wrapGrid = wrapGrid;
 
-console.log("Page.astro", Astro.props);
-
 const { title, subTitle } = Astro.props.frontmatter! || Astro.props;
 
 ---
 <html lang="en">
   <head>
-    <BaseHead title={title} description={`${subTitle}`} />
-    
-    <AnalyticsTag googleAnalyticsId={GOOGLE_ANALYTICS_ID} />
-    
+    <BaseHead title={title} description={`${subTitle}`} />    
     <ViewTransitions />
   </head>
 
@@ -37,5 +33,6 @@ const { title, subTitle } = Astro.props.frontmatter! || Astro.props;
       <slot name="default"></slot>
     </main>
     <Footer />
+    <AnalyticsTag googleAnalyticsId={GOOGLE_ANALYTICS_ID} />
   </body>
 </html>

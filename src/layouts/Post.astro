@@ -5,18 +5,18 @@ import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import { InfoLabel } from "../components/ui/infoLabel";
+import AnalyticsTag from "../components/AnalyticsTag.astro";
 
 import { CalendarIcon } from "@radix-ui/react-icons";
 import { TagIcon } from "lucide-react";
 import { Image } from "astro:assets";
 import type { ImageMetadata } from "astro";
 import { ViewTransitions, fade } from 'astro:transitions';
+import { GOOGLE_ANALYTICS_ID } from "../consts";
 
 import "@/styles/nav.css";
 import "@/styles/global.css";
-import "./common.css";
-import AnalyticsTag from "../components/AnalyticsTag.astro";
-import { GOOGLE_ANALYTICS_ID } from "../consts";
+
 
 type Props = {
   children: any[];
@@ -63,7 +63,6 @@ const coverUrl = cover && typeof cover === "object" && "src" in cover ? (cover a
     }
 
     <script is:inline>
-      window.answerCounts = {};
       const updateCounts = () => {
         const scoreEls = document.querySelectorAll(".score");
         const scoreLabel = document.querySelector(".score label");
@@ -97,7 +96,6 @@ const coverUrl = cover && typeof cover === "object" && "src" in cover ? (cover a
         }
       });
     </script>
-    <AnalyticsTag googleAnalyticsId={GOOGLE_ANALYTICS_ID} />
     <ViewTransitions />
   </head>
 
@@ -144,5 +142,6 @@ const coverUrl = cover && typeof cover === "object" && "src" in cover ? (cover a
       <slot />
     </main>
     <Footer />
+    <AnalyticsTag googleAnalyticsId={GOOGLE_ANALYTICS_ID} />
   </body>
 </html>
