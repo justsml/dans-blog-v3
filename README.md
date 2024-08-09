@@ -1,11 +1,8 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/a027c04c-d42a-42e3-8ef6-812e4e4bf2b4/deploy-status)](https://app.netlify.com/sites/danlevynet/deploys)
+
 # DanLevy.net
 
-## TODO
-
-- [ ] Fix responsive menu
-- [ ] Update counts
-
-### Features
+## Features
 
 - [ ] Add new nav
   - [ ] Add tags

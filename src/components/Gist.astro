@@ -1,9 +1,11 @@
 ---
-import { diskCache } from "../shared/diskCache";
 import querystring from "querystring";
+import { diskCache } from "../shared/diskCache";
 
 const GITHUB_TOKEN =
-  import.meta.env.VITE_GITHUB_TOKEN || import.meta.env.GITHUB_TOKEN;
+  import.meta.env.VITE_GITHUB_TOKEN ||
+  import.meta.env.PUBLIC_GITHUB_TOKEN ||
+  import.meta.env.GITHUB_TOKEN;
 
 export type Props = {
   path: string;
@@ -11,7 +13,6 @@ export type Props = {
 
 const { props } = Astro;
 
-// default base url
 const baseUrl = "https://gist.github.com";
 
 /**
@@ -35,11 +36,12 @@ type PluginOptions = {
   gistCssPreload?: boolean;
 };
 
-/**
- * @typedef {object} GistQuery
- * @property {string} file the file name.
- * @property {string|Array<number>} highlights the numbers to be highlighted.
- */
+type GistQuery = {
+  file?: string;
+  highlights?: string | string[];
+  lines?: string | string[];
+};
+
 
 /**
  * Validates the query object is valid.
@@ -60,7 +62,7 @@ function isValid(query: querystring.ParsedUrlQuery | { file: any } | null) {
 
 /**
  * Builds the query object.
- * This methods looks for anything that is after ? or # in the gist: directive.
+ * This methods looks for anything that is after ? or # in the Gist Url.
  * ? is interpreted as a query string.
  * # is interpreted as a filename.
  * @param {string} value the value of the inlineCode block.
@@ -120,15 +122,17 @@ function getQuery(value: string): Record<string, any> {
  * @returns {string} the gist url.
  */
 function buildUrl(value: string, options: PluginOptions, file: null) {
-	let url = `${baseUrl}/`;
+  let url = `${baseUrl}/`;
   const [gist] = value.split(/[?#]/);
   const [inlineUsername, id] =
     gist.indexOf("/") > 0 ? gist.split("/") : [null, gist];
   const username = inlineUsername || options.username;
-  if (username == null || username.trim().length === 0) throw new Error("Missing username information");
-  if (id == null || id.trim().length === 0) throw new Error("Missing gist id information");
+  if (username == null || username.trim().length === 0)
+    throw new Error("Missing username information");
+  if (id == null || id.trim().length === 0)
+    throw new Error("Missing gist id information");
 
-	url += `${username}/${id}.json`;
+  url += `${username}/${id}.json`;
   if (file != null) url += `?file=${file}`;
 
   return url;
@@ -146,10 +150,10 @@ const handleError = (url: string) => (error: any) => {
  * @returns {*} the markdown ast.
  */
 async function loadGist(path: string, options: PluginOptions = {}) {
-	// get the query string and build the url
+  // get the query string and build the url
   const query = getQuery(path);
   const url = buildUrl(path, options, query.file);
-	
+
   console.log("loadGist", url);
   // call the gist and update the node type and value
   const response = await fetch(url, {
@@ -161,7 +165,7 @@ async function loadGist(path: string, options: PluginOptions = {}) {
   }).catch(handleError(url));
   const content = response ? await response.json() : {};
 
-	// console.warn("content", content);
+  // console.warn("content", content);
   // let html = content.div;
   // const truncate = Boolean(query.truncate) || Boolean(options.truncate);
   // const hasLines = query.lines.length > 0;
@@ -196,57 +200,42 @@ async function loadGist(path: string, options: PluginOptions = {}) {
 
   //   html = $.html({ decodeEntities: false, normalizeWhitespace: true });
   // }
-  content.div = truncateGist(content.div);
+  const level = options.truncate ? 2 : 0;
+
+  content.div = truncateGist(content.div, level);
 
   return content;
 }
 
-// /**
-//  * Shrinks size of HTML returned by the GitHub/Gist API.
-//  * @param {string} html input HTML
-//  * @param {boolean} [testing=false] only for tests, omits attribution comment.
-//  * @returns {string} the mangled/truncated HTML.
-//  */
-// export function truncateGist(html, testing = false) {
-//   // WARNING: This doesn't differentiate between gist's table markup and your content inside it!
-//   html = html.replace(/\bfile-[^\s]*-L/gi, "L");
-//   html = html.replace(/\bblob-code\b/g, "b-c");
-//   html = html.replace(/\bblob-num\b/g, "b-n");
-//   html = html.replace(/\bblob-/g, "b-");
-//   html = html.replace(/\bmarkdown-body/g, "md-b");
-//   html = html.replace(/ data-line-number="(\d*)"/g, " data-ln=$1");
-//   html = html.replace(/([^\s]*)-line-number/g, "$1-ln");
-//   html = html.replace(/([^\s]*)-file-line/g, "$1-fln");
-//   html = html.replace(/^\s+</g, "<");
-//   if (!testing)
-//     html +=
-//       "\n\n<!-- Gist HTML loaded by @justsml/gatsby-remark-embed-gist -->";
-//   return html;
-// }
 /**
  * Shrinks size of HTML returned by the GitHub/Gist API.
  * @param {string} html input HTML
- * @param {boolean} [testing=false] only for tests, omits attribution comment.
+ * @param {number} [level=false] only for tests, omits attribution comment.
  * @returns {string} the mangled/truncated HTML.
  */
-function truncateGist(html: string, testing = false) {
-  // WARNING: This doesn't differentiate between gist's table markup and your content inside it!
-  html = replaceAll(html, /\bfile-[^\s]*-L/gim, "L");
-  html = replaceAll(html, /\bblob-code\b/gm, "b-c");
-  html = replaceAll(html, /\bblob-num\b/gm, "b-n");
-  html = replaceAll(html, /\bblob-/gm, "b-");
-  html = replaceAll(html, /\bmarkdown-body/gm, "md-b");
-  html = replaceAll(html, /\bdata-line-number=/gm, "data-ln=");
-  html = replaceAll(html, /([^\s]*)-line-number/gm, "$1-ln");
-  html = replaceAll(html, /([^\s]*)-file-line/gm, "$1-fln");
+function truncateGist(html: string, level: 0 | 1 | 2 = 0): string {
+  // DANGER: This could mangle your content!
+  if (level >= 2) {
+    html = replaceAll(html, /\bfile-[^\s]*-L/gim, "L");
+    html = replaceAll(html, /\bblob-code\b/gm, "b-c");
+    html = replaceAll(html, /\bblob-num\b/gm, "b-n");
+    html = replaceAll(html, /\bblob-/gm, "b-");
+    html = replaceAll(html, /\bmarkdown-body/gm, "md-b");
+  }
+  if (level >= 1) {
+    html = replaceAll(html, /\bdata-line-number=/gm, "data-ln=");
+    html = replaceAll(html, /([^\s]*)-line-number/gm, "$1-ln");
+    html = replaceAll(html, /([^\s]*)-file-line/gm, "$1-fln");
+  }
+  // Remove whitespace at the beginning of lines
   html = replaceAll(html, /^\s+</gm, "<");
-
+  // Remove extra blank lines
   html = replaceAll(html, /^\s+$\n/gim, "\n");
   return html;
 }
 
 const replaceAll = (str: string, pattern: RegExp, replace: string): string => {
-	if (!str) throw new Error("Missing Gist data for: " + props.path);
+  if (!str) throw new Error("Missing Gist data for: " + props.path);
   const result = str.replace(pattern, replace);
   if (result === str) return result;
   return replaceAll(result, pattern, replace);
@@ -256,12 +245,16 @@ let gist: any;
 gist = await diskCache.get(props.path);
 let loadedFromCache = true;
 if (!gist) {
-	loadedFromCache = false;
+  loadedFromCache = false;
   gist = await loadGist(props.path, {
     username: "justsml",
     secretToken: GITHUB_TOKEN,
+    truncate: true,
     includeDefaultCss: true,
     gistDefaultCssInclude: false,
+  }).catch((error) => {
+    console.error("Failed to load gist", error);
+    return null;
   });
   diskCache.set(props.path, gist);
 }
@@ -269,11 +262,31 @@ const stylesheetUrl = gist?.stylesheet;
 ---
 
 {
-  gist && (
+  gist ? (
     <astro-embed-gist data-cssurl={stylesheetUrl}>
       <p class="gist-embed-description">{gist.description}</p>
       <Fragment set:html={gist.div} />
     </astro-embed-gist>
+  ) : (
+    <div
+      class="gist-plugin-error"
+      style={{
+        backgroundColor: "#FFEBEE",
+        color: "#F50000",
+        padding: "4rem",
+        width: "35ch",
+        border: "4 dashed #F50000",
+        margin: "0 auto",
+      }}
+    >
+      <h3
+        style={{
+          margin: "5rem auto",
+        }}
+      >
+        Failed to load requested Gist
+      </h3>
+    </div>
   )
 }
 <style>

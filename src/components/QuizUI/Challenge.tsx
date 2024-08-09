@@ -88,7 +88,9 @@ export default function Challenge({
   };
 
   useEffect(() => {
-    if (challengeClass && challengeClass.includes(" ")) {
+    const hasAnimation = challengeClass.includes("shake") || challengeClass.includes("pulse");
+
+    if (challengeClass && hasAnimation) {
       const [answer] = challengeClass.split(" ");
       setTimeout(() => {
         setChallengeClass(answer);
@@ -97,13 +99,9 @@ export default function Challenge({
   }, [challengeClass]);
 
   useEffect(() => {
-    // console.log("challengeRef.current", challengeRef.current);
-    // console.log("challengeRef.current", challengeRef.current?.querySelector);
     if (challengeRef.current) {
       const e = challengeRef.current.querySelector(".explanation")?.innerHTML;
       if (e) setExplanationText(e);
-      // console.log("explanation", e);
-      // hints = challengeRef.current.querySelector(".hints")?.innerHTML;
     }
   }, [explanationText]);
 
@@ -113,7 +111,6 @@ export default function Challenge({
   return (
     <div className={"challenge " + challengeClass} ref={challengeRef}>
       <h2 className="title" id={slugify(title)}>
-        {/* <CheckedBoxIcon className="icon" /> */}
         {isCorrect === undefined && (
           <QuestionMarkCircledIcon className="icon" />
         )}
