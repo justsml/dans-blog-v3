@@ -17,6 +17,12 @@
       0 0 82px var(--neon-cyan);
   }
 
+  /* &:hover {
+    img {
+      box-shadow: 0 0 2px #fff, 0 0 5px #fff, 0 0 8px var(--neon-cyan), 0 0 16px var(--neon-cyan), 0 0 32px var(--neon-cyan);
+    }
+  } */
+
 
   nav h2 a {
     display: flex;
@@ -26,19 +32,39 @@
     column-gap: 0.25rem;
     font-size: 1.33rem;
   
+    transition: all 0.2s ease-out;
     
     img {
-      border: 1.8px solid transparent;
+      transition: all 0.2s ease-out;
+      /* border: 1.8px solid transparent; */
+      border: 1.8px solid #fff;
       transition: all 0.2s ease-in;
+      /* box-shadow: none; */
+      box-shadow: 0 0 2px #fff, 0 0 5px #fff, 0 0 8px var(--neon-cyan), 0 0 16px var(--neon-cyan);
+
     }
   }
 
-  nav h2 a:hover {
-    transform: scale(1.025);
+  nav h2:hover {
+    text-shadow: /* White glow */
+    0 0 2px #fff,
+    0 0 5px #fff,
+    /* Color glow */
+    0 0 10px var(--neon-cyan),
+    0 0 21px var(--neon-cyan),
+    0 0 42px var(--neon-cyan),
+    0 0 62px var(--neon-cyan),
+    0 0 82px var(--neon-cyan),
+    0 0 102px var(--neon-cyan);
+
+  }
+  nav h2:hover a {
+    transform: scale(1.0125);
     /* color: var(--neon-cyan); */
 
     img {
       border: 1.8px solid var(--neon-pink);
+      box-shadow: 0 0 2px #fff, 0 0 5px #fff, 0 0 8px var(--neon-cyan), 0 0 16px var(--neon-cyan), 0 0 32px var(--neon-cyan);
     }
   }
 

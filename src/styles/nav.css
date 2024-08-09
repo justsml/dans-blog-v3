@@ -73,7 +73,7 @@ main {
   }
 }
 main, body > header {
-  width: clamp(300px, 99%, 920px);
+  width: clamp(380px, 80%, 820px);
   margin: 0 auto;
 }
 header h2 .title {
