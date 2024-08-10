@@ -263,7 +263,7 @@ main pre {
   border-radius: 0.5rem;
 }
 
-main .article-list {
+.article-list {
   display: grid;
   grid-template-columns: repeat(auto-fit,minmax(220px, 260px));
   
@@ -276,6 +276,22 @@ main .article-list {
 
   /* max-width: 700px; */
   margin: 0 auto;
+}
+
+.article-card {
+  position: relative;
+  display: grid;
+
+  width: clamp(220px, 80vw, 100%);
+  margin: 0 0.75rem;
+  grid-template-rows: 4.25rem 210px auto max-content;
+  /* gap: 1rem; */
+  padding: 1rem;
+  border-radius: 1.5rem;
+  background-color: hsl(var(--secondary));
+  box-shadow: 0 0 1rem 0.25rem hsla(var(--card-foreground));
+  transition: box-shadow 0.25s ease-in-out;
+  color: var(--muted);
 
   img {
     border-radius: 100%;
@@ -285,56 +301,39 @@ main .article-list {
     width: 200px;
     height: 200px;
   }
-  .article-card {
-    position: relative;
-    display: grid;
 
-    width: clamp(220px, 80vw, 100%);
-    margin: 0 0.75rem;
-    grid-template-rows: 4.25rem 210px auto max-content;
-    /* gap: 1rem; */
-    padding: 1rem;
-    border-radius: 1.5rem;
-    background-color: hsl(var(--secondary));
-    box-shadow: 0 0 1rem 0.25rem hsla(var(--card-foreground));
-    transition: box-shadow 0.25s ease-in-out;
-    color: var(--muted);
-    &:hover {
-      box-shadow: 0 0 1rem 0.25rem hsla(var(--primary-foreground));
-      color: #dedede;
-    }
+  &:hover {
+    box-shadow: 0 0 1rem 0.25rem hsla(var(--primary-foreground));
+    color: #dedede;
+  }
 
-    h2 {
-      font-size: 1.4rem;
-      font-family: "Raleway", sans-serif;
-      margin-top: 0.75rem;
-      margin-bottom: 0;
-      margin-left: 0;
-      margin-right: 0;
-      line-height: 1.25;
-      /* font-weight: 700; */
-      /* color: var(--neon-cyan); */
-    }
-    p {
+  h2 {
+    font-size: 1.4rem;
+    font-family: "Raleway", sans-serif;
+    margin-top: 0.75rem;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    line-height: 1.25;
+    /* font-weight: 700; */
+    /* color: var(--neon-cyan); */
+  }
 
-    }
+  .small-label {
+    font-size: 0.75rem;
+    /* font-weight: 700; */
+    color: #ddd;
+    /* margin: 0 auto 0 0; */
 
-    .small-label {
-      font-size: 0.75rem;
-      /* font-weight: 700; */
-      color: #ddd;
-      /* margin: 0 auto 0 0; */
+    position: absolute;
+    right: 0.75rem;
+    top: 0.75rem;
+  }
 
-      position: absolute;
-      right: 0.75rem;
-      top: 0.75rem;
-    }
-
-    .read-more {
-      color: var(--neon-cyan);
-      font-size: 1rem;
-      font-weight: 700;
-    }
+  .read-more {
+    color: var(--neon-cyan);
+    font-size: 1rem;
+    font-weight: 700;
   }
 }
 
@@ -453,5 +452,47 @@ pre.astro-code {
   }
   .line:first-child {
     margin-left: -0.25rem;
+  }
+}
+
+
+/* Contact form */
+.contact-form {
+  .success-message, .error-message, .loading-message {
+    display: none;
+  }
+
+  &.loading {
+    .form-item {
+      display: none;
+    }
+    .loading-message {
+      display: block;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      animation: spin 1s linear infinite;
+      pointer-events: none;
+    }
+  }
+  &.success {
+    .form-item {
+      display: none;
+    }
+    .success-message {
+      display: block;
+    }
+    .error-message {
+      display: none;
+    }
+  }
+
+  &.failure {
+    .success-message {
+      display: none;
+    }
+    .error-message {
+      display: block;
+    }
   }
 }

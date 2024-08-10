@@ -1,4 +1,5 @@
 ---
+import { ContactForm } from "../components/ContactForm";
 import { SITE_DESCRIPTION } from "../consts";
 import Layout from "../layouts/Page.astro";
 
@@ -12,7 +13,9 @@ const reCaptchaSiteKey =
   "";
 ---
 
-<script is:inline src="https://www.google.com/recaptcha/api.js?render=explicit"></script>
+<script is:inline src="https://www.google.com/recaptcha/api.js?render=explicit"
+></script>
+
 
 <Layout
   frontmatter={{
@@ -20,36 +23,7 @@ const reCaptchaSiteKey =
     subTitle: SITE_DESCRIPTION,
   }}
 >
-  <form
-    name="contact"
-    class="contact-me"
-    method="POST"
-    data-netlify="true"
-    data-netlify-honeypot="bot-field"
-    data-netlify-recaptcha="true"
-  >
-    <input type="hidden" name="form-name" value="contact" />
-    <label class:list="bot-food">
-      Don't fill this out if you're human: <input name="bot-field" />
-    </label>
-    <label>
-      Your Name: <input type="text" name="name" />
-    </label>
-    <label>
-      Your Email: <input type="email" name="email" />
-    </label>
-    <label style="grid-column: span 2;">
-      Message: <textarea name="message"></textarea>
-    </label>
-    <div id="recaptcha" data-recaptcha-site-key={reCaptchaSiteKey}></div>
-    <button type="submit">Send</button>
-    <div class:list="success-message" style="display: none;">
-      <p>Thanks for reaching out!</p>
-    </div>
-    <div class:list="error-message" style="display: none;">
-      <p>There was an error sending your message. Please try again later.</p>
-    </div>
-  </form>
+  <ContactForm reCaptchaSiteKey={reCaptchaSiteKey} />
 </Layout>
 
 <script>
@@ -69,18 +43,23 @@ const reCaptchaSiteKey =
 
     if (!$form) return console.error("No form found");
     if (!$reCaptchaSiteKey)
-      return console.error("No reCaptcha response hidden field found");
+      return console.error("No reCaptcha Site Key found");
     reCaptchaSiteKey =
       // @ts-ignore
       $reCaptchaSiteKey?.dataset?.recaptchaSiteKey ||
-      $reCaptchaSiteKey?.getAttribute("data-recaptcha-site-key") || '';
+      $reCaptchaSiteKey?.getAttribute("data-recaptcha-site-key") ||
+      "";
 
     if (!reCaptchaSiteKey) return console.error("No reCaptcha site key found");
 
-    renderReCaptcha();
+    // setTimeout(renderReCaptcha, 200);
+    // @ts-ignore
+    window.grecaptcha.ready(() => {
+      renderReCaptcha();
+    });
     hideBotFood();
 
-    $form.addEventListener("submit", handleSubmit);
+    document.body.addEventListener("submit", handleSubmit);
   });
 
   function hideBotFood() {
@@ -98,7 +77,7 @@ const reCaptchaSiteKey =
       theme: "light",
       size: "compact",
       callback: (response: unknown) => {
-        $gRecaptchaResponse!.value = response as string;
+        if ($gRecaptchaResponse) $gRecaptchaResponse!.value = response as string;
         console.log("reCaptcha response:", response);
       },
     });
@@ -107,21 +86,12 @@ const reCaptchaSiteKey =
   function handleResponse(succeeded: boolean) {
     if (succeeded) {
       $form?.classList.add("success");
+      $form?.classList.remove("failure");
     } else {
+      $form?.classList.add("failure");
       $form?.classList.remove("success");
     }
-
-    const $successMessage: HTMLDivElement | null =
-      document.querySelector(".success-message");
-    const $errorMessage: HTMLDivElement | null =
-      document.querySelector(".error-message");
-    if (succeeded) {
-      $successMessage?.style.removeProperty("display");
-      $errorMessage?.style.setProperty("display", "none");
-    } else {
-      $successMessage?.style.setProperty("display", "none");
-      $errorMessage?.style.removeProperty("display");
-    }
+    $form?.classList.remove("loading");
   }
 
   async function handleSubmit(event: Event) {
@@ -133,7 +103,10 @@ const reCaptchaSiteKey =
     // @ts-ignore
     const recaptchaResponse = window.grecaptcha.getResponse();
     if (!recaptchaResponse) {
-      return console.error("reCaptcha not completed");
+      console.error("reCaptcha not completed");
+      $form?.classList.remove("loading");
+      $form?.classList.add("failure");
+      return;
     }
     formData.set("g-recaptcha-response", recaptchaResponse);
     const response = await fetch("/", {
@@ -143,7 +116,11 @@ const reCaptchaSiteKey =
       },
       // @ts-ignore
       body: new URLSearchParams(formData).toString(),
+    }).catch((error) => {
+      console.error("Error submitting form", error);
+      return { ok: false };
     });
+
     handleResponse(response.ok);
 
     if (response.ok) {
@@ -152,12 +129,4 @@ const reCaptchaSiteKey =
       console.error("Form submission failed");
     }
   }
-
-  // function encode(data: Record<string, string>) {
-  //   return Object.keys(data)
-  //     .map(
-  //       (key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
-  //     )
-  //     .join("&");
-  // }
 </script>
