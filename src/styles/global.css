@@ -44,7 +44,7 @@
     --destructive: 0 100% 30%;
     --destructive-foreground: 210 5% 90%;
     --border: 210 30% 18%;
-    --input: 210 30% 18%;
+    --input: 210 10% 33%;
     --ring: var(--neon-pink);
     --radius: 0.5rem;
 

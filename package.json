@@ -1,7 +1,7 @@
 {
   "name": "dans-blog-v3",
   "type": "module",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "scripts": {
     "gen-images": "bun run ./src/scripts/responsive-images.ts",
     "dev": "astro dev",

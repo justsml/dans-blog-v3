@@ -139,8 +139,7 @@ const NavMenu = () => {
                   >
                     <div className="CalloutHeading">Demos &amp; Examples</div>
                     <p className="CalloutText" style={{ gridColumn: "span 2" }}>
-                      Check out a selection of my examples, experiments and misc
-                      repos.
+                      A selection of my projects, experiments and assorted repos.
                     </p>
                   </a>
                 </NavigationMenu.Link>
@@ -175,7 +174,7 @@ const NavMenu = () => {
                 title="Elysia &amp; HTMX magic"
               >
                 A refactored Bun + HTMX experiment. Showcases Elysia's beautiful
-                API, as my favorite Express alternative.
+                API - my favorite Express alternative.
               </ListItem>
               <ListItem
                 href="https://github.com/justsml/modern-app-template"
