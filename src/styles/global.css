@@ -14,6 +14,9 @@
     --neon-blue: 240 97% 32%;
     --neon-orange: 24 100% 50%;
 
+    --highlight: #f9f9f9;
+
+    --text-color: #FFFFFF;
     /* --mobile-screen-break: 580px; */
     /* --neon-cyan-gradient: linear-gradient(to top left, hsl(var(--neon-cyan)), hsl(var(--neon-cyan)));
     --neon-pink-gradient: linear-gradient(to top left, hsl(var(--neon-pink)), hsl(var(--neon-pink)));
@@ -104,10 +107,6 @@
   a {
     /* @apply text-primary; */
     color: var(--neon-cyan);
-  }
-
-  p {
-    @apply text-secondary;
   }
 
   h1 {
@@ -342,7 +341,7 @@ div.separator {
 }
 
 body {
-  padding: 0.5rem auto 1rem auto;
+  padding: 0.5rem 0 1rem 0;
 }
 
 main {
@@ -457,7 +456,34 @@ pre.astro-code {
 
 
 /* Contact form */
+.columns-all {
+  grid-column: 1 / -1;
+}
 .contact-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin: 0 auto;
+  max-width: 600px;
+
+
+  @media (min-width: 600px) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  button {
+    border: 1px solid var(--neon-pink);
+    background-color: var(--highlight);
+    font-size: 1.5rem;
+    font-weight: 300;
+    padding: 1.5rem 2.5rem;
+
+    &:hover {
+      background-color: var(--highlight);
+      text-decoration: underline;
+    }
+  }
+
   .success-message, .error-message, .loading-message {
     display: none;
   }

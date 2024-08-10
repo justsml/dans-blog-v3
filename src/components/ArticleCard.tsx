@@ -51,7 +51,7 @@ export const ArticleCard = ({
       <InfoLabel
         text={[`created ${createdAgo} ago`, `updated ${modifiedAgo} ago`]}
       >
-        <CalendarIcon className="icon" width={20} height={20} />
+        <CalendarIcon className="icon" width={20} height={20} strokeWidth={1} />
       </InfoLabel>
     </a>
   );

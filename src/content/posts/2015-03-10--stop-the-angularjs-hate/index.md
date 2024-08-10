@@ -2,7 +2,7 @@
 title:  "AngularJS Tricks"
 subTitle: AngularJS CAN BE Fun!
 date: 2015-02-26
-modified: 2018-01-01
+modified: 2016-02-01
 category: Code
 subCategory: angularjs
 tags: [angularjs, development, performance, programming]
@@ -82,7 +82,7 @@ user-widget
 
 1.  Use 1-way binding ( e.g. `{ :: title }` )
 1.  Limit recursive nesting of directives
-1.  And if you must nest directives, _NEVER_ do so inside an `ng-repeat` - Performance will start to inversely mirror something like `O(n^2)^3` ;)
+1.  And if you must nest directives, _NEVER_ do so inside an `ng-repeat` - Performance will start to mirror something like `O(n^2)^3` ;)
     I. Use native JS/DOM code in a factory pattern to create basic DOM/UI fragments, examples: Modal msg box, status bar. Call UI factories from either directives or controllers.
 1.  _Bonus:_ Understand cost and triggers of [browser render lifecycle](https://developers.google.com/web/fundamentals/performance/rendering/index?hl=en): animation, composite rendering, reflows
 

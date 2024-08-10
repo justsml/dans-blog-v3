@@ -1,7 +1,7 @@
 ---
 title:  "Docker rocks & now works on OSX"
-date: 2015-06-11 05:00:12
-modified: 2024-07-30
+date: 2015-06-11
+modified: 2024-08-10
 category: DevOps
 subCategory: docker
 tags: [docker, boot2docker, devops]

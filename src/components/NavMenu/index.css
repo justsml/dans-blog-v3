@@ -175,7 +175,7 @@
   background: var(--neon-bg-6);
   color: var(--background);
   .CalloutHeading {
-    color: var(--background);
+    color: var(--text-color);
   }
 }
 .neon-bg-7 {
@@ -189,7 +189,7 @@
 /* reset */
 button,
 p {
-  color: var(--muted);
+  color: var(--text-color);
 }
 
 p {
@@ -353,6 +353,7 @@ pre {
   position: absolute;
   top: 0;
   left: 0;
+  width: 100%;
   /* width: 100vw; */
   animation-duration: 250ms;
   animation-timing-function: ease;
@@ -406,6 +407,7 @@ pre {
   position: relative;
   transform-origin: top center;
   margin-top: 0.75rem;
+  margin-bottom: 3rem;
   width: 100%;
   background-color: white;
   border-radius: 0.5rem;
@@ -450,14 +452,30 @@ pre {
   padding-top: 0;
   gap: 1rem;
 
+  width: 100%;
+
   &.two {
     grid-template-columns: 1fr 1fr;
   }
 }
 
+.panel-projects {
+  grid-column: unset;
+  grid-row: 1 / -1;
+}
+
 @media only screen and (max-width: 580px) {
+  /* Mobile overrides */
+
+  .panel-projects {
+    grid-column: 1 / -1;
+    grid-row: unset;
+  }
+
   .List {
-    padding: 1.5rem 2rem;
+    /* padding: 1rem 1rem; */
+    gap: 1rem;
+    padding: 0;
   }
   .List.one {
     max-width: 100vw;
@@ -490,11 +508,11 @@ pre {
     padding: 1.5rem 2rem;
   }
   .List.one {
-    max-width: 630px;
+    max-width: 85vw;
     grid-template-columns: 0.75fr 1fr;
   }
   .List.two {
-    max-width: 630px;
+    max-width: 85vw;
     /* grid-auto-flow: column; */
     grid-template-rows: repeat(2, 1fr);
   }
@@ -563,9 +581,9 @@ pre {
 
 .CalloutHeading {
   color: white;
-  font-size: 1.125rem;
-  font-weight: 500;
-  line-height: 1.2;
+  font-size: 1.5rem;
+  font-weight: 100;
+  line-height: 1.1;
   margin-top: 1rem;
   margin-bottom: 0.4375rem;
   color: var(--neon-cyan);
@@ -573,7 +591,9 @@ pre {
 
 .ContactSubMenu {
   .CalloutHeading {
-    color: #333;
+    color: var(--accent);
+    font-size: 2rem;
+    font-weight: 100;
   }
 }
 .CalloutText {
@@ -584,12 +604,17 @@ pre {
   gap: 1rem;
   margin-top: 1rem;
 
-  .col-2 {
-    grid-template-columns: 1fr 1fr;
-  }
-
   .CategoryItem {
     width: 38%;
+  }
+}
+
+.item-categories {
+  
+  .CalloutText {
+    display: grid;
+
+    grid-template-columns: repeat(auto-fill, minmax(7rem, 1fr));
   }
 }
 
@@ -635,6 +660,7 @@ pre {
   display: block;
   height: 1rem;
   margin-top: 0.8rem;
+  opacity: .5;
 }
 
 .ArticleCard {

@@ -73,25 +73,10 @@ main {
   }
 }
 main, body > header {
-  width: clamp(380px, 80%, 820px);
+  width: clamp(380px, 90%, 820px);
+  max-width: 820px;
   margin: 0 auto;
 }
 header h2 .title {
   display: block;
 }
-
-/* @media only screen and (min-width: 768px) {
-  main, body > header {
-    width: 700px;
-  }
-}
-@media only screen and (min-width: 992px) {
-  main, body > header {
-    width: 800px;
-  }
-}
-@media only screen and (min-width: 1200px) {
-  main, body > header {
-    width: 1000px;
-  }
-} */

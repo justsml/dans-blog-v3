@@ -4,7 +4,7 @@ subTitle: A timeless question...
 date: 2023-08-27
 modified: 2024-07-28
 tags: [engineering,git,rebase,merge]
-category: Code
+category: Thoughts
 subCategory: Git
 cover: casper-johansson-GBHnQXbY2Ts-unsplash-cropped.jpg
 cover_mobile: w300_casper-johansson-GBHnQXbY2Ts-unsplash-cropped.jpg

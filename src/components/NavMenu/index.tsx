@@ -24,6 +24,7 @@ const recentPosts = getRecentPosts();
 
 import { createPortal } from "react-dom";
 import { getComputedDates } from "../../shared/dateUtils";
+import { Badge } from "../ui/badge";
 
 // const popIdx = Math.floor(Math.random() * popularPosts.length);
 // const popularSelection = popularPosts[popIdx];
@@ -47,7 +48,7 @@ const NavMenu = () => {
           >
             
             <ul className="List one">
-            <li style={{ gridRow: "span 1" }}>
+            <li className="item-categories">
                 <NavigationMenu.Link asChild>
                   <div
                     className="Callout neon-bg-3"
@@ -61,14 +62,14 @@ const NavMenu = () => {
                           href={`/category/${slugify(category)}/`}
                           className="CalloutItem"
                         >
-                          {category} <sup>{count}</sup>
+                          {category} <Badge variant={"secondary"}>{count}</Badge>
                         </a>
                       ))}
                     </p>
                   </div>
                 </NavigationMenu.Link>
               </li>
-              <li style={{ gridRow: "span 1" }}>
+              <li className="item-popular">
                 <NavigationMenu.Link asChild>
                   <div
                     className="Callout neon-bg-2"
@@ -92,7 +93,7 @@ const NavMenu = () => {
                   </div>
                 </NavigationMenu.Link>
               </li>
-            <li style={{ gridColumn: "span 2" }}>
+            <li className="item-recent columns-all">
                 <NavigationMenu.Link asChild>
                   <div
                     className="Callout neon-bg-6"
@@ -116,16 +117,6 @@ const NavMenu = () => {
                   </div>
                 </NavigationMenu.Link>
               </li>
-              {/* {categories.map(([tag, count]) => (
-                <ListItem
-                  key={tag}
-                  title={tag}
-                  href={`/category/${slugify(tag)}/`}
-                  className="CategoryItem"
-                >
-                  {tag} <sup>{count}</sup>
-                </ListItem>
-              ))} */}
             </ul>
           </NavigationMenu.Content>
         </NavigationMenu.Item>
@@ -139,7 +130,7 @@ const NavMenu = () => {
             className="NavigationMenuContent"
           >
             <ul className="List two">
-              <li style={{ gridRow: "span 2" }}>
+              <li className="panel-projects">
                 <NavigationMenu.Link asChild>
                   <a
                     className="Callout neon-bg-2"
@@ -243,6 +234,14 @@ const NavMenu = () => {
                     <div className="CalloutHeading">Contact Me</div>
                     <p className="CalloutText">
                     <span className="SocialLinks">
+
+                      <a href="/contact">
+                        <span className="Icon">
+                          <EnvelopeClosedIcon className="svg-icon" width={30} height={30} />
+                        </span>
+                        <label><code>&lt;form&gt;</code></label>
+                      </a>
+
                       <a href="http://twitter.com/justsml" target="_blank">
                         <span className="Icon">
                           <TwitterLogoIcon className="svg-icon" width={30} height={30} />
@@ -270,13 +269,6 @@ const NavMenu = () => {
                           <RocketIcon className="svg-icon" width={30} height={30} />
                         </span>
                         <label>Résumé (PDF)</label>
-                      </a>
-
-                      <a href="mailto:dan@danlevy.net">
-                        <span className="Icon">
-                          <EnvelopeClosedIcon className="svg-icon" width={30} height={30} />
-                        </span>
-                        <label>dan@danlevy.net</label>
                       </a>
 
                     </span>

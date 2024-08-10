@@ -5,6 +5,7 @@ modified: 2024-07-30
 category: Code
 subCategory: javascript
 draft: true
+publish: true
 tags: [javascript, programming, performance, patterns]
 cover: markus-spiske-197281-unsplash.jpg
 cover_mobile: w300_markus-spiske-197281-unsplash.jpg

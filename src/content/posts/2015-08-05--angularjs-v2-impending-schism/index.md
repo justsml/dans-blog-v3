@@ -1,8 +1,8 @@
 ---
 title:  "AngularJS v2.0 and the Impending Schism"
 date: 2015-08-05
-modified: 2018-09-30
-category: Code
+modified: 2016-11-30
+category: Thoughts
 subCategory: angularjs
 tags: [programming, angularjs, javascript, python, opinion]
 cover: alex-perez-753751-unsplash.jpg
