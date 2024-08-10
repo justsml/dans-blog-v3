@@ -27,6 +27,8 @@ const reCaptchaSiteKey =
 </Layout>
 
 <script>
+  var $hideBotRetries = 0;
+  var $hideBotInterval: NodeJS.Timer | null = null;
   let reCaptchaSiteKey = "";
   let $form: HTMLFormElement | null = null;
   let $gRecaptchaResponse: HTMLInputElement | null = null;
@@ -57,13 +59,29 @@ const reCaptchaSiteKey =
     window.grecaptcha.ready(() => {
       renderReCaptcha();
     });
-    hideBotFood();
+    $hideBotInterval = setInterval(hideBotFood, 200);
 
     document.body.addEventListener("submit", handleSubmit);
   });
 
+  const BOT_CLEAR_RETRY_LIMIT = 10;
   function hideBotFood() {
+    console.info("hideBotFood()", { $hideBotRetries, $hideBotInterval });
+    // @ts-ignore
+    window.$hideBotRetries = window.$hideBotRetries || 0;
+    // @ts-ignore
+    window.$hideBotRetries++;
+    
+    if ($hideBotRetries > BOT_CLEAR_RETRY_LIMIT && $hideBotInterval) {
+      console.warn("Failed to hide bot food");
+      return clearInterval($hideBotInterval);
+    }
+
     const botFields = document.querySelectorAll(".bot-food");
+    if (botFields.length > 0 && $hideBotInterval) {
+      console.info(`Hiding ${botFields.length} bot fields`);
+      clearInterval($hideBotInterval);
+    }
     botFields.forEach((field) => {
       // @ts-ignore
       field.style.display = "none";
@@ -75,7 +93,7 @@ const reCaptchaSiteKey =
     window.grecaptcha.render("recaptcha", {
       sitekey: reCaptchaSiteKey,
       theme: "light",
-      size: "compact",
+      // size: "compact",
       callback: (response: unknown) => {
         if ($gRecaptchaResponse) $gRecaptchaResponse!.value = response as string;
         console.log("reCaptcha response:", response);
@@ -96,10 +114,10 @@ const reCaptchaSiteKey =
 
   async function handleSubmit(event: Event) {
     event.preventDefault();
-    $form?.classList.add("loading");
     const form: HTMLFormElement | null = event.target as HTMLFormElement;
     if (!form) return console.error("Invalid form configuration!");
     const formData = new FormData(form);
+    $form?.classList.add("loading");
     // @ts-ignore
     const recaptchaResponse = window.grecaptcha.getResponse();
     if (!recaptchaResponse) {

@@ -29,6 +29,7 @@ const FormSchema = z.object({
   message: z.string().min(5, {
     message: "Message must be at least 5 characters.",
   }),
+  botField: z.string().optional(),
 });
 
 export function ContactForm({
@@ -42,6 +43,7 @@ export function ContactForm({
       name: "",
       email: "",
       message: "",
+      botField: "",
     },
   });
 
@@ -59,22 +61,36 @@ export function ContactForm({
   return (
     <Form {...form}>
       <form
-      name="contact"
+        name="contact"
         onSubmit={form.handleSubmit(onSubmit)}
         className="w-2/3 space-y-6 mt-10 mx-auto contact-form"
         data-netlify="true"
-        data-netlify-honeypot="bot-field"
-        data-netlify-recaptcha="true"    
+        data-netlify-honeypot="botField"
+        data-netlify-recaptcha="true"
       >
         <input type="hidden" name="form-name" value="contact" />
+
+        <FormField
+          control={form.control}
+          name="botField"
+          render={({ field }) => (
+            <FormItem className="columns-all form-item bot-food">
+              <FormLabel>Fellow Humans, leave this field blank</FormLabel>
+              <FormControl>
+                <Input type="text" placeholder="For the robots..." {...field} />
+              </FormControl>
+            </FormItem>
+          )}
+        />
+
         <FormField
           control={form.control}
           name="name"
           render={({ field }) => (
-            <FormItem className="form-item">
+            <FormItem className="form-item name-field">
               <FormLabel>Name</FormLabel>
               <FormControl>
-                <Input placeholder="name" {...field} />
+                <Input placeholder="" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -84,10 +100,10 @@ export function ContactForm({
           control={form.control}
           name="email"
           render={({ field }) => (
-            <FormItem className="form-item">
+            <FormItem className="form-item email-field">
               <FormLabel>Email</FormLabel>
               <FormControl>
-                <Input placeholder="email" {...field} />
+                <Input placeholder="" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -98,7 +114,9 @@ export function ContactForm({
           control={form.control}
           name="message"
           render={({ field }) => (
-            <FormItem style={{ gridColumn: "span 2" }}>
+            <FormItem
+              className="form-item columns-all message-field"
+            >
               <FormLabel>Message</FormLabel>
               <FormControl>
                 <Textarea placeholder="Type your message here." {...field} />
@@ -107,25 +125,29 @@ export function ContactForm({
             </FormItem>
           )}
         />
-        
-        <div className="loading-message">
-          <RefreshCcwIcon />
+
+        <div className="loading-message columns-all">
+          <RefreshCcwIcon width={"3rem"} height={"3rem"} />
         </div>
 
-        <div id="recaptcha" data-recaptcha-site-key={reCaptchaSiteKey}></div>
+        <div id="recaptcha" className="columns-all" data-recaptcha-site-key={reCaptchaSiteKey}></div>
 
-        <Button type="submit" variant="default">Send</Button>
+        <aside className="success-message columns-all">
+          <p>Thanks for reaching out!</p>
+        </aside>
+        <aside className="error-message columns-all">
+          <p>
+            There was an error sending your message. Please check the form and
+            try again.
+          </p>
+        </aside>
+
+        <Button type="submit" variant="default">
+          Send Message
+        </Button>
 
         <input type="hidden" name="g-recaptcha-response" />
 
-        <aside className="success-message">
-          <p>Thanks for reaching out!</p>
-        </aside>
-        <aside className="error-message">
-          <p>
-            There was an error sending your message. Please check the form and try again.
-          </p>
-        </aside>
       </form>
     </Form>
   );
