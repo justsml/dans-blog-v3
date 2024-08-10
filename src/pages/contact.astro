@@ -74,12 +74,14 @@ const reCaptchaSiteKey =
     
     if ($hideBotRetries > BOT_CLEAR_RETRY_LIMIT && $hideBotInterval) {
       console.warn("Failed to hide bot food");
+      // @ts-ignore
       return clearInterval($hideBotInterval);
     }
 
     const botFields = document.querySelectorAll(".bot-food");
     if (botFields.length > 0 && $hideBotInterval) {
       console.info(`Hiding ${botFields.length} bot fields`);
+      // @ts-ignore
       clearInterval($hideBotInterval);
     }
     botFields.forEach((field) => {
