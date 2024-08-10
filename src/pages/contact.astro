@@ -1,0 +1,163 @@
+---
+import { SITE_DESCRIPTION } from "../consts";
+import Layout from "../layouts/Page.astro";
+
+const reCaptchaSiteKey =
+  import.meta.env.SITE_RECAPTCHA_KEY ||
+  import.meta.env.PUBLIC_SITE_RECAPTCHA_KEY ||
+  import.meta.env.VITE_SITE_RECAPTCHA_KEY ||
+  import.meta.env.PUBLIC_RECAPTCHA_SITE_KEY ||
+  import.meta.env.VITE_RECAPTCHA_SITE_KEY ||
+  import.meta.env.RECAPTCHA_SITE_KEY ||
+  "";
+---
+
+<script is:inline src="https://www.google.com/recaptcha/api.js?render=explicit"></script>
+
+<Layout
+  frontmatter={{
+    title: "Contact Dan!",
+    subTitle: SITE_DESCRIPTION,
+  }}
+>
+  <form
+    name="contact"
+    class="contact-me"
+    method="POST"
+    data-netlify="true"
+    data-netlify-honeypot="bot-field"
+    data-netlify-recaptcha="true"
+  >
+    <input type="hidden" name="form-name" value="contact" />
+    <label class:list="bot-food">
+      Don't fill this out if you're human: <input name="bot-field" />
+    </label>
+    <label>
+      Your Name: <input type="text" name="name" />
+    </label>
+    <label>
+      Your Email: <input type="email" name="email" />
+    </label>
+    <label style="grid-column: span 2;">
+      Message: <textarea name="message"></textarea>
+    </label>
+    <div id="recaptcha" data-recaptcha-site-key={reCaptchaSiteKey}></div>
+    <button type="submit">Send</button>
+    <div class:list="success-message" style="display: none;">
+      <p>Thanks for reaching out!</p>
+    </div>
+    <div class:list="error-message" style="display: none;">
+      <p>There was an error sending your message. Please try again later.</p>
+    </div>
+  </form>
+</Layout>
+
+<script>
+  let reCaptchaSiteKey = "";
+  let $form: HTMLFormElement | null = null;
+  let $gRecaptchaResponse: HTMLInputElement | null = null;
+  // g-recaptcha-response is the token that you'll submit as part of the form
+  // on DOMDontentLoaded, render the reCaptcha widget
+  document.addEventListener("DOMContentLoaded", async () => {
+    const $reCaptchaSiteKey: HTMLDivElement | null = document.querySelector(
+      "[data-recaptcha-site-key]"
+    );
+    $form = document.querySelector('form[name="contact"]');
+    $gRecaptchaResponse = document.querySelector(
+      '[name="g-recaptcha-response"]'
+    );
+
+    if (!$form) return console.error("No form found");
+    if (!$reCaptchaSiteKey)
+      return console.error("No reCaptcha response hidden field found");
+    reCaptchaSiteKey =
+      // @ts-ignore
+      $reCaptchaSiteKey?.dataset?.recaptchaSiteKey ||
+      $reCaptchaSiteKey?.getAttribute("data-recaptcha-site-key") || '';
+
+    if (!reCaptchaSiteKey) return console.error("No reCaptcha site key found");
+
+    renderReCaptcha();
+    hideBotFood();
+
+    $form.addEventListener("submit", handleSubmit);
+  });
+
+  function hideBotFood() {
+    const botFields = document.querySelectorAll(".bot-food");
+    botFields.forEach((field) => {
+      // @ts-ignore
+      field.style.display = "none";
+    });
+  }
+
+  function renderReCaptcha() {
+    // @ts-ignore
+    window.grecaptcha.render("recaptcha", {
+      sitekey: reCaptchaSiteKey,
+      theme: "light",
+      size: "compact",
+      callback: (response: unknown) => {
+        $gRecaptchaResponse!.value = response as string;
+        console.log("reCaptcha response:", response);
+      },
+    });
+  }
+
+  function handleResponse(succeeded: boolean) {
+    if (succeeded) {
+      $form?.classList.add("success");
+    } else {
+      $form?.classList.remove("success");
+    }
+
+    const $successMessage: HTMLDivElement | null =
+      document.querySelector(".success-message");
+    const $errorMessage: HTMLDivElement | null =
+      document.querySelector(".error-message");
+    if (succeeded) {
+      $successMessage?.style.removeProperty("display");
+      $errorMessage?.style.setProperty("display", "none");
+    } else {
+      $successMessage?.style.setProperty("display", "none");
+      $errorMessage?.style.removeProperty("display");
+    }
+  }
+
+  async function handleSubmit(event: Event) {
+    event.preventDefault();
+    $form?.classList.add("loading");
+    const form: HTMLFormElement | null = event.target as HTMLFormElement;
+    if (!form) return console.error("Invalid form configuration!");
+    const formData = new FormData(form);
+    // @ts-ignore
+    const recaptchaResponse = window.grecaptcha.getResponse();
+    if (!recaptchaResponse) {
+      return console.error("reCaptcha not completed");
+    }
+    formData.set("g-recaptcha-response", recaptchaResponse);
+    const response = await fetch("/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      // @ts-ignore
+      body: new URLSearchParams(formData).toString(),
+    });
+    handleResponse(response.ok);
+
+    if (response.ok) {
+      console.log("Form submitted successfully");
+    } else {
+      console.error("Form submission failed");
+    }
+  }
+
+  // function encode(data: Record<string, string>) {
+  //   return Object.keys(data)
+  //     .map(
+  //       (key) => encodeURIComponent(key) + "=" + encodeURIComponent(data[key])
+  //     )
+  //     .join("&");
+  // }
+</script>

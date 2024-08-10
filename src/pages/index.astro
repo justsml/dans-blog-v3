@@ -9,7 +9,7 @@ import { Combobox } from "../components/ui/combobox";
 import type { ArticlePost } from "../types";
 // import ArticleFilterLinks from "../components/ArticleFilterLinks.astro";
 
-const posts = await PostCollections.getPosts();
+const posts = PostCollections.getPosts();
 
 const filterOptions = [
   { label: "By recently updated", value: "modified" },
@@ -95,4 +95,7 @@ const filterOptions = [
       console.error("TODO: redirect to categoryInvalid sort mode", mode);
     }
   }
+
+  window.sortCardsByDate = sortCardsByDate;
+  window.sortCardsBy = sortCardsBy;
 </script>

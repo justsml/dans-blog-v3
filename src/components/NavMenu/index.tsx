@@ -13,15 +13,14 @@ import {
   TwitterLogoIcon,
 } from "@radix-ui/react-icons";
 import { ListItem } from "./ListItem";
-import { ArticleCard } from "./ArticleCard";
 
-const { getCategoryCounts, getPopularPosts, getTagCounts, getRecentPosts } = PostCollections;
+const { getCategoryCounts, getPopularPosts, getRecentPosts } = PostCollections;
 
 const categories = getCategoryCounts();
 const popularPosts = getPopularPosts();
-const tagCounts = getTagCounts();
+// const tagCounts = getTagCounts();
 const recentPosts = getRecentPosts();
-const allPosts = PostCollections._posts;
+// const allPosts = PostCollections._posts;
 
 import { createPortal } from "react-dom";
 import { getComputedDates } from "../../shared/dateUtils";
@@ -81,7 +80,7 @@ const NavMenu = () => {
                         return (
                         <a
                           key={slug}
-                          title={title}
+                          title={title + " - " + subTitle}
                           href={`/${slug}/`}
                           className="CalloutItem"
                         >
@@ -105,7 +104,7 @@ const NavMenu = () => {
                         return (
                         <a
                           key={slug}
-                          title={title}
+                          title={title + " - " + subTitle}
                           href={`/${slug}/`}
                           className="CalloutItem"
                         >

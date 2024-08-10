@@ -7,7 +7,7 @@ import {
   type ReactNode,
 } from "react";
 import { QuizContext } from "./QuizContext";
-import type { Option, OptionSelection } from "./types";
+import type { Option } from "./types";
 import {
   BoxIcon,
   CheckCircledIcon,
@@ -23,29 +23,21 @@ import { slugify } from "../../shared/pathHelpers";
 
 /**
  * Challenge component
- *
- * @param {ReactNode} children - The children of the component
- * @param {string} key - The TITLE of the challenge
- * @param {string} group - The grouping of the challenge
  */
 export default function Challenge({
   children,
   title,
-  group,
-  options,
-  description,
-  // hints = [],
-  explanation,
   question,
+  options,
+  explanation,
+  // hints = [],
 }: {
   children: ReactNode[] | ReactNode;
   title: string;
-  group?: string;
-  options: Option[];
-  description: string;
-  // hints?: string[];
-  explanation?: string;
   question?: string;
+  options: Option[];
+  explanation?: string;
+  // hints?: string[];
 }) {
   const { setTotalQuestions, setCorrectAnswers } = useContext(QuizContext);
 
@@ -53,10 +45,7 @@ export default function Challenge({
   const [challengeClass, setChallengeClass] = useState<string>("untouched");
 
   const [isCorrect, setIsCorrect] = useState<boolean | undefined>(undefined);
-  const [selectedOption, setSelectedOption] = useState<OptionSelection>({
-    text: "",
-  });
-  const [showHintText, setShowHintText] = useState<string>("");
+  // const [selectedOption, setSelectedOption] = useState<OptionSelection>({ text: "" });
   const [showExplanation, setShowExplanation] = useState<boolean>(false);
   const [explanationText, setExplanationText] = useState<string>(explanation!);
 
@@ -69,14 +58,11 @@ export default function Challenge({
 
   const reset = () => {
     setIsCorrect(undefined);
-    setSelectedOption({ text: "" });
     setChallengeClass("untouched");
     setShowExplanation(false);
-    setShowHintText("");
   };
 
   const handleAnswer = (option: Option) => {
-    setSelectedOption(option);
     if (option.isAnswer) {
       setIsCorrect(true);
       setChallengeClass("correct pulse");

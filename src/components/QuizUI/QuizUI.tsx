@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import type { Answer } from "./types";
 import { QuizContext } from "./QuizContext";
 

@@ -1,11 +1,9 @@
 ---
-import querystring from "querystring";
+import querystring from "node:querystring";
 import { diskCache } from "../shared/diskCache";
 
 const GITHUB_TOKEN =
-  import.meta.env.VITE_GITHUB_TOKEN ||
-  import.meta.env.PUBLIC_GITHUB_TOKEN ||
-  import.meta.env.GITHUB_TOKEN;
+  import.meta.env.VITE_GITHUB_TOKEN || import.meta.env.GITHUB_TOKEN;
 
 export type Props = {
   path: string;
@@ -15,38 +13,24 @@ const { props } = Astro;
 
 const baseUrl = "https://gist.github.com";
 
-/**
- * @typedef {object} PluginOptions
- * @property {string} username the default gist user.
- * @property {string} secretToken the github secret access token.
- * @property {string} gistCssUrlAddress a string that represents the github default gist css url.
- * @property {boolean} truncate  reduce output size 15-35%
- * @property {boolean} includeDefaultCss flag indicating whether the github default gist css should be included
- * @property {boolean} gistDefaultCssInclude flag indicating whether the github default gist css should be included
- * @property {boolean} gistCssPreload flag indicating whether the github default gist css should be preloaded
- */
-
 type PluginOptions = {
+  /* the default gist user */
   username?: string;
+  /* the github secret access token */
   secretToken?: string;
+  /* a string that represents the github default gist css url */
   gistCssUrlAddress?: string;
+  /* reduce output size 15-35% */
   truncate?: boolean;
+  /* flag indicating whether the github default gist css should be included */
   includeDefaultCss?: boolean;
+  /* flag indicating whether the github default gist css should be included */
   gistDefaultCssInclude?: boolean;
+  /* flag indicating whether the github default gist css should be preloaded */
   gistCssPreload?: boolean;
 };
-
-type GistQuery = {
-  file?: string;
-  highlights?: string | string[];
-  lines?: string | string[];
-};
-
-
 /**
- * Validates the query object is valid.
- * @param {GistQuery} query the query to be validated.
- * @returns {boolean} true if the query is valid; false otherwise.
+ * Validates the query options are valid.
  */
 function isValid(query: querystring.ParsedUrlQuery | { file: any } | null) {
   if (query == null) return false;
@@ -62,11 +46,9 @@ function isValid(query: querystring.ParsedUrlQuery | { file: any } | null) {
 
 /**
  * Builds the query object.
- * This methods looks for anything that is after ? or # in the Gist Url.
+ * This methods looks for anything that is after ? or # in the gist: directive.
  * ? is interpreted as a query string.
  * # is interpreted as a filename.
- * @param {string} value the value of the inlineCode block.
- * @returns {object} the query object.
  */
 function getQuery(value: string): Record<string, any> {
   console.info("getQuery", value);
@@ -82,7 +64,7 @@ function getQuery(value: string): Record<string, any> {
   // a) and d) are easy
   if (qs.length === 0) return { highlights: [], lines: [] };
   if (qs.length > 2) {
-    throw new Error("Malformed query. Check your 'gist:' imports");
+    throw new Error("Malformed query. Check your '<Gist>' url format");
   }
 
   let query;
@@ -94,7 +76,7 @@ function getQuery(value: string): Record<string, any> {
     } else if (qs[0].includes("=")) {
       query = querystring.parse(qs[0]);
     } else {
-      throw new Error("Malformed query. Check your 'gist:' imports");
+      throw new Error("Malformed query. Check your '<Gist>' url format");
     }
   } else {
     query = { file: qs[0], ...querystring.parse(qs[1]) };
@@ -108,7 +90,7 @@ function getQuery(value: string): Record<string, any> {
   // }
   // so we validate
   if (!isValid(query)) {
-    throw new Error("Malformed query. Check your 'gist:' imports");
+    throw new Error("Malformed query. Check your '<Gist>' url format");
   }
 
   return query;
@@ -116,10 +98,10 @@ function getQuery(value: string): Record<string, any> {
 
 /**
  * Builds the gist url.
- * @param {string} value the value of the inlineCode block.
- * @param {PluginOptions} options the options of the plugin.
- * @param {string} file the file to be loaded.
- * @returns {string} the gist url.
+ * 
+ * @param value the gist value
+ * @param options the plugin options
+ * @param file the file to load
  */
 function buildUrl(value: string, options: PluginOptions, file: null) {
   let url = `${baseUrl}/`;
@@ -145,9 +127,6 @@ const handleError = (url: string) => (error: any) => {
 
 /**
  * Handles the markdown AST.
- * @param {path} string the markdown abstract syntax tree.
- * @param {PluginOptions} options the options of the plugin.
- * @returns {*} the markdown ast.
  */
 async function loadGist(path: string, options: PluginOptions = {}) {
   // get the query string and build the url
@@ -254,7 +233,7 @@ if (!gist) {
     gistDefaultCssInclude: false,
   }).catch((error) => {
     console.error("Failed to load gist", error);
-    return null;
+    return null
   });
   diskCache.set(props.path, gist);
 }
@@ -262,51 +241,37 @@ const stylesheetUrl = gist?.stylesheet;
 ---
 
 {
-  gist ? (
-    <astro-embed-gist data-cssurl={stylesheetUrl}>
+  gist && (
+    <astro-embed-gist data-cssurl={stylesheetUrl} data-cached-response={loadedFromCache}>
       <p class="gist-embed-description">{gist.description}</p>
       <Fragment set:html={gist.div} />
     </astro-embed-gist>
-  ) : (
-    <div
-      class="gist-plugin-error"
-      style={{
-        backgroundColor: "#FFEBEE",
-        color: "#F50000",
-        padding: "4rem",
-        width: "35ch",
-        border: "4 dashed #F50000",
-        margin: "0 auto",
-      }}
-    >
-      <h3
-        style={{
-          margin: "5rem auto",
-        }}
-      >
-        Failed to load requested Gist
-      </h3>
-    </div>
   )
 }
 <style>
   astro-embed-gist {
     display: block;
   }
-  .gist-embed-owner {
-  }
-  .gist-embed-description {
-  }
 </style>
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    const gists = document.querySelectorAll("astro-embed-gist");
+    const uniqueUrls = new Set();
+
+    const gists = document.querySelectorAll("astro-embed-gist:not([data-css-loaded])");
     gists.forEach((e) => {
+      // @ts-expect-error
+      e.dataset.cssLoaded = "true";
       // @ts-expect-error
       console.log("adding css", gists.length, e.dataset.cssurl);
       // @ts-expect-error
       const stylesheetUrl = e.dataset.cssurl;
+      if (!stylesheetUrl) return;
+
+      // Prevent loading the same stylesheet multiple times
+      if (uniqueUrls.has(stylesheetUrl)) return;
+      uniqueUrls.add(stylesheetUrl);
+
       const linkElement = document.createElement("link");
       linkElement.href = stylesheetUrl;
       linkElement.rel = "stylesheet";

@@ -56,14 +56,12 @@ export const PostCollections = {
   getCategoryCounts() {
     return Object.entries(PostCollections._categories)
       .sort((a, b) => (a[1] === b[1] ? 0 : a[1] > b[1] ? -1 : 1))
-      .filter(([tag, count]) => count > 1);
+      .filter(([_, count]) => count > 1);
   },
 
   getPosts() {
     let posts = PostCollections._posts;
-
-    console.log("dataCache.getPosts", posts.length);
-
+    // console.log("dataCache.getPosts", posts.length);
     return posts;
   },
   getStaticPaths(): Array<{
@@ -180,13 +178,13 @@ export const getResponsiveImage = (imagePath: string) => {
     responsiveImageLookup = Object.fromEntries(responsiveImages);
   }
   if (!responsiveImages) return;
-  return responsiveImages[imagePath];
+  return responsiveImages[imagePath] || responsiveImageLookup?.[imagePath];
 };
 // console.log("responsiveImages", responsiveImages);
 
 export const getImageProps = (
   imagePath: string,
-  responsiveLevel: "mobile" | "tablet" | "desktop" | "large" = "desktop"
+  // responsiveLevel: "mobile" | "tablet" | "desktop" | "large" = "desktop"
 ) => {
   // console.log('images:', images, 'imagePath:', imagePath);
   if (!imagePaths[imagePath])

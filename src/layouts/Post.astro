@@ -16,7 +16,7 @@ import { GOOGLE_ANALYTICS_ID } from "../consts";
 
 import "@/styles/nav.css";
 import "@/styles/global.css";
-
+import "./Post.css";
 
 type Props = {
   children: any[];
@@ -32,10 +32,10 @@ type Props = {
   };
 };
 
-const { title, subTitle, cover, category, date, modified, tags } =
+const { title, subTitle, cover, category, date, modified } =
   Astro.props.frontmatter! || Astro.props;
 
-console.log("Post.astro", Astro.props);
+// console.log("Post.astro", Astro.props);
 
 const createdAgo = date ? formatDistance(new Date(date), new Date()) : "";
 
@@ -91,7 +91,7 @@ const coverUrl = cover && typeof cover === "object" && "src" in cover ? (cover a
 
         if (quiz) {
           setTimeout(window.__updateCounts, 500);
-          quiz.addEventListener('click', (e) => {
+          quiz.addEventListener('click', () => {
             window.__updateCounts();
           });
         }

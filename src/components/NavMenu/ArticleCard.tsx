@@ -1,6 +1,4 @@
 import { ListItem } from "./ListItem";
-import { useEffect, useState } from "react";
-import type { ImageMetadata } from "astro";
 
 export const ArticleCard = ({post}: any) => {
   // console.warn("ArticleCard:", post?.data?.cover, post);

@@ -30,7 +30,7 @@ type Props = {
   };
 };
 
-const { title, subTitle, cover, category, date, modified, tags } =
+const { title, subTitle, cover, category, date, modified } =
   Astro.props.frontmatter! || Astro.props;
 
 console.log("Main.astro", Astro.props);

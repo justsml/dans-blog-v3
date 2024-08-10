@@ -44,7 +44,7 @@ export const ArticleCard = ({
       data-created={date}
       data-modified={modified}
     >
-      <label className="small-label">{category}</label>
+      <label className="small-label" title={tags && tags.join(', ')}>{category}</label>
       <h2>{title}</h2>
       {image}
       <p>{subTitle}</p>
